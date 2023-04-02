@@ -88,6 +88,7 @@ def init_model(args, device, vocab_size):
         expand_image = args.expand_image,
         expand_language = args.expand_language,
         attention_model = args.attention_model,
+        exchange = args.exchange,
         middle_dim = 1024,
         drop_p = 0.3,
         word_vocab_size = vocab_size,
@@ -96,7 +97,14 @@ def init_model(args, device, vocab_size):
     if args.init_model:
         model.load_state_dict(torch.load(args.init_model, map_location='cpu'))
     model.to(device)
-    return model
+    slim_params = []
+    for name, param in model.named_parameters():
+        if param.requires_grad and name.endswith('weight') and 'bn_exchange' in name:
+            if len(slim_params) % 2 == 0:
+                slim_params.append(param[:len(param) // 2])
+            else:
+                slim_params.append(param[len(param) // 2:])
+    return model, slim_params
 
 # 设置优化器
 def prep_optimizer(args, model, local_rank):
@@ -135,6 +143,7 @@ def get_args():
     parser.add_argument('--lr', type=float, default=3e-5)
     parser.add_argument('--debug', action='store_true', default=False) # debug 模式
     parser.add_argument('--seed', type=int, default=42) # 设置一个你喜欢的随机种子保证实验可复现，默认42，一个具有神秘力量的神奇数字
+    parser.add_argument('--loss_weight', type=str, default='') # 损失函数每个类别的权重，用逗号分隔，形式如“2,1”，表示0类权重2，1类别权重为1，注意中间的分隔符是英文的逗号
     parser.add_argument("--world_size", default=0, type=int, help="distribted training") # 分布式训练需要的参数，不用管
     parser.add_argument("--local_rank", default=0, type=int, help="distribted training") # 分布式训练需要的参数，不用管
     parser.add_argument("--rank", default=0, type=int, help="distribted training") # 分布式训练需要的参数，不用管
@@ -149,6 +158,8 @@ def get_args():
     parser.add_argument('--expand_language', action='store_true', default=False) # 增加文本特征维度（返回单词特征）
     parser.add_argument('--init_model', type=str, default='') # 不为空则加载已保存模型
     parser.add_argument('--attention_model', action='store_true', default=False) # 使用注意力做融合
+    parser.add_argument('--exchange', action='store_true', default=False) # 使用通道转换
+    parser.add_argument('--l1_lamda', type=float, default=2e-4) # 通道转换l1 loss的权重
     # Dataloader参数
     parser.add_argument('--csv_path', type=str, default='datasets/content_noid.csv') # label文件路径
     parser.add_argument('--image_folder', type=str, default='datasets/pheme_images_jpg') # 图像目录
@@ -217,8 +228,10 @@ def eval_epoch(model, loader, device, debug, n_test=1):
             format(f1, pre, rec, acc))
     return f1
 
+def L1_penalty(var):
+    return torch.abs(var).sum()
 
-def train_epoch(args, model, loader, optimizer, criterion, device, local_rank, epoch, debug):
+def train_epoch(args, model, slim_params, loader, optimizer, criterion, device, local_rank, epoch, debug):
     global logger
     torch.cuda.empty_cache()
     model.train()
@@ -234,7 +247,9 @@ def train_epoch(args, model, loader, optimizer, criterion, device, local_rank, e
         logits = model(image, text, attention_mask)
 
         loss = criterion(logits, target.squeeze(-1))
-        
+        if len(slim_params)>0:
+            L1_norm = sum([L1_penalty(m).cuda() for m in slim_params])
+            loss = loss+L1_norm*args.l1_lamda
         loss.backward()
         total_loss += float(loss)
         step_loss = float(loss)
@@ -299,11 +314,16 @@ def main():
     args = set_seed_logger(args)
     device, n_gpu = init_device(args, args.local_rank)
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    model = init_model(args, device, tokenizer.vocab_size)
-    
+    model, slim_params = init_model(args, device, tokenizer.vocab_size)
+
     # 加载数据集
     train_dataloader, test_dataloader, train_length, test_length, train_sampler = get_dataloader(args, tokenizer)
-    criterion = nn.CrossEntropyLoss()
+    loss_w = args.loss_weight
+    if loss_w:
+        loss_w = list(map(float,loss_w.split(',')))
+        criterion = nn.CrossEntropyLoss(weight=torch.from_numpy(np.array(loss_w)).float()).to(device)
+    else:
+        criterion = nn.CrossEntropyLoss()
     if args.do_train:
         optimizer, scheduler, model = prep_optimizer(args, model, args.local_rank)
         if args.local_rank == 0:
@@ -317,7 +337,7 @@ def main():
         best_output_model_file = "None"
         for epoch in range(args.n_epochs):
             train_sampler.set_epoch(epoch)
-            train_loss = train_epoch(args, model, train_dataloader, optimizer, criterion, device, args.local_rank, epoch, args.debug)
+            train_loss = train_epoch(args, model, slim_params, train_dataloader, optimizer, criterion, device, args.local_rank, epoch, args.debug)
             if args.local_rank == 0:
                 logger.info("Epoch %d/%s Finished, Train Loss: %f", epoch + 1, args.n_epochs, train_loss)
                 output_model_file = save_model(epoch, args, model, type_name='')

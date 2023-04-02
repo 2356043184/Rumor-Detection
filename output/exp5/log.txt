@@ -1,0 +1,327 @@
+2023-04-02 12:30:50,443:INFO: Effective parameters:
+2023-04-02 12:30:50,444:INFO:   <<< CUDA_VISIBLE_DEVICES: 0
+2023-04-02 12:30:50,444:INFO:   <<< attention_model: True
+2023-04-02 12:30:50,444:INFO:   <<< batch_size: 128
+2023-04-02 12:30:50,444:INFO:   <<< batch_size_val: 128
+2023-04-02 12:30:50,444:INFO:   <<< csv_path: datasets/content_noid.csv
+2023-04-02 12:30:50,444:INFO:   <<< debug: False
+2023-04-02 12:30:50,444:INFO:   <<< do_train: True
+2023-04-02 12:30:50,444:INFO:   <<< exchange: True
+2023-04-02 12:30:50,444:INFO:   <<< expand_image: True
+2023-04-02 12:30:50,444:INFO:   <<< expand_language: True
+2023-04-02 12:30:50,444:INFO:   <<< freeze_image: False
+2023-04-02 12:30:50,444:INFO:   <<< freeze_language: True
+2023-04-02 12:30:50,444:INFO:   <<< image_folder: datasets/pheme_images_jpg
+2023-04-02 12:30:50,444:INFO:   <<< image_model_type: resnet50
+2023-04-02 12:30:50,444:INFO:   <<< image_size: 224
+2023-04-02 12:30:50,445:INFO:   <<< init_model: 
+2023-04-02 12:30:50,445:INFO:   <<< l1_lamda: 0.0002
+2023-04-02 12:30:50,445:INFO:   <<< language_model_type: bert
+2023-04-02 12:30:50,445:INFO:   <<< local_rank: 0
+2023-04-02 12:30:50,445:INFO:   <<< loss_weight: 1,2
+2023-04-02 12:30:50,445:INFO:   <<< lr: 3e-05
+2023-04-02 12:30:50,445:INFO:   <<< max_text_len: 40
+2023-04-02 12:30:50,445:INFO:   <<< n_epochs: 15
+2023-04-02 12:30:50,445:INFO:   <<< num_workers: 8
+2023-04-02 12:30:50,445:INFO:   <<< output_dir: output/exp5
+2023-04-02 12:30:50,445:INFO:   <<< pin_memory: False
+2023-04-02 12:30:50,445:INFO:   <<< pretrained_image: True
+2023-04-02 12:30:50,445:INFO:   <<< pretrained_language: True
+2023-04-02 12:30:50,445:INFO:   <<< rank: 0
+2023-04-02 12:30:50,445:INFO:   <<< seed: 42
+2023-04-02 12:30:50,445:INFO:   <<< test_id_file: datasets/test_ids.txt
+2023-04-02 12:30:50,445:INFO:   <<< train_id_file: datasets/train_ids.txt
+2023-04-02 12:30:50,445:INFO:   <<< weight_decay: 1e-05
+2023-04-02 12:30:50,446:INFO:   <<< world_size: 1
+2023-04-02 12:30:50,446:INFO: device: cuda:0 n_gpu: 1
+2023-04-02 12:31:07,586:INFO: ***** Running training *****
+2023-04-02 12:31:07,586:INFO:   Num examples = 1827
+2023-04-02 12:31:07,586:INFO:   Batch size = 128
+2023-04-02 12:31:07,586:INFO: ***** Running testing *****
+2023-04-02 12:31:07,586:INFO:   Num examples = 456
+2023-04-02 12:31:07,586:INFO:   Batch size = 128
+2023-04-02 12:31:10,473:INFO: Epoch: 1/15, Step: 1/14, Lr: 0.000030000, Loss: 0.696118, Step Loss: 0.696118, Time: 2.878360
+2023-04-02 12:31:11,283:INFO: Epoch: 1/15, Step: 2/14, Lr: 0.000030000, Loss: 0.686401, Step Loss: 0.686401, Time: 0.809236
+2023-04-02 12:31:12,091:INFO: Epoch: 1/15, Step: 3/14, Lr: 0.000030000, Loss: 0.663536, Step Loss: 0.663536, Time: 0.808191
+2023-04-02 12:31:12,884:INFO: Epoch: 1/15, Step: 4/14, Lr: 0.000030000, Loss: 0.643292, Step Loss: 0.643292, Time: 0.791882
+2023-04-02 12:31:13,653:INFO: Epoch: 1/15, Step: 5/14, Lr: 0.000030000, Loss: 0.626618, Step Loss: 0.626618, Time: 0.769242
+2023-04-02 12:31:14,467:INFO: Epoch: 1/15, Step: 6/14, Lr: 0.000030000, Loss: 0.617829, Step Loss: 0.617829, Time: 0.813067
+2023-04-02 12:31:15,274:INFO: Epoch: 1/15, Step: 7/14, Lr: 0.000030000, Loss: 0.583797, Step Loss: 0.583797, Time: 0.807691
+2023-04-02 12:31:16,084:INFO: Epoch: 1/15, Step: 8/14, Lr: 0.000030000, Loss: 0.573762, Step Loss: 0.573762, Time: 0.809618
+2023-04-02 12:31:16,986:INFO: Epoch: 1/15, Step: 9/14, Lr: 0.000030000, Loss: 0.559485, Step Loss: 0.559485, Time: 0.900993
+2023-04-02 12:31:17,966:INFO: Epoch: 1/15, Step: 10/14, Lr: 0.000030000, Loss: 0.546984, Step Loss: 0.546984, Time: 0.980328
+2023-04-02 12:31:18,948:INFO: Epoch: 1/15, Step: 11/14, Lr: 0.000030000, Loss: 0.572693, Step Loss: 0.572693, Time: 0.981736
+2023-04-02 12:31:19,857:INFO: Epoch: 1/15, Step: 12/14, Lr: 0.000030000, Loss: 0.514984, Step Loss: 0.514984, Time: 0.908675
+2023-04-02 12:31:20,826:INFO: Epoch: 1/15, Step: 13/14, Lr: 0.000030000, Loss: 0.538452, Step Loss: 0.538452, Time: 0.968216
+2023-04-02 12:31:21,811:INFO: Epoch: 1/15, Step: 14/14, Lr: 0.000030000, Loss: 0.512476, Step Loss: 0.512476, Time: 0.984846
+2023-04-02 12:31:21,984:INFO: Epoch 1/15 Finished, Train Loss: 0.595459
+2023-04-02 12:31:22,808:INFO: Model saved to output/exp5/pytorch_model.bin.0
+2023-04-02 12:31:27,088:INFO: Classfication Metrics:
+2023-04-02 12:31:27,088:INFO: f1 score: 0.6186 - precision score: 0.5625 - recall score: 0.6870 - accuracy score: 0.756579
+2023-04-02 12:31:27,088:INFO: The best model is: output/exp5/pytorch_model.bin.0, the F1 is: 0.6186
+2023-04-02 12:31:29,575:INFO: Epoch: 2/15, Step: 1/14, Lr: 0.000300000, Loss: 0.497209, Step Loss: 0.497209, Time: 2.466947
+2023-04-02 12:31:30,322:INFO: Epoch: 2/15, Step: 2/14, Lr: 0.000300000, Loss: 0.453271, Step Loss: 0.453271, Time: 0.746884
+2023-04-02 12:31:31,139:INFO: Epoch: 2/15, Step: 3/14, Lr: 0.000300000, Loss: 0.431384, Step Loss: 0.431384, Time: 0.816637
+2023-04-02 12:31:31,976:INFO: Epoch: 2/15, Step: 4/14, Lr: 0.000300000, Loss: 0.374444, Step Loss: 0.374444, Time: 0.836412
+2023-04-02 12:31:32,847:INFO: Epoch: 2/15, Step: 5/14, Lr: 0.000300000, Loss: 0.357436, Step Loss: 0.357436, Time: 0.870720
+2023-04-02 12:31:33,630:INFO: Epoch: 2/15, Step: 6/14, Lr: 0.000300000, Loss: 0.381933, Step Loss: 0.381933, Time: 0.782943
+2023-04-02 12:31:34,394:INFO: Epoch: 2/15, Step: 7/14, Lr: 0.000300000, Loss: 0.282809, Step Loss: 0.282809, Time: 0.763031
+2023-04-02 12:31:35,033:INFO: Epoch: 2/15, Step: 8/14, Lr: 0.000300000, Loss: 0.343754, Step Loss: 0.343754, Time: 0.639283
+2023-04-02 12:31:35,743:INFO: Epoch: 2/15, Step: 9/14, Lr: 0.000300000, Loss: 0.372153, Step Loss: 0.372153, Time: 0.710043
+2023-04-02 12:31:36,330:INFO: Epoch: 2/15, Step: 10/14, Lr: 0.000300000, Loss: 0.238496, Step Loss: 0.238496, Time: 0.585891
+2023-04-02 12:31:36,902:INFO: Epoch: 2/15, Step: 11/14, Lr: 0.000300000, Loss: 0.314912, Step Loss: 0.314912, Time: 0.572372
+2023-04-02 12:31:37,684:INFO: Epoch: 2/15, Step: 12/14, Lr: 0.000300000, Loss: 0.409364, Step Loss: 0.409364, Time: 0.781435
+2023-04-02 12:31:38,429:INFO: Epoch: 2/15, Step: 13/14, Lr: 0.000300000, Loss: 0.350442, Step Loss: 0.350442, Time: 0.744417
+2023-04-02 12:31:39,006:INFO: Epoch: 2/15, Step: 14/14, Lr: 0.000300000, Loss: 0.488992, Step Loss: 0.488992, Time: 0.576714
+2023-04-02 12:31:39,169:INFO: Epoch 2/15 Finished, Train Loss: 0.378328
+2023-04-02 12:31:40,072:INFO: Model saved to output/exp5/pytorch_model.bin.1
+2023-04-02 12:31:44,194:INFO: Classfication Metrics:
+2023-04-02 12:31:44,194:INFO: f1 score: 0.5902 - precision score: 0.4596 - recall score: 0.8244 - accuracy score: 0.671053
+2023-04-02 12:31:44,194:INFO: The best model is: output/exp5/pytorch_model.bin.0, the F1 is: 0.6186
+2023-04-02 12:31:47,356:INFO: Epoch: 3/15, Step: 1/14, Lr: 0.000300000, Loss: 0.296741, Step Loss: 0.296741, Time: 3.022161
+2023-04-02 12:31:48,293:INFO: Epoch: 3/15, Step: 2/14, Lr: 0.000300000, Loss: 0.356058, Step Loss: 0.356058, Time: 0.935934
+2023-04-02 12:31:49,242:INFO: Epoch: 3/15, Step: 3/14, Lr: 0.000300000, Loss: 0.363856, Step Loss: 0.363856, Time: 0.949491
+2023-04-02 12:31:50,232:INFO: Epoch: 3/15, Step: 4/14, Lr: 0.000300000, Loss: 0.208923, Step Loss: 0.208923, Time: 0.989182
+2023-04-02 12:31:51,195:INFO: Epoch: 3/15, Step: 5/14, Lr: 0.000300000, Loss: 0.278356, Step Loss: 0.278356, Time: 0.962360
+2023-04-02 12:31:52,167:INFO: Epoch: 3/15, Step: 6/14, Lr: 0.000300000, Loss: 0.204043, Step Loss: 0.204043, Time: 0.971517
+2023-04-02 12:31:53,195:INFO: Epoch: 3/15, Step: 7/14, Lr: 0.000300000, Loss: 0.184041, Step Loss: 0.184041, Time: 1.028011
+2023-04-02 12:31:54,112:INFO: Epoch: 3/15, Step: 8/14, Lr: 0.000300000, Loss: 0.239572, Step Loss: 0.239572, Time: 0.916225
+2023-04-02 12:31:55,042:INFO: Epoch: 3/15, Step: 9/14, Lr: 0.000300000, Loss: 0.224883, Step Loss: 0.224883, Time: 0.930453
+2023-04-02 12:31:55,926:INFO: Epoch: 3/15, Step: 10/14, Lr: 0.000300000, Loss: 0.218615, Step Loss: 0.218615, Time: 0.883155
+2023-04-02 12:31:56,818:INFO: Epoch: 3/15, Step: 11/14, Lr: 0.000300000, Loss: 0.189544, Step Loss: 0.189544, Time: 0.892067
+2023-04-02 12:31:57,693:INFO: Epoch: 3/15, Step: 12/14, Lr: 0.000300000, Loss: 0.219128, Step Loss: 0.219128, Time: 0.874337
+2023-04-02 12:31:58,588:INFO: Epoch: 3/15, Step: 13/14, Lr: 0.000300000, Loss: 0.247426, Step Loss: 0.247426, Time: 0.894943
+2023-04-02 12:31:59,501:INFO: Epoch: 3/15, Step: 14/14, Lr: 0.000300000, Loss: 0.172759, Step Loss: 0.172759, Time: 0.912712
+2023-04-02 12:31:59,729:INFO: Epoch 3/15 Finished, Train Loss: 0.243139
+2023-04-02 12:32:00,589:INFO: Model saved to output/exp5/pytorch_model.bin.2
+2023-04-02 12:32:05,745:INFO: Classfication Metrics:
+2023-04-02 12:32:05,745:INFO: f1 score: 0.5782 - precision score: 0.7625 - recall score: 0.4656 - accuracy score: 0.804825
+2023-04-02 12:32:05,745:INFO: The best model is: output/exp5/pytorch_model.bin.0, the F1 is: 0.6186
+2023-04-02 12:32:08,676:INFO: Epoch: 4/15, Step: 1/14, Lr: 0.000285145, Loss: 0.129016, Step Loss: 0.129016, Time: 2.853364
+2023-04-02 12:32:09,750:INFO: Epoch: 4/15, Step: 2/14, Lr: 0.000285145, Loss: 0.172739, Step Loss: 0.172739, Time: 1.073947
+2023-04-02 12:32:10,628:INFO: Epoch: 4/15, Step: 3/14, Lr: 0.000285145, Loss: 0.108902, Step Loss: 0.108902, Time: 0.877337
+2023-04-02 12:32:11,489:INFO: Epoch: 4/15, Step: 4/14, Lr: 0.000285145, Loss: 0.158945, Step Loss: 0.158945, Time: 0.860071
+2023-04-02 12:32:12,389:INFO: Epoch: 4/15, Step: 5/14, Lr: 0.000285145, Loss: 0.234641, Step Loss: 0.234641, Time: 0.900251
+2023-04-02 12:32:13,282:INFO: Epoch: 4/15, Step: 6/14, Lr: 0.000285145, Loss: 0.255509, Step Loss: 0.255509, Time: 0.892236
+2023-04-02 12:32:14,106:INFO: Epoch: 4/15, Step: 7/14, Lr: 0.000285145, Loss: 0.193621, Step Loss: 0.193621, Time: 0.824111
+2023-04-02 12:32:15,004:INFO: Epoch: 4/15, Step: 8/14, Lr: 0.000285145, Loss: 0.182509, Step Loss: 0.182509, Time: 0.897163
+2023-04-02 12:32:15,885:INFO: Epoch: 4/15, Step: 9/14, Lr: 0.000285145, Loss: 0.212637, Step Loss: 0.212637, Time: 0.880411
+2023-04-02 12:32:16,824:INFO: Epoch: 4/15, Step: 10/14, Lr: 0.000285145, Loss: 0.165175, Step Loss: 0.165175, Time: 0.939062
+2023-04-02 12:32:17,801:INFO: Epoch: 4/15, Step: 11/14, Lr: 0.000285145, Loss: 0.195277, Step Loss: 0.195277, Time: 0.977156
+2023-04-02 12:32:18,715:INFO: Epoch: 4/15, Step: 12/14, Lr: 0.000285145, Loss: 0.150265, Step Loss: 0.150265, Time: 0.912836
+2023-04-02 12:32:19,582:INFO: Epoch: 4/15, Step: 13/14, Lr: 0.000285145, Loss: 0.144931, Step Loss: 0.144931, Time: 0.866623
+2023-04-02 12:32:20,469:INFO: Epoch: 4/15, Step: 14/14, Lr: 0.000285145, Loss: 0.179122, Step Loss: 0.179122, Time: 0.887281
+2023-04-02 12:32:20,652:INFO: Epoch 4/15 Finished, Train Loss: 0.177378
+2023-04-02 12:32:21,500:INFO: Model saved to output/exp5/pytorch_model.bin.3
+2023-04-02 12:32:26,645:INFO: Classfication Metrics:
+2023-04-02 12:32:26,645:INFO: f1 score: 0.6593 - precision score: 0.5150 - recall score: 0.9160 - accuracy score: 0.728070
+2023-04-02 12:32:26,645:INFO: The best model is: output/exp5/pytorch_model.bin.3, the F1 is: 0.6593
+2023-04-02 12:32:29,573:INFO: Epoch: 5/15, Step: 1/14, Lr: 0.000267275, Loss: 0.129565, Step Loss: 0.129565, Time: 2.903968
+2023-04-02 12:32:30,733:INFO: Epoch: 5/15, Step: 2/14, Lr: 0.000267275, Loss: 0.178277, Step Loss: 0.178277, Time: 1.159859
+2023-04-02 12:32:31,871:INFO: Epoch: 5/15, Step: 3/14, Lr: 0.000267275, Loss: 0.112558, Step Loss: 0.112558, Time: 1.137607
+2023-04-02 12:32:32,983:INFO: Epoch: 5/15, Step: 4/14, Lr: 0.000267275, Loss: 0.127059, Step Loss: 0.127059, Time: 1.111287
+2023-04-02 12:32:34,119:INFO: Epoch: 5/15, Step: 5/14, Lr: 0.000267275, Loss: 0.186613, Step Loss: 0.186613, Time: 1.135496
+2023-04-02 12:32:35,127:INFO: Epoch: 5/15, Step: 6/14, Lr: 0.000267275, Loss: 0.104969, Step Loss: 0.104969, Time: 1.008183
+2023-04-02 12:32:36,109:INFO: Epoch: 5/15, Step: 7/14, Lr: 0.000267275, Loss: 0.135553, Step Loss: 0.135553, Time: 0.982177
+2023-04-02 12:32:37,099:INFO: Epoch: 5/15, Step: 8/14, Lr: 0.000267275, Loss: 0.141966, Step Loss: 0.141966, Time: 0.989508
+2023-04-02 12:32:38,106:INFO: Epoch: 5/15, Step: 9/14, Lr: 0.000267275, Loss: 0.161499, Step Loss: 0.161499, Time: 1.006785
+2023-04-02 12:32:39,005:INFO: Epoch: 5/15, Step: 10/14, Lr: 0.000267275, Loss: 0.133148, Step Loss: 0.133148, Time: 0.898702
+2023-04-02 12:32:39,845:INFO: Epoch: 5/15, Step: 11/14, Lr: 0.000267275, Loss: 0.079295, Step Loss: 0.079295, Time: 0.839077
+2023-04-02 12:32:40,881:INFO: Epoch: 5/15, Step: 12/14, Lr: 0.000267275, Loss: 0.107255, Step Loss: 0.107255, Time: 1.035828
+2023-04-02 12:32:41,736:INFO: Epoch: 5/15, Step: 13/14, Lr: 0.000267275, Loss: 0.116379, Step Loss: 0.116379, Time: 0.854927
+2023-04-02 12:32:42,712:INFO: Epoch: 5/15, Step: 14/14, Lr: 0.000267275, Loss: 0.130661, Step Loss: 0.130661, Time: 0.975127
+2023-04-02 12:32:42,884:INFO: Epoch 5/15 Finished, Train Loss: 0.131771
+2023-04-02 12:32:43,706:INFO: Model saved to output/exp5/pytorch_model.bin.4
+2023-04-02 12:32:48,939:INFO: Classfication Metrics:
+2023-04-02 12:32:48,939:INFO: f1 score: 0.6750 - precision score: 0.7431 - recall score: 0.6183 - accuracy score: 0.828947
+2023-04-02 12:32:48,939:INFO: The best model is: output/exp5/pytorch_model.bin.4, the F1 is: 0.6750
+2023-04-02 12:32:51,935:INFO: Epoch: 6/15, Step: 1/14, Lr: 0.000243523, Loss: 0.100484, Step Loss: 0.100484, Time: 2.974986
+2023-04-02 12:32:53,110:INFO: Epoch: 6/15, Step: 2/14, Lr: 0.000243523, Loss: 0.081902, Step Loss: 0.081902, Time: 1.174769
+2023-04-02 12:32:54,175:INFO: Epoch: 6/15, Step: 3/14, Lr: 0.000243523, Loss: 0.079624, Step Loss: 0.079624, Time: 1.064116
+2023-04-02 12:32:55,241:INFO: Epoch: 6/15, Step: 4/14, Lr: 0.000243523, Loss: 0.063851, Step Loss: 0.063851, Time: 1.065978
+2023-04-02 12:32:56,382:INFO: Epoch: 6/15, Step: 5/14, Lr: 0.000243523, Loss: 0.123138, Step Loss: 0.123138, Time: 1.140443
+2023-04-02 12:32:57,486:INFO: Epoch: 6/15, Step: 6/14, Lr: 0.000243523, Loss: 0.074697, Step Loss: 0.074697, Time: 1.104079
+2023-04-02 12:32:58,499:INFO: Epoch: 6/15, Step: 7/14, Lr: 0.000243523, Loss: 0.120940, Step Loss: 0.120940, Time: 1.012084
+2023-04-02 12:32:59,493:INFO: Epoch: 6/15, Step: 8/14, Lr: 0.000243523, Loss: 0.098779, Step Loss: 0.098779, Time: 0.994072
+2023-04-02 12:33:00,389:INFO: Epoch: 6/15, Step: 9/14, Lr: 0.000243523, Loss: 0.201230, Step Loss: 0.201230, Time: 0.895670
+2023-04-02 12:33:01,370:INFO: Epoch: 6/15, Step: 10/14, Lr: 0.000243523, Loss: 0.107342, Step Loss: 0.107342, Time: 0.981018
+2023-04-02 12:33:02,355:INFO: Epoch: 6/15, Step: 11/14, Lr: 0.000243523, Loss: 0.114070, Step Loss: 0.114070, Time: 0.984164
+2023-04-02 12:33:03,253:INFO: Epoch: 6/15, Step: 12/14, Lr: 0.000243523, Loss: 0.097180, Step Loss: 0.097180, Time: 0.898190
+2023-04-02 12:33:04,139:INFO: Epoch: 6/15, Step: 13/14, Lr: 0.000243523, Loss: 0.089353, Step Loss: 0.089353, Time: 0.885785
+2023-04-02 12:33:04,974:INFO: Epoch: 6/15, Step: 14/14, Lr: 0.000243523, Loss: 0.134872, Step Loss: 0.134872, Time: 0.834675
+2023-04-02 12:33:05,144:INFO: Epoch 6/15 Finished, Train Loss: 0.106247
+2023-04-02 12:33:06,072:INFO: Model saved to output/exp5/pytorch_model.bin.5
+2023-04-02 12:33:11,156:INFO: Classfication Metrics:
+2023-04-02 12:33:11,156:INFO: f1 score: 0.7309 - precision score: 0.6471 - recall score: 0.8397 - accuracy score: 0.822368
+2023-04-02 12:33:11,156:INFO: The best model is: output/exp5/pytorch_model.bin.5, the F1 is: 0.7309
+2023-04-02 12:33:14,163:INFO: Epoch: 7/15, Step: 1/14, Lr: 0.000215083, Loss: 0.084599, Step Loss: 0.084599, Time: 2.985480
+2023-04-02 12:33:15,303:INFO: Epoch: 7/15, Step: 2/14, Lr: 0.000215083, Loss: 0.092562, Step Loss: 0.092562, Time: 1.139262
+2023-04-02 12:33:16,437:INFO: Epoch: 7/15, Step: 3/14, Lr: 0.000215083, Loss: 0.081954, Step Loss: 0.081954, Time: 1.133646
+2023-04-02 12:33:17,545:INFO: Epoch: 7/15, Step: 4/14, Lr: 0.000215083, Loss: 0.079398, Step Loss: 0.079398, Time: 1.107428
+2023-04-02 12:33:18,715:INFO: Epoch: 7/15, Step: 5/14, Lr: 0.000215083, Loss: 0.071358, Step Loss: 0.071358, Time: 1.169587
+2023-04-02 12:33:19,872:INFO: Epoch: 7/15, Step: 6/14, Lr: 0.000215083, Loss: 0.059046, Step Loss: 0.059046, Time: 1.156788
+2023-04-02 12:33:21,015:INFO: Epoch: 7/15, Step: 7/14, Lr: 0.000215083, Loss: 0.095907, Step Loss: 0.095907, Time: 1.142712
+2023-04-02 12:33:22,030:INFO: Epoch: 7/15, Step: 8/14, Lr: 0.000215083, Loss: 0.090973, Step Loss: 0.090973, Time: 1.014210
+2023-04-02 12:33:22,940:INFO: Epoch: 7/15, Step: 9/14, Lr: 0.000215083, Loss: 0.081306, Step Loss: 0.081306, Time: 0.910275
+2023-04-02 12:33:23,914:INFO: Epoch: 7/15, Step: 10/14, Lr: 0.000215083, Loss: 0.052025, Step Loss: 0.052025, Time: 0.973351
+2023-04-02 12:33:24,902:INFO: Epoch: 7/15, Step: 11/14, Lr: 0.000215083, Loss: 0.079787, Step Loss: 0.079787, Time: 0.987261
+2023-04-02 12:33:25,891:INFO: Epoch: 7/15, Step: 12/14, Lr: 0.000215083, Loss: 0.065253, Step Loss: 0.065253, Time: 0.989211
+2023-04-02 12:33:26,902:INFO: Epoch: 7/15, Step: 13/14, Lr: 0.000215083, Loss: 0.068616, Step Loss: 0.068616, Time: 1.010716
+2023-04-02 12:33:27,912:INFO: Epoch: 7/15, Step: 14/14, Lr: 0.000215083, Loss: 0.083619, Step Loss: 0.083619, Time: 1.009396
+2023-04-02 12:33:28,084:INFO: Epoch 7/15 Finished, Train Loss: 0.077600
+2023-04-02 12:33:28,920:INFO: Model saved to output/exp5/pytorch_model.bin.6
+2023-04-02 12:33:34,339:INFO: Classfication Metrics:
+2023-04-02 12:33:34,339:INFO: f1 score: 0.7089 - precision score: 0.6054 - recall score: 0.8550 - accuracy score: 0.798246
+2023-04-02 12:33:34,339:INFO: The best model is: output/exp5/pytorch_model.bin.5, the F1 is: 0.7309
+2023-04-02 12:33:37,530:INFO: Epoch: 8/15, Step: 1/14, Lr: 0.000183378, Loss: 0.061054, Step Loss: 0.061054, Time: 2.935849
+2023-04-02 12:33:38,720:INFO: Epoch: 8/15, Step: 2/14, Lr: 0.000183378, Loss: 0.057191, Step Loss: 0.057191, Time: 1.189898
+2023-04-02 12:33:39,893:INFO: Epoch: 8/15, Step: 3/14, Lr: 0.000183378, Loss: 0.056738, Step Loss: 0.056738, Time: 1.171857
+2023-04-02 12:33:41,051:INFO: Epoch: 8/15, Step: 4/14, Lr: 0.000183378, Loss: 0.057021, Step Loss: 0.057021, Time: 1.157822
+2023-04-02 12:33:42,212:INFO: Epoch: 8/15, Step: 5/14, Lr: 0.000183378, Loss: 0.048800, Step Loss: 0.048800, Time: 1.160789
+2023-04-02 12:33:43,197:INFO: Epoch: 8/15, Step: 6/14, Lr: 0.000183378, Loss: 0.051512, Step Loss: 0.051512, Time: 0.984844
+2023-04-02 12:33:44,058:INFO: Epoch: 8/15, Step: 7/14, Lr: 0.000183378, Loss: 0.057699, Step Loss: 0.057699, Time: 0.861073
+2023-04-02 12:33:44,804:INFO: Epoch: 8/15, Step: 8/14, Lr: 0.000183378, Loss: 0.061348, Step Loss: 0.061348, Time: 0.744982
+2023-04-02 12:33:45,630:INFO: Epoch: 8/15, Step: 9/14, Lr: 0.000183378, Loss: 0.092905, Step Loss: 0.092905, Time: 0.825785
+2023-04-02 12:33:46,300:INFO: Epoch: 8/15, Step: 10/14, Lr: 0.000183378, Loss: 0.057203, Step Loss: 0.057203, Time: 0.669626
+2023-04-02 12:33:46,886:INFO: Epoch: 8/15, Step: 11/14, Lr: 0.000183378, Loss: 0.132661, Step Loss: 0.132661, Time: 0.585580
+2023-04-02 12:33:47,571:INFO: Epoch: 8/15, Step: 12/14, Lr: 0.000183378, Loss: 0.040846, Step Loss: 0.040846, Time: 0.685353
+2023-04-02 12:33:48,321:INFO: Epoch: 8/15, Step: 13/14, Lr: 0.000183378, Loss: 0.066620, Step Loss: 0.066620, Time: 0.749544
+2023-04-02 12:33:48,995:INFO: Epoch: 8/15, Step: 14/14, Lr: 0.000183378, Loss: 0.047918, Step Loss: 0.047918, Time: 0.673872
+2023-04-02 12:33:49,176:INFO: Epoch 8/15 Finished, Train Loss: 0.063537
+2023-04-02 12:33:49,981:INFO: Model saved to output/exp5/pytorch_model.bin.7
+2023-04-02 12:33:54,206:INFO: Classfication Metrics:
+2023-04-02 12:33:54,206:INFO: f1 score: 0.7106 - precision score: 0.6831 - recall score: 0.7405 - accuracy score: 0.826754
+2023-04-02 12:33:54,206:INFO: The best model is: output/exp5/pytorch_model.bin.5, the F1 is: 0.7309
+2023-04-02 12:33:56,927:INFO: Epoch: 9/15, Step: 1/14, Lr: 0.000150000, Loss: 0.048128, Step Loss: 0.048128, Time: 2.586088
+2023-04-02 12:33:57,673:INFO: Epoch: 9/15, Step: 2/14, Lr: 0.000150000, Loss: 0.056325, Step Loss: 0.056325, Time: 0.745638
+2023-04-02 12:33:58,405:INFO: Epoch: 9/15, Step: 3/14, Lr: 0.000150000, Loss: 0.056561, Step Loss: 0.056561, Time: 0.731470
+2023-04-02 12:33:59,138:INFO: Epoch: 9/15, Step: 4/14, Lr: 0.000150000, Loss: 0.040811, Step Loss: 0.040811, Time: 0.732765
+2023-04-02 12:33:59,890:INFO: Epoch: 9/15, Step: 5/14, Lr: 0.000150000, Loss: 0.052941, Step Loss: 0.052941, Time: 0.751684
+2023-04-02 12:34:00,613:INFO: Epoch: 9/15, Step: 6/14, Lr: 0.000150000, Loss: 0.064206, Step Loss: 0.064206, Time: 0.722514
+2023-04-02 12:34:01,324:INFO: Epoch: 9/15, Step: 7/14, Lr: 0.000150000, Loss: 0.038842, Step Loss: 0.038842, Time: 0.710787
+2023-04-02 12:34:02,020:INFO: Epoch: 9/15, Step: 8/14, Lr: 0.000150000, Loss: 0.047200, Step Loss: 0.047200, Time: 0.696472
+2023-04-02 12:34:02,576:INFO: Epoch: 9/15, Step: 9/14, Lr: 0.000150000, Loss: 0.041913, Step Loss: 0.041913, Time: 0.555627
+2023-04-02 12:34:03,315:INFO: Epoch: 9/15, Step: 10/14, Lr: 0.000150000, Loss: 0.082722, Step Loss: 0.082722, Time: 0.738060
+2023-04-02 12:34:04,036:INFO: Epoch: 9/15, Step: 11/14, Lr: 0.000150000, Loss: 0.046041, Step Loss: 0.046041, Time: 0.720887
+2023-04-02 12:34:04,771:INFO: Epoch: 9/15, Step: 12/14, Lr: 0.000150000, Loss: 0.071319, Step Loss: 0.071319, Time: 0.734780
+2023-04-02 12:34:05,470:INFO: Epoch: 9/15, Step: 13/14, Lr: 0.000150000, Loss: 0.053279, Step Loss: 0.053279, Time: 0.698439
+2023-04-02 12:34:06,184:INFO: Epoch: 9/15, Step: 14/14, Lr: 0.000150000, Loss: 0.057174, Step Loss: 0.057174, Time: 0.713938
+2023-04-02 12:34:06,343:INFO: Epoch 9/15 Finished, Train Loss: 0.054104
+2023-04-02 12:34:07,169:INFO: Model saved to output/exp5/pytorch_model.bin.8
+2023-04-02 12:34:10,969:INFO: Classfication Metrics:
+2023-04-02 12:34:10,970:INFO: f1 score: 0.7376 - precision score: 0.6887 - recall score: 0.7939 - accuracy score: 0.837719
+2023-04-02 12:34:10,970:INFO: The best model is: output/exp5/pytorch_model.bin.8, the F1 is: 0.7376
+2023-04-02 12:34:13,471:INFO: Epoch: 10/15, Step: 1/14, Lr: 0.000116622, Loss: 0.077282, Step Loss: 0.077282, Time: 2.450122
+2023-04-02 12:34:14,182:INFO: Epoch: 10/15, Step: 2/14, Lr: 0.000116622, Loss: 0.044672, Step Loss: 0.044672, Time: 0.709730
+2023-04-02 12:34:14,902:INFO: Epoch: 10/15, Step: 3/14, Lr: 0.000116622, Loss: 0.044845, Step Loss: 0.044845, Time: 0.719923
+2023-04-02 12:34:15,619:INFO: Epoch: 10/15, Step: 4/14, Lr: 0.000116622, Loss: 0.069401, Step Loss: 0.069401, Time: 0.716426
+2023-04-02 12:34:16,335:INFO: Epoch: 10/15, Step: 5/14, Lr: 0.000116622, Loss: 0.064646, Step Loss: 0.064646, Time: 0.716396
+2023-04-02 12:34:16,955:INFO: Epoch: 10/15, Step: 6/14, Lr: 0.000116622, Loss: 0.038154, Step Loss: 0.038154, Time: 0.619651
+2023-04-02 12:34:17,694:INFO: Epoch: 10/15, Step: 7/14, Lr: 0.000116622, Loss: 0.036964, Step Loss: 0.036964, Time: 0.738438
+2023-04-02 12:34:18,397:INFO: Epoch: 10/15, Step: 8/14, Lr: 0.000116622, Loss: 0.061765, Step Loss: 0.061765, Time: 0.702517
+2023-04-02 12:34:19,161:INFO: Epoch: 10/15, Step: 9/14, Lr: 0.000116622, Loss: 0.073003, Step Loss: 0.073003, Time: 0.764196
+2023-04-02 12:34:19,919:INFO: Epoch: 10/15, Step: 10/14, Lr: 0.000116622, Loss: 0.062959, Step Loss: 0.062959, Time: 0.757390
+2023-04-02 12:34:20,668:INFO: Epoch: 10/15, Step: 11/14, Lr: 0.000116622, Loss: 0.044051, Step Loss: 0.044051, Time: 0.749287
+2023-04-02 12:34:21,384:INFO: Epoch: 10/15, Step: 12/14, Lr: 0.000116622, Loss: 0.061324, Step Loss: 0.061324, Time: 0.715497
+2023-04-02 12:34:22,163:INFO: Epoch: 10/15, Step: 13/14, Lr: 0.000116622, Loss: 0.052222, Step Loss: 0.052222, Time: 0.778749
+2023-04-02 12:34:22,886:INFO: Epoch: 10/15, Step: 14/14, Lr: 0.000116622, Loss: 0.040173, Step Loss: 0.040173, Time: 0.722581
+2023-04-02 12:34:23,058:INFO: Epoch 10/15 Finished, Train Loss: 0.055104
+2023-04-02 12:34:23,901:INFO: Model saved to output/exp5/pytorch_model.bin.9
+2023-04-02 12:34:28,078:INFO: Classfication Metrics:
+2023-04-02 12:34:28,078:INFO: f1 score: 0.7185 - precision score: 0.6978 - recall score: 0.7405 - accuracy score: 0.833333
+2023-04-02 12:34:28,079:INFO: The best model is: output/exp5/pytorch_model.bin.8, the F1 is: 0.7376
+2023-04-02 12:34:31,111:INFO: Epoch: 11/15, Step: 1/14, Lr: 0.000084917, Loss: 0.047463, Step Loss: 0.047463, Time: 2.905866
+2023-04-02 12:34:31,976:INFO: Epoch: 11/15, Step: 2/14, Lr: 0.000084917, Loss: 0.041933, Step Loss: 0.041933, Time: 0.863885
+2023-04-02 12:34:32,843:INFO: Epoch: 11/15, Step: 3/14, Lr: 0.000084917, Loss: 0.039868, Step Loss: 0.039868, Time: 0.867235
+2023-04-02 12:34:33,698:INFO: Epoch: 11/15, Step: 4/14, Lr: 0.000084917, Loss: 0.056029, Step Loss: 0.056029, Time: 0.854776
+2023-04-02 12:34:34,665:INFO: Epoch: 11/15, Step: 5/14, Lr: 0.000084917, Loss: 0.045310, Step Loss: 0.045310, Time: 0.966372
+2023-04-02 12:34:35,645:INFO: Epoch: 11/15, Step: 6/14, Lr: 0.000084917, Loss: 0.048445, Step Loss: 0.048445, Time: 0.978836
+2023-04-02 12:34:36,579:INFO: Epoch: 11/15, Step: 7/14, Lr: 0.000084917, Loss: 0.047833, Step Loss: 0.047833, Time: 0.933965
+2023-04-02 12:34:37,546:INFO: Epoch: 11/15, Step: 8/14, Lr: 0.000084917, Loss: 0.040410, Step Loss: 0.040410, Time: 0.966792
+2023-04-02 12:34:38,535:INFO: Epoch: 11/15, Step: 9/14, Lr: 0.000084917, Loss: 0.043017, Step Loss: 0.043017, Time: 0.988178
+2023-04-02 12:34:39,343:INFO: Epoch: 11/15, Step: 10/14, Lr: 0.000084917, Loss: 0.035080, Step Loss: 0.035080, Time: 0.807953
+2023-04-02 12:34:40,279:INFO: Epoch: 11/15, Step: 11/14, Lr: 0.000084917, Loss: 0.036971, Step Loss: 0.036971, Time: 0.935670
+2023-04-02 12:34:41,281:INFO: Epoch: 11/15, Step: 12/14, Lr: 0.000084917, Loss: 0.051994, Step Loss: 0.051994, Time: 1.001039
+2023-04-02 12:34:42,094:INFO: Epoch: 11/15, Step: 13/14, Lr: 0.000084917, Loss: 0.036138, Step Loss: 0.036138, Time: 0.813353
+2023-04-02 12:34:42,919:INFO: Epoch: 11/15, Step: 14/14, Lr: 0.000084917, Loss: 0.037965, Step Loss: 0.037965, Time: 0.823946
+2023-04-02 12:34:43,090:INFO: Epoch 11/15 Finished, Train Loss: 0.043461
+2023-04-02 12:34:43,914:INFO: Model saved to output/exp5/pytorch_model.bin.10
+2023-04-02 12:34:48,117:INFO: Classfication Metrics:
+2023-04-02 12:34:48,117:INFO: f1 score: 0.7331 - precision score: 0.6867 - recall score: 0.7863 - accuracy score: 0.835526
+2023-04-02 12:34:48,117:INFO: The best model is: output/exp5/pytorch_model.bin.8, the F1 is: 0.7376
+2023-04-02 12:34:50,918:INFO: Epoch: 12/15, Step: 1/14, Lr: 0.000056477, Loss: 0.038077, Step Loss: 0.038077, Time: 2.541860
+2023-04-02 12:34:51,750:INFO: Epoch: 12/15, Step: 2/14, Lr: 0.000056477, Loss: 0.035367, Step Loss: 0.035367, Time: 0.831125
+2023-04-02 12:34:52,556:INFO: Epoch: 12/15, Step: 3/14, Lr: 0.000056477, Loss: 0.033569, Step Loss: 0.033569, Time: 0.805236
+2023-04-02 12:34:53,384:INFO: Epoch: 12/15, Step: 4/14, Lr: 0.000056477, Loss: 0.073565, Step Loss: 0.073565, Time: 0.827765
+2023-04-02 12:34:54,039:INFO: Epoch: 12/15, Step: 5/14, Lr: 0.000056477, Loss: 0.045950, Step Loss: 0.045950, Time: 0.654522
+2023-04-02 12:34:54,844:INFO: Epoch: 12/15, Step: 6/14, Lr: 0.000056477, Loss: 0.039275, Step Loss: 0.039275, Time: 0.805355
+2023-04-02 12:34:55,670:INFO: Epoch: 12/15, Step: 7/14, Lr: 0.000056477, Loss: 0.058917, Step Loss: 0.058917, Time: 0.825254
+2023-04-02 12:34:56,423:INFO: Epoch: 12/15, Step: 8/14, Lr: 0.000056477, Loss: 0.046618, Step Loss: 0.046618, Time: 0.753425
+2023-04-02 12:34:57,143:INFO: Epoch: 12/15, Step: 9/14, Lr: 0.000056477, Loss: 0.061400, Step Loss: 0.061400, Time: 0.719077
+2023-04-02 12:34:57,786:INFO: Epoch: 12/15, Step: 10/14, Lr: 0.000056477, Loss: 0.037701, Step Loss: 0.037701, Time: 0.642526
+2023-04-02 12:34:58,445:INFO: Epoch: 12/15, Step: 11/14, Lr: 0.000056477, Loss: 0.050322, Step Loss: 0.050322, Time: 0.658911
+2023-04-02 12:34:59,142:INFO: Epoch: 12/15, Step: 12/14, Lr: 0.000056477, Loss: 0.047261, Step Loss: 0.047261, Time: 0.696444
+2023-04-02 12:34:59,850:INFO: Epoch: 12/15, Step: 13/14, Lr: 0.000056477, Loss: 0.053593, Step Loss: 0.053593, Time: 0.708013
+2023-04-02 12:35:00,619:INFO: Epoch: 12/15, Step: 14/14, Lr: 0.000056477, Loss: 0.038514, Step Loss: 0.038514, Time: 0.769218
+2023-04-02 12:35:00,786:INFO: Epoch 12/15 Finished, Train Loss: 0.047152
+2023-04-02 12:35:01,605:INFO: Model saved to output/exp5/pytorch_model.bin.11
+2023-04-02 12:35:06,575:INFO: Classfication Metrics:
+2023-04-02 12:35:06,576:INFO: f1 score: 0.7376 - precision score: 0.6887 - recall score: 0.7939 - accuracy score: 0.837719
+2023-04-02 12:35:06,576:INFO: The best model is: output/exp5/pytorch_model.bin.11, the F1 is: 0.7376
+2023-04-02 12:35:09,540:INFO: Epoch: 13/15, Step: 1/14, Lr: 0.000032725, Loss: 0.034459, Step Loss: 0.034459, Time: 2.935757
+2023-04-02 12:35:10,688:INFO: Epoch: 13/15, Step: 2/14, Lr: 0.000032725, Loss: 0.031938, Step Loss: 0.031938, Time: 1.146784
+2023-04-02 12:35:11,844:INFO: Epoch: 13/15, Step: 3/14, Lr: 0.000032725, Loss: 0.051112, Step Loss: 0.051112, Time: 1.155854
+2023-04-02 12:35:12,951:INFO: Epoch: 13/15, Step: 4/14, Lr: 0.000032725, Loss: 0.037779, Step Loss: 0.037779, Time: 1.106485
+2023-04-02 12:35:14,090:INFO: Epoch: 13/15, Step: 5/14, Lr: 0.000032725, Loss: 0.038609, Step Loss: 0.038609, Time: 1.138691
+2023-04-02 12:35:15,237:INFO: Epoch: 13/15, Step: 6/14, Lr: 0.000032725, Loss: 0.048221, Step Loss: 0.048221, Time: 1.147001
+2023-04-02 12:35:16,361:INFO: Epoch: 13/15, Step: 7/14, Lr: 0.000032725, Loss: 0.044806, Step Loss: 0.044806, Time: 1.123665
+2023-04-02 12:35:17,528:INFO: Epoch: 13/15, Step: 8/14, Lr: 0.000032725, Loss: 0.044115, Step Loss: 0.044115, Time: 1.167206
+2023-04-02 12:35:18,571:INFO: Epoch: 13/15, Step: 9/14, Lr: 0.000032725, Loss: 0.045457, Step Loss: 0.045457, Time: 1.042373
+2023-04-02 12:35:19,552:INFO: Epoch: 13/15, Step: 10/14, Lr: 0.000032725, Loss: 0.053687, Step Loss: 0.053687, Time: 0.980197
+2023-04-02 12:35:20,774:INFO: Epoch: 13/15, Step: 11/14, Lr: 0.000032725, Loss: 0.047402, Step Loss: 0.047402, Time: 1.222380
+2023-04-02 12:35:21,759:INFO: Epoch: 13/15, Step: 12/14, Lr: 0.000032725, Loss: 0.048833, Step Loss: 0.048833, Time: 0.983885
+2023-04-02 12:35:22,764:INFO: Epoch: 13/15, Step: 13/14, Lr: 0.000032725, Loss: 0.035548, Step Loss: 0.035548, Time: 1.005393
+2023-04-02 12:35:23,904:INFO: Epoch: 13/15, Step: 14/14, Lr: 0.000032725, Loss: 0.053536, Step Loss: 0.053536, Time: 1.138890
+2023-04-02 12:35:24,076:INFO: Epoch 13/15 Finished, Train Loss: 0.043965
+2023-04-02 12:35:24,909:INFO: Model saved to output/exp5/pytorch_model.bin.12
+2023-04-02 12:35:30,151:INFO: Classfication Metrics:
+2023-04-02 12:35:30,151:INFO: f1 score: 0.7338 - precision score: 0.6939 - recall score: 0.7786 - accuracy score: 0.837719
+2023-04-02 12:35:30,151:INFO: The best model is: output/exp5/pytorch_model.bin.11, the F1 is: 0.7376
+2023-04-02 12:35:33,223:INFO: Epoch: 14/15, Step: 1/14, Lr: 0.000014855, Loss: 0.044564, Step Loss: 0.044564, Time: 2.989138
+2023-04-02 12:35:34,368:INFO: Epoch: 14/15, Step: 2/14, Lr: 0.000014855, Loss: 0.034175, Step Loss: 0.034175, Time: 1.144541
+2023-04-02 12:35:35,541:INFO: Epoch: 14/15, Step: 3/14, Lr: 0.000014855, Loss: 0.050608, Step Loss: 0.050608, Time: 1.173200
+2023-04-02 12:35:36,600:INFO: Epoch: 14/15, Step: 4/14, Lr: 0.000014855, Loss: 0.046969, Step Loss: 0.046969, Time: 1.058769
+2023-04-02 12:35:37,586:INFO: Epoch: 14/15, Step: 5/14, Lr: 0.000014855, Loss: 0.036365, Step Loss: 0.036365, Time: 0.985116
+2023-04-02 12:35:38,592:INFO: Epoch: 14/15, Step: 6/14, Lr: 0.000014855, Loss: 0.034092, Step Loss: 0.034092, Time: 1.005539
+2023-04-02 12:35:39,561:INFO: Epoch: 14/15, Step: 7/14, Lr: 0.000014855, Loss: 0.038900, Step Loss: 0.038900, Time: 0.969297
+2023-04-02 12:35:40,544:INFO: Epoch: 14/15, Step: 8/14, Lr: 0.000014855, Loss: 0.035349, Step Loss: 0.035349, Time: 0.983032
+2023-04-02 12:35:41,486:INFO: Epoch: 14/15, Step: 9/14, Lr: 0.000014855, Loss: 0.029240, Step Loss: 0.029240, Time: 0.941447
+2023-04-02 12:35:42,355:INFO: Epoch: 14/15, Step: 10/14, Lr: 0.000014855, Loss: 0.038810, Step Loss: 0.038810, Time: 0.868300
+2023-04-02 12:35:43,186:INFO: Epoch: 14/15, Step: 11/14, Lr: 0.000014855, Loss: 0.046120, Step Loss: 0.046120, Time: 0.830508
+2023-04-02 12:35:44,018:INFO: Epoch: 14/15, Step: 12/14, Lr: 0.000014855, Loss: 0.035441, Step Loss: 0.035441, Time: 0.832367
+2023-04-02 12:35:44,865:INFO: Epoch: 14/15, Step: 13/14, Lr: 0.000014855, Loss: 0.042561, Step Loss: 0.042561, Time: 0.846052
+2023-04-02 12:35:45,724:INFO: Epoch: 14/15, Step: 14/14, Lr: 0.000014855, Loss: 0.050984, Step Loss: 0.050984, Time: 0.859098
+2023-04-02 12:35:45,887:INFO: Epoch 14/15 Finished, Train Loss: 0.040298
+2023-04-02 12:35:46,683:INFO: Model saved to output/exp5/pytorch_model.bin.13
+2023-04-02 12:35:51,883:INFO: Classfication Metrics:
+2023-04-02 12:35:51,883:INFO: f1 score: 0.7292 - precision score: 0.6918 - recall score: 0.7710 - accuracy score: 0.835526
+2023-04-02 12:35:51,883:INFO: The best model is: output/exp5/pytorch_model.bin.11, the F1 is: 0.7376
+2023-04-02 12:35:55,267:INFO: Epoch: 15/15, Step: 1/14, Lr: 0.000003761, Loss: 0.053366, Step Loss: 0.053366, Time: 3.204812
+2023-04-02 12:35:56,418:INFO: Epoch: 15/15, Step: 2/14, Lr: 0.000003761, Loss: 0.048490, Step Loss: 0.048490, Time: 1.151019
+2023-04-02 12:35:57,500:INFO: Epoch: 15/15, Step: 3/14, Lr: 0.000003761, Loss: 0.030950, Step Loss: 0.030950, Time: 1.081598
+2023-04-02 12:35:58,648:INFO: Epoch: 15/15, Step: 4/14, Lr: 0.000003761, Loss: 0.048737, Step Loss: 0.048737, Time: 1.147809
+2023-04-02 12:35:59,694:INFO: Epoch: 15/15, Step: 5/14, Lr: 0.000003761, Loss: 0.038604, Step Loss: 0.038604, Time: 1.045763
+2023-04-02 12:36:00,806:INFO: Epoch: 15/15, Step: 6/14, Lr: 0.000003761, Loss: 0.037163, Step Loss: 0.037163, Time: 1.111498
+2023-04-02 12:36:01,992:INFO: Epoch: 15/15, Step: 7/14, Lr: 0.000003761, Loss: 0.045039, Step Loss: 0.045039, Time: 1.185918
+2023-04-02 12:36:02,853:INFO: Epoch: 15/15, Step: 8/14, Lr: 0.000003761, Loss: 0.038649, Step Loss: 0.038649, Time: 0.860203
+2023-04-02 12:36:03,691:INFO: Epoch: 15/15, Step: 9/14, Lr: 0.000003761, Loss: 0.036808, Step Loss: 0.036808, Time: 0.837676
+2023-04-02 12:36:04,671:INFO: Epoch: 15/15, Step: 10/14, Lr: 0.000003761, Loss: 0.032997, Step Loss: 0.032997, Time: 0.979978
+2023-04-02 12:36:05,878:INFO: Epoch: 15/15, Step: 11/14, Lr: 0.000003761, Loss: 0.045754, Step Loss: 0.045754, Time: 1.206084
+2023-04-02 12:36:06,889:INFO: Epoch: 15/15, Step: 12/14, Lr: 0.000003761, Loss: 0.042157, Step Loss: 0.042157, Time: 1.011447
+2023-04-02 12:36:07,934:INFO: Epoch: 15/15, Step: 13/14, Lr: 0.000003761, Loss: 0.035922, Step Loss: 0.035922, Time: 1.044091
+2023-04-02 12:36:09,030:INFO: Epoch: 15/15, Step: 14/14, Lr: 0.000003761, Loss: 0.043134, Step Loss: 0.043134, Time: 1.096265
+2023-04-02 12:36:09,208:INFO: Epoch 15/15 Finished, Train Loss: 0.041269
+2023-04-02 12:36:10,017:INFO: Model saved to output/exp5/pytorch_model.bin.14
+2023-04-02 12:36:15,328:INFO: Classfication Metrics:
+2023-04-02 12:36:15,328:INFO: f1 score: 0.7338 - precision score: 0.6939 - recall score: 0.7786 - accuracy score: 0.837719
+2023-04-02 12:36:15,328:INFO: The best model is: output/exp5/pytorch_model.bin.11, the F1 is: 0.7376
