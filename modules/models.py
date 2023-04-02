@@ -9,7 +9,7 @@ import math
 
 class RD_Base(nn.Module):
     def __init__(self, image_model_type='resnet50', language_model_type='transformer', pretrained_image=True, pretrained_language=False, 
-                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40):
+                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model=False, exchange=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40):
         # image_model_type: 图像模型种类，默认resnet50，可自行指定其他模型，如resnet18, resnet34, resnet101等
         # language_model_type: 语言模型种类，默认Transformer
         # pretrained_image: 图像模型是否预训练初始化，默认预训练
@@ -65,7 +65,10 @@ class RD_Base(nn.Module):
         # 创建分类器
         if self.attention_model:
             assert self.expand_image and self.expand_language
-            self.fc = NewClassfier()
+            if exchange:
+                self.fc = ExchangeClassfier()
+            else:
+                self.fc = NewClassfier()
         else:
             self.fc =  nn.Sequential(
                 nn.Linear(image_in_ch+language_in_ch, middle_dim),
@@ -155,23 +158,23 @@ class Exchange(nn.Module):
     def __init__(self):
         super(Exchange, self).__init__()
 
-    def forward(self, x, insnorm, insnorm_threshold):
-        insnorm1, insnorm2 = insnorm[0].weight.abs(), insnorm[1].weight.abs()
+    def forward(self, x, bn, bn_threshold):
+        bn1, bn2 = bn[0].weight.abs(), bn[1].weight.abs()
         x1, x2 = torch.zeros_like(x[0]), torch.zeros_like(x[1])
-        x1[:, insnorm1 >= insnorm_threshold] = x[0][:, insnorm1 >= insnorm_threshold]
-        x1[:, insnorm1 < insnorm_threshold] = x[1][:, insnorm1 < insnorm_threshold]
-        x2[:, insnorm2 >= insnorm_threshold] = x[1][:, insnorm2 >= insnorm_threshold]
-        x2[:, insnorm2 < insnorm_threshold] = x[0][:, insnorm2 < insnorm_threshold]
+        x1[:, bn1 >= bn_threshold] = x[0][:, bn1 >= bn_threshold]
+        x1[:, bn1 < bn_threshold] = x[1][:, bn1 < bn_threshold]
+        x2[:, bn2 >= bn_threshold] = x[1][:, bn2 >= bn_threshold]
+        x2[:, bn2 < bn_threshold] = x[0][:, bn2 < bn_threshold]
         return [x1, x2]
 
-class InstanceNorm2dParallel(nn.Module):
-    def __init__(self, num_features):
-        super(InstanceNorm2dParallel, self).__init__()
-        for i in range(2):
-            setattr(self, 'insnorm_' + str(i), nn.InstanceNorm2d(num_features, affine=True, track_running_stats=True))
+class BatchNorm1dParallel(nn.Module):
+    def __init__(self, num_features, num_parallel):
+        super(BatchNorm1dParallel, self).__init__()
+        for i in range(num_parallel):
+            setattr(self, 'bn_' + str(i), nn.BatchNorm1d(num_features))
 
     def forward(self, x_parallel):
-        return [getattr(self, 'insnorm_' + str(i))(x) for i, x in enumerate(x_parallel)]
+        return [getattr(self, 'bn_' + str(i))(x) for i, x in enumerate(x_parallel)]
         
 class NewClassfier(nn.Module):
     def __init__(self):
@@ -192,4 +195,39 @@ class NewClassfier(nn.Module):
         x1= self.attn1(image_embedding, text_embedding)
         x2 = self.attn2(text_embedding, image_embedding)
         logits = self.fc(torch.cat([x1.mean(1),x2.mean(1)],-1))
+        return logits
+    
+class ExchangeClassfier(nn.Module):
+    def __init__(self, bn_threshold=2e-2):
+        super(ExchangeClassfier, self).__init__()
+        self.attn1 = CoAttention(2048,768)
+        self.attn2 = CoAttention(768,2048)
+        self.fc1 =  nn.Sequential(
+            nn.Linear(256, 128)
+        )
+        self.bn_exchange = BatchNorm1dParallel(128, 2)
+        self.bn_threshold = bn_threshold
+        self.bn_list = []
+        for module in self.bn_exchange.modules():
+            if isinstance(module, nn.BatchNorm1d):
+                self.bn_list.append(module)
+        self.exchange = Exchange()
+        self.fc2 = nn.Sequential(
+            nn.Linear(256, 2)
+        )
+        # self.insnorm_conv = InstanceNorm2dParallel(256)
+        # self.exchange = Exchange()
+        # self.insnorm_threshold = 0.01
+        # self.insnorm_list = []
+        # for module in self.insnorm_conv.modules():
+        #     if isinstance(module, nn.InstanceNorm2d):
+        #         self.insnorm_list.append(module)
+    def forward(self, image_embedding, text_embedding):
+        x1= self.attn1(image_embedding, text_embedding).mean(1)
+        x2 = self.attn2(text_embedding, image_embedding).mean(1)
+        x1 = self.fc1(x1)
+        x2 = self.fc1(x2)
+        out = self.bn_exchange([x1,x2])
+        out = self.exchange(out,self.bn_list,self.bn_threshold)
+        logits = self.fc2(torch.cat(out,-1))
         return logits

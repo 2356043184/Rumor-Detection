@@ -1,4 +1,5 @@
-/output/
+/output/debug
+/output/*/pytorch*
 multi_modal.zip
 # dataset log weight visualization output shubs
 /datasets/
