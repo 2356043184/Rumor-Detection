@@ -57,3 +57,13 @@ l1_lamda：通道交换的L1 loss损失权重，exchange为True时有效，默�
 ./scripts/train_bert_attention_exchange.sh # bert+resnet+attention+exchange，在attention的基础上加入通道交换，貌似还有点用，输出路径在output/exp4
 ./scripts/train_bert_attention_exchange_w.sh # bert+resnet+attention+exchange，相比于上一个再加上了对类别loss的权重，权重设置的1,2，给长尾的正例设置了更大的权重，输出路径在output/exp5。
 ```
+
+### 20230410 更新说明
+增加了在attention前做通道交换的选项：
+```
+exchange_early：通道转换在attention前
+```
+新增一个运行脚本：
+```
+./scripts/train_bert_attention_earlyexchange.sh # exp6
+```

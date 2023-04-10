@@ -9,7 +9,7 @@ import math
 
 class RD_Base(nn.Module):
     def __init__(self, image_model_type='resnet50', language_model_type='transformer', pretrained_image=True, pretrained_language=False, 
-                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model=False, exchange=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40):
+                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model=False, exchange=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40, exchange_early=False):
         # image_model_type: 图像模型种类，默认resnet50，可自行指定其他模型，如resnet18, resnet34, resnet101等
         # language_model_type: 语言模型种类，默认Transformer
         # pretrained_image: 图像模型是否预训练初始化，默认预训练
@@ -20,6 +20,7 @@ class RD_Base(nn.Module):
         # drop_p: dropout概率，一般小于0.5
         # word_vocab_size: 词表大小
         super(RD_Base, self).__init__()
+        self.exchange_early = exchange_early and exchange
         self.image_model_type = image_model_type
         self.language_model_type = language_model_type
         self.freeze_image = freeze_image
@@ -65,7 +66,9 @@ class RD_Base(nn.Module):
         # 创建分类器
         if self.attention_model:
             assert self.expand_image and self.expand_language
-            if exchange:
+            if self.exchange_early:
+                self.fc = EarlyExchangeClassfier()
+            elif exchange:
                 self.fc = ExchangeClassfier()
             else:
                 self.fc = NewClassfier()
@@ -127,12 +130,17 @@ class RD_Base(nn.Module):
                 text_embedding = self.language_model(text, attention_mask)[0]
             else:
                 text_embedding = self.language_model(text, attention_mask)[1]
-        if self.attention_model:
+        
+        if self.exchange_early:
             image_embedding = image_embedding.view(image_embedding.size(0),2048,7,7).view(image_embedding.size(0),2048,49).transpose(-1,-2)
             logits = self.fc(image_embedding,text_embedding)
         else:
-            embedding = torch.cat([image_embedding,text_embedding],-1) # bs, 2560
-            logits = self.fc(embedding)
+            if self.attention_model:
+                image_embedding = image_embedding.view(image_embedding.size(0),2048,7,7).view(image_embedding.size(0),2048,49).transpose(-1,-2)
+                logits = self.fc(image_embedding,text_embedding)
+            else:
+                embedding = torch.cat([image_embedding,text_embedding],-1) # bs, 2560
+                logits = self.fc(embedding)
         return logits
 
 class CoAttention(nn.Module):
@@ -230,4 +238,43 @@ class ExchangeClassfier(nn.Module):
         out = self.bn_exchange([x1,x2])
         out = self.exchange(out,self.bn_list,self.bn_threshold)
         logits = self.fc2(torch.cat(out,-1))
+        return logits
+    
+class EarlyExchangeClassfier(nn.Module):
+    def __init__(self, bn_threshold=2e-2):
+        super(EarlyExchangeClassfier, self).__init__()
+        self.attn1 = CoAttention(512,512)
+        self.attn2 = CoAttention(512,512)
+        self.fc_image = nn.Linear(2048, 768)
+        self.fc_text = nn.Linear(768, 768)
+        self.fc1 =  nn.Sequential(
+            nn.Linear(768, 512)
+        )
+        self.bn_exchange = BatchNorm1dParallel(512, 2)
+        self.bn_threshold = bn_threshold
+        self.bn_list = []
+        for module in self.bn_exchange.modules():
+            if isinstance(module, nn.BatchNorm1d):
+                self.bn_list.append(module)
+        self.exchange = Exchange()
+        self.fc2 = nn.Sequential(
+            nn.Linear(512, 2)
+        )
+        # self.insnorm_conv = InstanceNorm2dParallel(256)
+        # self.exchange = Exchange()
+        # self.insnorm_threshold = 0.01
+        # self.insnorm_list = []
+        # for module in self.insnorm_conv.modules():
+        #     if isinstance(module, nn.InstanceNorm2d):
+        #         self.insnorm_list.append(module)
+    def forward(self, image_embedding, text_embedding):
+        image_embedding = self.fc1(self.fc_image(image_embedding)).view(-1,512)
+        text_embedding = self.fc1(self.fc_text(text_embedding)).view(-1,512)
+        out = self.bn_exchange([image_embedding,text_embedding])
+        out = self.exchange(out,self.bn_list,self.bn_threshold)
+        image_embedding = out[0].view(-1,49,512)
+        text_embedding = out[1].view(-1,49,512)
+        x1= self.attn1(image_embedding, text_embedding).mean(1)
+        x2 = self.attn2(text_embedding, image_embedding).mean(1)
+        logits = self.fc2(torch.cat([x1,x2],-1))
         return logits
