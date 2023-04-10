@@ -89,6 +89,7 @@ def init_model(args, device, vocab_size):
         expand_language = args.expand_language,
         attention_model = args.attention_model,
         exchange = args.exchange,
+        exchange_early = args.exchange_early,
         middle_dim = 1024,
         drop_p = 0.3,
         word_vocab_size = vocab_size,
@@ -159,6 +160,7 @@ def get_args():
     parser.add_argument('--init_model', type=str, default='') # 不为空则加载已保存模型
     parser.add_argument('--attention_model', action='store_true', default=False) # 使用注意力做融合
     parser.add_argument('--exchange', action='store_true', default=False) # 使用通道转换
+    parser.add_argument('--exchange_early', action='store_true', default=False) # 通道转换在attention前
     parser.add_argument('--l1_lamda', type=float, default=2e-4) # 通道转换l1 loss的权重
     # Dataloader参数
     parser.add_argument('--csv_path', type=str, default='datasets/content_noid.csv') # label文件路径
@@ -168,7 +170,7 @@ def get_args():
     parser.add_argument('--num_workers', type=int, default=4) # 数据加载进程数
     parser.add_argument('--batch_size', type=int, default=128) # 训练阶段batchsize
     parser.add_argument('--batch_size_val', type=int, default=128) # 测试阶段batchsize
-    parser.add_argument('--max_text_len', type=int, default=40) # 最大词数
+    parser.add_argument('--max_text_len', type=int, default=49) # 最大词数
     parser.add_argument('--image_size', type=int, default=224) # resize后的图像大小
     parser.add_argument('--pin_memory', action='store_true', default=False) # 某不重要的参数
     args, _ = parser.parse_known_args()
