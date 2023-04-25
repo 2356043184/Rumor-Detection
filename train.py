@@ -93,7 +93,8 @@ def init_model(args, device, vocab_size):
         middle_dim = 1024,
         drop_p = 0.3,
         word_vocab_size = vocab_size,
-        max_text_len = args.max_text_len
+        max_text_len = args.max_text_len,
+        language = 'CN' if args.dataset == 'weibo' else 'EN'
     )
     if args.init_model:
         model.load_state_dict(torch.load(args.init_model, map_location='cpu'))
@@ -163,10 +164,12 @@ def get_args():
     parser.add_argument('--exchange_early', action='store_true', default=False) # 通道转换在attention前
     parser.add_argument('--l1_lamda', type=float, default=2e-4) # 通道转换l1 loss的权重
     # Dataloader参数
-    parser.add_argument('--csv_path', type=str, default='datasets/content_noid.csv') # label文件路径
-    parser.add_argument('--image_folder', type=str, default='datasets/pheme_images_jpg') # 图像目录
-    parser.add_argument('--train_id_file', type=str, default='datasets/train_ids.txt') # 训练集id
-    parser.add_argument('--test_id_file', type=str, default='datasets/test_ids.txt') # 测试集id
+    parser.add_argument('--dataset', type=str, default='pheme', choices=['pheme','weibo']) # 指定数据集
+    # parser.add_argument('--csv_path', type=str, default='datasets/content_noid.csv') # label文件路径
+    # parser.add_argument('--image_folder', type=str, default='datasets/pheme_images_jpg') # 图像目录
+    # parser.add_argument('--train_id_file', type=str, default='datasets/train_ids.txt') # 训练集id
+    # parser.add_argument('--val_id_file', type=str, default='datasets/train_ids.txt') # 训练集id
+    # parser.add_argument('--test_id_file', type=str, default='datasets/test_ids.txt') # 测试集id
     parser.add_argument('--num_workers', type=int, default=4) # 数据加载进程数
     parser.add_argument('--batch_size', type=int, default=128) # 训练阶段batchsize
     parser.add_argument('--batch_size_val', type=int, default=128) # 测试阶段batchsize
@@ -271,8 +274,21 @@ def train_epoch(args, model, slim_params, loader, optimizer, criterion, device, 
     return total_loss / len(loader)
 
 def get_dataloader(args, tokenizer):
-    train_dataset = Pheme_Dataset(tokenizer, args.csv_path, args.image_folder, args.image_size, args.max_text_len, args.train_id_file, training=True)
-    test_dataset = Pheme_Dataset(tokenizer, args.csv_path, args.image_folder, args.image_size, args.max_text_len, args.test_id_file, training=False)
+    if args.dataset == 'pheme':
+        csv_path = 'datasets/pheme/content_noid.csv'
+        image_folder = 'datasets/pheme/pheme_images_jpg'
+        train_id_file = 'datasets/pheme/train_ids.txt'
+        dev_id_file = 'datasets/pheme/dev_ids.txt'
+        test_id_file = 'datasets/pheme/test_ids.txt'
+    elif args.dataset == 'weibo':
+        csv_path = 'datasets/weibo/weibo_content.csv'
+        image_folder = 'datasets/weibo/weibo_images_all'
+        train_id_file = 'datasets/weibo/train_ids.txt'
+        dev_id_file = 'datasets/weibo/dev_ids.txt'
+        test_id_file = 'datasets/weibo/test_ids.txt'
+    train_dataset = Pheme_Dataset(tokenizer, csv_path, image_folder, args.image_size, args.max_text_len, train_id_file, training=True)
+    dev_dataset = Pheme_Dataset(tokenizer, csv_path, image_folder, args.image_size, args.max_text_len, dev_id_file, training=False)
+    test_dataset = Pheme_Dataset(tokenizer, csv_path, image_folder, args.image_size, args.max_text_len, test_id_file, training=False)
     train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
     train_dataloader = DataLoader(
         train_dataset,
@@ -283,6 +299,14 @@ def get_dataloader(args, tokenizer):
         sampler=train_sampler,
         drop_last=True
     )
+    dev_dataloader = DataLoader(
+        dev_dataset,
+        batch_size = args.batch_size_val,
+        num_workers=args.num_workers,
+        pin_memory=args.pin_memory,
+        shuffle=False,
+        drop_last=False
+    )
     test_dataloader = DataLoader(
         test_dataset,
         batch_size = args.batch_size_val,
@@ -291,7 +315,7 @@ def get_dataloader(args, tokenizer):
         shuffle=False,
         drop_last=False
     )
-    return train_dataloader, test_dataloader, len(train_dataset), len(test_dataset), train_sampler
+    return train_dataloader, dev_dataloader, test_dataloader, len(train_dataset), len(dev_dataset), len(test_dataset), train_sampler
 
 def save_model(epoch, args, model, type_name=""):
     # Only save the model it-self
@@ -306,7 +330,7 @@ def main():
     global logger
     args = get_args()
     if args.debug:
-        args.num_workers = 8
+        args.num_workers = 0
         args.batch_size = 16
         args.batch_size_val = 16
     os.environ['CUDA_VISIBLE_DEVICES'] = args.CUDA_VISIBLE_DEVICES
@@ -315,11 +339,14 @@ def main():
     torch.distributed.init_process_group(backend="nccl")
     args = set_seed_logger(args)
     device, n_gpu = init_device(args, args.local_rank)
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+    if args.dataset == 'pheme':
+        tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+    elif args.dataset == 'weibo':
+        tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
     model, slim_params = init_model(args, device, tokenizer.vocab_size)
 
     # 加载数据集
-    train_dataloader, test_dataloader, train_length, test_length, train_sampler = get_dataloader(args, tokenizer)
+    train_dataloader, dev_data_loader, test_dataloader, train_length, dev_length, test_length, train_sampler = get_dataloader(args, tokenizer)
     loss_w = args.loss_weight
     if loss_w:
         loss_w = list(map(float,loss_w.split(',')))
@@ -332,8 +359,8 @@ def main():
             logger.info("***** Running training *****")
             logger.info("  Num examples = %d", train_length)
             logger.info("  Batch size = %d", args.batch_size)
-            logger.info("***** Running testing *****")
-            logger.info("  Num examples = %d", test_length)
+            logger.info("***** Running validation  *****")
+            logger.info("  Num examples = %d", dev_length)
             logger.info("  Batch size = %d", args.batch_size_val)
         best_score = 0.00001
         best_output_model_file = "None"
@@ -350,6 +377,12 @@ def main():
                 logger.info("The best model is: {}, the F1 is: {:.4f}".format(best_output_model_file, best_score))
             scheduler.step()
             if epoch == 2: scheduler.step()  # bug workaround
+        if args.local_rank == 0:
+            logger.info("***** Running testing *****")
+            logger.info("  Num examples = %d", test_length)
+            logger.info("  Batch size = %d", args.batch_size_val)
+            model.module.load_state_dict(torch.load(best_output_model_file, map_location='cpu'))
+            eval_epoch(model, test_dataloader, device, args.debug, n_test=2)
     else:
         if args.local_rank == 0:
             logger.info("***** Running testing *****")

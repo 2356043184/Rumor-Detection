@@ -9,7 +9,7 @@ import math
 
 class RD_Base(nn.Module):
     def __init__(self, image_model_type='resnet50', language_model_type='transformer', pretrained_image=True, pretrained_language=False, 
-                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model=False, exchange=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40, exchange_early=False):
+                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model=False, exchange=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40, exchange_early=False, language='EN'):
         # image_model_type: 图像模型种类，默认resnet50，可自行指定其他模型，如resnet18, resnet34, resnet101等
         # language_model_type: 语言模型种类，默认Transformer
         # pretrained_image: 图像模型是否预训练初始化，默认预训练
@@ -46,15 +46,18 @@ class RD_Base(nn.Module):
         
         # 初始化语言模型
         if language_model_type == 'transformer':
+            assert pretrained_language == False
             self.word_embedding = nn.Embedding(num_embeddings=word_vocab_size, embedding_dim=512, padding_idx=0)
             self.position_embedding = nn.Embedding(max_text_len, 512)
             self.language_model = Transformer(width=512, layers=3, heads=8) # layers: 层数，随便改
             language_in_ch = 512
         elif language_model_type == 'bert':
             assert pretrained_language == True
-            self.language_model = BertModel.from_pretrained('bert-base-uncased')
+            if language == 'EN':
+                self.language_model = BertModel.from_pretrained('bert-base-uncased')
+            else:
+                self.language_model = BertModel.from_pretrained('bert-base-chinese')
             language_in_ch = 768
-
         # elif language_model_type == 'lstm':
         #     self.word_embedding = nn.Embedding(num_embeddings=word_vocab_size, embedding_dim=1024, padding_idx=0)
         #     self.language_model = nn.LSTM(input_size=1024, hidden_size=1024,
@@ -112,6 +115,8 @@ class RD_Base(nn.Module):
     
     def forward(self, image, text, attention_mask):
         image_embedding = self.image_model(image) # bs,3,224,224 -> bs,2048
+        if self.expand_image:
+            image_embedding = image_embedding.view(image_embedding.size(0),2048,7,7).view(image_embedding.size(0),2048,49).transpose(-1,-2)
         
         seq_len = text.shape[-1]
         if self.language_model_type == 'transformer':
@@ -131,16 +136,11 @@ class RD_Base(nn.Module):
             else:
                 text_embedding = self.language_model(text, attention_mask)[1]
         
-        if self.exchange_early:
-            image_embedding = image_embedding.view(image_embedding.size(0),2048,7,7).view(image_embedding.size(0),2048,49).transpose(-1,-2)
+        if self.attention_model:
             logits = self.fc(image_embedding,text_embedding)
         else:
-            if self.attention_model:
-                image_embedding = image_embedding.view(image_embedding.size(0),2048,7,7).view(image_embedding.size(0),2048,49).transpose(-1,-2)
-                logits = self.fc(image_embedding,text_embedding)
-            else:
-                embedding = torch.cat([image_embedding,text_embedding],-1) # bs, 2560
-                logits = self.fc(embedding)
+            embedding = torch.cat([image_embedding,text_embedding],-1) # bs, 2560
+            logits = self.fc(embedding)
         return logits
 
 class CoAttention(nn.Module):

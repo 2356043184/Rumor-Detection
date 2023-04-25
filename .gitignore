@@ -1,8 +1,9 @@
 /output/debug
 /output/*/pytorch*
 multi_modal.zip
+MFAN
 # dataset log weight visualization output shubs
-/datasets/
+# /datasets/
 .*
 !.gitignore
 # Byte-compiled / optimized / DLL files

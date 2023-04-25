@@ -18,23 +18,27 @@ class Pheme_Dataset(Dataset):
         self.image_ids = [int(_id.strip()) for _id in self.image_ids]
         self.transform = get_transforms(image_size)
         self.tokenizer = tokenizer
+        self.imgid2sen = dict()
+        self.imgid2label = dict()
+        for _, row in self.csv.iterrows():
+            self.imgid2sen[int(row['image_id'])] = row['text'].split('http')[0].strip() # 清洗掉后面的网址
+            self.imgid2label[int(row['image_id'])] = row['label']
 
     def __len__(self):
         return len(self.image_ids)
     
     def __getitem__(self, index):
-        row = self.csv.iloc[self.image_ids[index]]
-        image = Image.open(os.path.join(self.image_folder,str(row['image_id'])+'.jpg')) # 读取图像
+        image_id = self.image_ids[index]
+        image = Image.open(os.path.join(self.image_folder,str(image_id)+'.jpg')) # 读取图像
         image = self.transform(image)
         
-        sentence = row['text']
-        sentence = sentence.split('http')[0].strip() # 清洗掉后面的网址
+        sentence = self.imgid2sen[image_id]
         res = self.tokenizer.encode_plus(text=sentence, truncation=True, padding='max_length', max_length=self.max_text_len, return_tensors='pt', return_attention_mask=True)
         input_ids = res['input_ids']
         attention_mask = res['attention_mask']
         
         label = torch.zeros((1))
-        label[0] = row['label']
+        label[0] = self.imgid2label[image_id]
         return image, input_ids.squeeze(0), attention_mask.squeeze(0), label.long()
 
 def get_transforms(image_size):
