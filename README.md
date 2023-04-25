@@ -67,3 +67,10 @@ exchange_early：通道转换在attention前
 ```
 ./scripts/train_bert_attention_earlyexchange.sh # exp6
 ```
+
+### 20230425 更新说明
+新增了weibo数据集：
+```
+dataset：可选择weibo或pheme
+```
+统一了数据集分割，和MFAN保持一致。加入了验证集，选择验证集上最好的模型用于测试。
