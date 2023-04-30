@@ -5,9 +5,14 @@ import pandas as pd
 import torch
 from torchvision import transforms
 from torch.utils.data import Dataset
-
+try:
+    from torchvision.transforms import InterpolationMode
+    BICUBIC = InterpolationMode.BICUBIC
+except ImportError:
+    BICUBIC = Image.BICUBIC
+    
 class Pheme_Dataset(Dataset):
-    def __init__(self, tokenizer, csv_path, image_folder, image_size, max_text_len, id_file, training=False):
+    def __init__(self, tokenizer, csv_path, image_folder, image_size, max_text_len, id_file, training=False, image_model='resnet'):
         # training: 训练为True，验证为False
         self.csv = pd.read_csv(csv_path)
         self.image_folder = image_folder
@@ -16,7 +21,7 @@ class Pheme_Dataset(Dataset):
         with open(id_file) as file:
             self.image_ids = file.readlines()
         self.image_ids = [int(_id.strip()) for _id in self.image_ids]
-        self.transform = get_transforms(image_size)
+        self.transform = get_transforms(image_size, image_model)
         self.tokenizer = tokenizer
         self.imgid2sen = dict()
         self.imgid2label = dict()
@@ -41,14 +46,26 @@ class Pheme_Dataset(Dataset):
         label[0] = self.imgid2label[image_id]
         return image, input_ids.squeeze(0), attention_mask.squeeze(0), label.long()
 
-def get_transforms(image_size):
-    # 图像预处理，resize，裁剪，转换为tensor，normalize
-    transform = transforms.Compose([
-            transforms.Resize(image_size),
+def _convert_image_to_rgb(image):
+    return image.convert("RGB")
+
+def get_transforms(image_size, image_model):
+    if image_model == 'clip':
+        transform = transforms.Compose([
+            transforms.Resize(image_size, interpolation=BICUBIC),
             transforms.CenterCrop(image_size),
+            _convert_image_to_rgb,
             transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225]
-            )])
+            transforms.Normalize((0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711)),
+        ])
+    else:
+    # 图像预处理，resize，裁剪，转换为tensor，normalize
+        transform = transforms.Compose([
+                transforms.Resize(image_size),
+                transforms.CenterCrop(image_size),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    mean=[0.485, 0.456, 0.406],
+                    std=[0.229, 0.224, 0.225]
+                )])
     return transform

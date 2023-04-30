@@ -5,6 +5,7 @@ from torchvision.models import resnet18, resnet34, resnet50, resnet101
 from modules.transformer import Transformer
 from modules.transformer import LayerNorm
 from transformers import BertModel
+from modules.clip.module_clip import CLIP, convert_weights
 import math
 
 class RD_Base(nn.Module):
@@ -29,7 +30,38 @@ class RD_Base(nn.Module):
         self.expand_language = expand_language
         self.attention_model = attention_model
         # 初始化图像模型
-        if image_model_type == 'resnet18':
+        if image_model_type == 'clip':
+            state_dict = {}
+            clip_state_dict = CLIP.get_config(pretrained_clip_name="ViT-B/32")
+            for key, val in clip_state_dict.items():
+                new_key = key
+                if new_key not in state_dict:
+                    state_dict[new_key] = val.clone()
+
+            clip_vision_width = clip_state_dict["visual.conv1.weight"].shape[0]
+            clip_vision_layers = len(
+                [k for k in clip_state_dict.keys() if k.startswith("visual.") and k.endswith(".attn.in_proj_weight")])
+            clip_vision_patch_size = clip_state_dict["visual.conv1.weight"].shape[-1]
+            clip_grid_size = round((clip_state_dict["visual.positional_embedding"].shape[0] - 1) ** 0.5)
+            clip_image_resolution = clip_vision_patch_size * clip_grid_size
+            clip_embed_dim = clip_state_dict["text_projection"].shape[1]
+            clip_context_length = clip_state_dict["positional_embedding"].shape[0]
+            clip_vocab_size = clip_state_dict["token_embedding.weight"].shape[0]
+            clip_transformer_width = clip_state_dict["ln_final.weight"].shape[0]
+            clip_transformer_heads = clip_transformer_width // 64
+            clip_transformer_layers = len(set(k.split(".")[2] for k in clip_state_dict if k.startswith(f"transformer.resblocks")))
+            clip_cut_top_layer = 0
+            self.image_model = CLIP(
+                clip_embed_dim,
+                clip_image_resolution, clip_vision_layers-clip_cut_top_layer, clip_vision_width, clip_vision_patch_size,
+                clip_context_length, clip_vocab_size, clip_transformer_width, clip_transformer_heads, clip_transformer_layers-clip_cut_top_layer,
+                linear_patch='2d'
+            ).float()
+            for key in ["input_resolution", "context_length", "vocab_size"]:
+                if key in clip_state_dict:
+                    del clip_state_dict[key]
+            self.image_model = self.init_preweight(self.image_model, state_dict)
+        elif image_model_type == 'resnet18':
             self.image_model = resnet18(pretrained=pretrained_image)
         elif image_model_type == 'resnet50':
             self.image_model = resnet50(pretrained=pretrained_image)
@@ -39,8 +71,11 @@ class RD_Base(nn.Module):
             self.image_model = resnet101(pretrained=pretrained_image)
         else:
             raise NotImplementedError()
-        image_in_ch = self.image_model.fc.in_features # 图像模型输出的embedding维度
-        self.image_model.fc = nn.Identity()
+        if image_model_type == 'clip':
+            image_in_ch = 512
+        else:
+            image_in_ch = self.image_model.fc.in_features # 图像模型输出的embedding维度
+            self.image_model.fc = nn.Identity()
         if self.expand_image:
             self.image_model.avgpool = nn.Identity()
         
@@ -72,7 +107,7 @@ class RD_Base(nn.Module):
             if self.exchange_early:
                 self.fc = EarlyExchangeClassfier()
             elif exchange:
-                self.fc = ExchangeClassfier()
+                self.fc = ExchangeClassfier(image_dim=image_in_ch, lang_dim=language_in_ch)
             else:
                 self.fc = NewClassfier()
         else:
@@ -105,6 +140,50 @@ class RD_Base(nn.Module):
         if isinstance(module, nn.Linear) and module.bias is not None:
             module.bias.data.zero_()
             
+    def init_preweight(self, model, state_dict, prefix=None):
+        old_keys = []
+        new_keys = []
+        for key in state_dict.keys():
+            new_key = None
+            if 'gamma' in key:
+                new_key = key.replace('gamma', 'weight')
+            if 'beta' in key:
+                new_key = key.replace('beta', 'bias')
+            if new_key:
+                old_keys.append(key)
+                new_keys.append(new_key)
+        for old_key, new_key in zip(old_keys, new_keys):
+            state_dict[new_key] = state_dict.pop(old_key)
+
+        if prefix is not None:
+            old_keys = []
+            new_keys = []
+            for key in state_dict.keys():
+                old_keys.append(key)
+                new_keys.append(prefix + key)
+            for old_key, new_key in zip(old_keys, new_keys):
+                state_dict[new_key] = state_dict.pop(old_key)
+
+        missing_keys = []
+        unexpected_keys = []
+        error_msgs = []
+        # copy state_dict so _load_from_state_dict can modify it
+        metadata = getattr(state_dict, '_metadata', None)
+        state_dict = state_dict.copy()
+        if metadata is not None:
+            state_dict._metadata = metadata
+
+        def load(module, prefix=''):
+            local_metadata = {} if metadata is None else metadata.get(prefix[:-1], {})
+            module._load_from_state_dict(
+                state_dict, prefix, local_metadata, True, missing_keys, unexpected_keys, error_msgs)
+            for name, child in module._modules.items():
+                if child is not None:
+                    load(child, prefix + name + '.')
+
+        load(model, prefix='')
+        return model
+            
     def freeze_model(self):
         if self.freeze_image:
             for name, param in self.image_model.named_parameters():
@@ -114,9 +193,14 @@ class RD_Base(nn.Module):
                 param.requires_grad = False
     
     def forward(self, image, text, attention_mask):
-        image_embedding = self.image_model(image) # bs,3,224,224 -> bs,2048
-        if self.expand_image:
-            image_embedding = image_embedding.view(image_embedding.size(0),2048,7,7).view(image_embedding.size(0),2048,49).transpose(-1,-2)
+        if self.image_model_type == 'clip':
+            image_embedding, image_embedding_expand = self.image_model.encode_image(image, return_hidden=True)
+            if self.expand_image:
+                image_embedding = image_embedding_expand[:,1:]
+        else:
+            image_embedding = self.image_model(image) # bs,3,224,224 -> bs,2048
+            if self.expand_image:
+                image_embedding = image_embedding.view(image_embedding.size(0),2048,7,7).view(image_embedding.size(0),2048,49).transpose(-1,-2)
         
         seq_len = text.shape[-1]
         if self.language_model_type == 'transformer':
@@ -206,10 +290,10 @@ class NewClassfier(nn.Module):
         return logits
     
 class ExchangeClassfier(nn.Module):
-    def __init__(self, bn_threshold=2e-2):
+    def __init__(self, bn_threshold=2e-2, image_dim=2048, lang_dim=768):
         super(ExchangeClassfier, self).__init__()
-        self.attn1 = CoAttention(2048,768)
-        self.attn2 = CoAttention(768,2048)
+        self.attn1 = CoAttention(image_dim,lang_dim)
+        self.attn2 = CoAttention(lang_dim,image_dim)
         self.fc1 =  nn.Sequential(
             nn.Linear(256, 128)
         )

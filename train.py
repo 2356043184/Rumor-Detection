@@ -150,7 +150,7 @@ def get_args():
     parser.add_argument("--local_rank", default=0, type=int, help="distribted training") # 分布式训练需要的参数，不用管
     parser.add_argument("--rank", default=0, type=int, help="distribted training") # 分布式训练需要的参数，不用管
     # 模型参数
-    parser.add_argument('--image_model_type', type=str, default='resnet50', choices=['resnet18','resnet34','resnet50','resnet101']) # 图像模型种类，默认resnet50，可自行指定其他模型
+    parser.add_argument('--image_model_type', type=str, default='resnet50', choices=['resnet18','resnet34','resnet50','resnet101','clip']) # 图像模型种类，默认resnet50，可自行指定其他模型
     parser.add_argument('--language_model_type', type=str, default='bert', choices=['transformer','bert']) # 语言模型种类，默认transformer
     parser.add_argument('--pretrained_image', action='store_true', default=True) # 加载预训练图像模型，默认加载
     parser.add_argument('--pretrained_language', action='store_true', default=False) # 加载预训练语言模型，这个参数暂时没用，不加载预训练语言模型
@@ -286,9 +286,9 @@ def get_dataloader(args, tokenizer):
         train_id_file = 'datasets/weibo/train_ids.txt'
         dev_id_file = 'datasets/weibo/dev_ids.txt'
         test_id_file = 'datasets/weibo/test_ids.txt'
-    train_dataset = Pheme_Dataset(tokenizer, csv_path, image_folder, args.image_size, args.max_text_len, train_id_file, training=True)
-    dev_dataset = Pheme_Dataset(tokenizer, csv_path, image_folder, args.image_size, args.max_text_len, dev_id_file, training=False)
-    test_dataset = Pheme_Dataset(tokenizer, csv_path, image_folder, args.image_size, args.max_text_len, test_id_file, training=False)
+    train_dataset = Pheme_Dataset(tokenizer, csv_path, image_folder, args.image_size, args.max_text_len, train_id_file, training=True, image_model=args.image_model_type)
+    dev_dataset = Pheme_Dataset(tokenizer, csv_path, image_folder, args.image_size, args.max_text_len, dev_id_file, training=False, image_model=args.image_model_type)
+    test_dataset = Pheme_Dataset(tokenizer, csv_path, image_folder, args.image_size, args.max_text_len, test_id_file, training=False, image_model=args.image_model_type)
     train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
     train_dataloader = DataLoader(
         train_dataset,
