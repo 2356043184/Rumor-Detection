@@ -74,3 +74,15 @@ exchange_early：通道转换在attention前
 dataset：可选择weibo或pheme
 ```
 统一了数据集分割，和MFAN保持一致。加入了验证集，选择验证集上最好的模型用于测试。
+
+### 20230430 更新说明
+对attention进行了改动，使用bert的中间层做attention：
+```
+more_layer：增加对于中间层的attention
+```
+新增两个运行脚本：
+```
+./scripts/train_pheme_bert_attention_more.sh # exp9
+./scripts/train_weibo_bert_attention_more.sh # exp10
+```
+两个脚本中暂时移除了exchange，exchange目前大多数情况下是负收益
