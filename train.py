@@ -94,7 +94,8 @@ def init_model(args, device, vocab_size):
         drop_p = 0.3,
         word_vocab_size = vocab_size,
         max_text_len = args.max_text_len,
-        language = 'CN' if args.dataset == 'weibo' else 'EN'
+        language = 'CN' if args.dataset == 'weibo' else 'EN',
+        more_layer = args.more_layer
     )
     if args.init_model:
         model.load_state_dict(torch.load(args.init_model, map_location='cpu'))
@@ -163,6 +164,7 @@ def get_args():
     parser.add_argument('--exchange', action='store_true', default=False) # 使用通道转换
     parser.add_argument('--exchange_early', action='store_true', default=False) # 通道转换在attention前
     parser.add_argument('--l1_lamda', type=float, default=2e-4) # 通道转换l1 loss的权重
+    parser.add_argument('--more_layer', action='store_true', default=False) # 使用中间层
     # Dataloader参数
     parser.add_argument('--dataset', type=str, default='pheme', choices=['pheme','weibo']) # 指定数据集
     # parser.add_argument('--csv_path', type=str, default='datasets/content_noid.csv') # label文件路径
@@ -331,8 +333,8 @@ def main():
     args = get_args()
     if args.debug:
         args.num_workers = 0
-        args.batch_size = 16
-        args.batch_size_val = 16
+        args.batch_size = 128
+        args.batch_size_val = 128
     os.environ['CUDA_VISIBLE_DEVICES'] = args.CUDA_VISIBLE_DEVICES
     if args.debug:
         args.output_dir = os.path.join(args.output_dir,'debug')

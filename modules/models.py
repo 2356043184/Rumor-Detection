@@ -9,7 +9,7 @@ import math
 
 class RD_Base(nn.Module):
     def __init__(self, image_model_type='resnet50', language_model_type='transformer', pretrained_image=True, pretrained_language=False, 
-                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model=False, exchange=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40, exchange_early=False, language='EN'):
+                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model=False, exchange=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40, exchange_early=False, language='EN', more_layer=False):
         # image_model_type: 图像模型种类，默认resnet50，可自行指定其他模型，如resnet18, resnet34, resnet101等
         # language_model_type: 语言模型种类，默认Transformer
         # pretrained_image: 图像模型是否预训练初始化，默认预训练
@@ -28,6 +28,7 @@ class RD_Base(nn.Module):
         self.expand_image = expand_image
         self.expand_language = expand_language
         self.attention_model = attention_model
+        self.more_layer = more_layer
         # 初始化图像模型
         if image_model_type == 'resnet18':
             self.image_model = resnet18(pretrained=pretrained_image)
@@ -71,10 +72,8 @@ class RD_Base(nn.Module):
             assert self.expand_image and self.expand_language
             if self.exchange_early:
                 self.fc = EarlyExchangeClassfier()
-            elif exchange:
-                self.fc = ExchangeClassfier()
             else:
-                self.fc = NewClassfier()
+                self.fc = AttentionClassfier(exchange=exchange, more_layer=more_layer)
         else:
             self.fc =  nn.Sequential(
                 nn.Linear(image_in_ch+language_in_ch, middle_dim),
@@ -87,6 +86,7 @@ class RD_Base(nn.Module):
         # 初始化语言模型参数
         if not pretrained_language:
             self.language_model.apply(self.init_weights)
+        
         self.fc.apply(self.init_weights) # 初始化分类器参数
         self.freeze_model() # 冻结模型部分参数（如果需要的话）
         
@@ -131,11 +131,12 @@ class RD_Base(nn.Module):
             if not self.expand_language:
                 text_embedding = text_embedding[:,0,:]
         else:
-            if self.expand_language:
+            if self.more_layer:
+                text_embedding = self.language_model(text, attention_mask, output_hidden_states=True)[2]
+            elif self.expand_language:
                 text_embedding = self.language_model(text, attention_mask)[0]
             else:
                 text_embedding = self.language_model(text, attention_mask)[1]
-        
         if self.attention_model:
             logits = self.fc(image_embedding,text_embedding)
         else:
@@ -205,24 +206,37 @@ class NewClassfier(nn.Module):
         logits = self.fc(torch.cat([x1.mean(1),x2.mean(1)],-1))
         return logits
     
-class ExchangeClassfier(nn.Module):
-    def __init__(self, bn_threshold=2e-2):
-        super(ExchangeClassfier, self).__init__()
-        self.attn1 = CoAttention(2048,768)
-        self.attn2 = CoAttention(768,2048)
-        self.fc1 =  nn.Sequential(
-            nn.Linear(256, 128)
-        )
-        self.bn_exchange = BatchNorm1dParallel(128, 2)
-        self.bn_threshold = bn_threshold
-        self.bn_list = []
-        for module in self.bn_exchange.modules():
-            if isinstance(module, nn.BatchNorm1d):
-                self.bn_list.append(module)
-        self.exchange = Exchange()
-        self.fc2 = nn.Sequential(
-            nn.Linear(256, 2)
-        )
+class AttentionClassfier(nn.Module):
+    def __init__(self, exchange = False, bn_threshold=2e-2, more_layer=False):
+        super(AttentionClassfier, self).__init__()
+        self.groups = 3 if more_layer else 1
+        self.exchange = exchange
+        self.attention_layers1 = nn.ModuleList([])
+        self.attention_layers2 = nn.ModuleList([])
+        for i in range(self.groups):
+            self.attention_layers1.append(CoAttention(2048,768))
+            self.attention_layers2.append(CoAttention(768,2048))
+        
+        if self.exchange:
+            self.fc1 =  nn.Sequential(
+                nn.Linear(256*self.groups, 128)
+            )
+            self.bn_exchange = BatchNorm1dParallel(128, 2)
+            self.bn_threshold = bn_threshold
+            self.bn_list = []
+            for module in self.bn_exchange.modules():
+                if isinstance(module, nn.BatchNorm1d):
+                    self.bn_list.append(module)
+            self.exchange = Exchange()
+            self.fc2 = nn.Sequential(
+                nn.Linear(256, 2)
+            )
+        else:
+            self.fc =  nn.Sequential(
+                nn.Linear(256*self.groups*2, 256),
+                nn.Dropout(p=0.5),
+                nn.Linear(256, 2)
+            )
         # self.insnorm_conv = InstanceNorm2dParallel(256)
         # self.exchange = Exchange()
         # self.insnorm_threshold = 0.01
@@ -231,13 +245,30 @@ class ExchangeClassfier(nn.Module):
         #     if isinstance(module, nn.InstanceNorm2d):
         #         self.insnorm_list.append(module)
     def forward(self, image_embedding, text_embedding):
-        x1= self.attn1(image_embedding, text_embedding).mean(1)
-        x2 = self.attn2(text_embedding, image_embedding).mean(1)
-        x1 = self.fc1(x1)
-        x2 = self.fc1(x2)
-        out = self.bn_exchange([x1,x2])
-        out = self.exchange(out,self.bn_list,self.bn_threshold)
-        logits = self.fc2(torch.cat(out,-1))
+        if self.groups > 1:
+            num_each_group = 12//self.groups
+            text_embedding = torch.cat(text_embedding[1:]).view(self.groups,num_each_group,image_embedding.size(0),-1,768)
+            text_embedding = text_embedding.sum(1)
+        else:
+            text_embedding = text_embedding.unsqueeze(0)
+        
+        x1_result_list = []
+        x2_result_list = []
+        
+        for i in range(self.groups):
+            x1_result_list.append(self.attention_layers1[i](image_embedding,text_embedding[i]).mean(1))
+            x2_result_list.append(self.attention_layers2[i](text_embedding[i],image_embedding).mean(1))
+        x1 = torch.cat(x1_result_list,-1)
+        x2 = torch.cat(x2_result_list,-1)
+
+        if self.exchange:
+            x1 = self.fc1(x1)
+            x2 = self.fc1(x2)
+            out = self.bn_exchange([x1,x2])
+            out = self.exchange(out,self.bn_list,self.bn_threshold)
+            logits = self.fc2(torch.cat(out,-1))
+        else:
+            logits = self.fc(torch.cat([x1,x2],-1))
         return logits
     
 class EarlyExchangeClassfier(nn.Module):
