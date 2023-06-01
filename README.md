@@ -89,14 +89,14 @@ more_layer：增加对于中间层的attention
 
 ### 20230601 更新说明
 新增了CLIP作为embedding模型，使用bilinear attention替换原来的attention模快
-##### 参数说明
+#### 参数说明
 ```
 language_model_type；指定clip则可使用clip作为图像的embedding模型
 more_layer：使用clip和bert的中间层做attention，group=4
 exchange：启用通道交换
 attention_model：默认为none，即不设置注意力，设置为bilinear时启用双线性池化注意力
 ```
-##### 新增实验
+#### 新增实验
 运行脚本：scripts_new目录下
 实验结果：experiments目录下，目前最好的结果如下所示。通道交换暂时是负收益，实验结果在对应文件夹下。
 pheme：
@@ -105,11 +105,11 @@ f1 score: 0.8688 - precision score: 0.8889 - recall score: 0.8496 - accuracy sco
 weibo：
 experiments/weibo/train_weibo_clip_bert_bilinear_more
 f1 score: 0.9000 - precision score: 0.8710 - recall score: 0.9310 - accuracy score: 0.918644
-##### 模型说明
-（1）embedding提取
+#### 模型说明
+##### embedding提取
 clip对图像做特征提取（vision transformer），取出中间层的结果，得到bs*12*49*768维特征，将12层中间层特征划分为四组，每组分别求和，得到bs*4*49*768维特征
 bert对文本做特征提取，取出中间层的结果，得到bs*12*50*768维特征，将12层中间层特征划分为四组，每组分别求和，得到bs*4*50*768维特征
-（2）交叉attention
+##### 交叉attention
 图像的四层特征和文本的四层特征每层分别做交叉attention，即bs*50*768的文本特征和bs*49*768的图像特征互相做attention。为了降低计算量，文本作为query对图像做attention时，先求均值得到bs*768特征，然后对图像的bs*49*768维特征做attention，输出维度为bs*768，图像对文本做attention时同理，四层特征每层交叉attention后共得到8组bs*768维特征，对其进行拼接得到bs*（8*768）维特征，使用一个全连接层将其映射为bs*768，再使用一个全连接层将其映射为bs*2，然后使用交叉熵损失进行二分类。
-（3）注意力模块
+##### 注意力模块
 bs*768维度的query向量和bs*N*768维度的key向量分别计算相似度（相似度使用bilinear pooling定义），然后对value进行加权求和，最终的输出和query向量维度相同，实现细节参见x-linear。
