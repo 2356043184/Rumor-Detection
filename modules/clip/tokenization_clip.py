@@ -2,9 +2,10 @@ import gzip
 import html
 import os
 from functools import lru_cache
-
+import numpy as np
 import ftfy
 import regex as re
+import torch
 
 
 @lru_cache()
@@ -78,6 +79,9 @@ class SimpleTokenizer(object):
         self.pat = re.compile(r"""<\|startoftext\|>|<\|endoftext\|>|'s|'t|'re|'ve|'m|'ll|'d|[\p{L}]+|[\p{N}]|[^\s\p{L}\p{N}]+""", re.IGNORECASE)
 
         self.vocab = self.encoder
+        self.SPECIAL_TOKEN = {"CLS_TOKEN": "<|startoftext|>", "SEP_TOKEN": "<|endoftext|>",
+                              "MASK_TOKEN": "[MASK]", "UNK_TOKEN": "[UNK]", "PAD_TOKEN": "[PAD]"}
+        self.vocab_size = len(vocab)
 
     def bpe(self, token):
         if token in self.cache:
@@ -143,3 +147,32 @@ class SimpleTokenizer(object):
 
     def convert_tokens_to_ids(self, tokens):
         return [self.encoder[bpe_token] for bpe_token in tokens]
+    
+    def encode_plus(self, text, truncation, padding, max_length, return_tensors, return_attention_mask):
+        input_ids = torch.zeros((1,max_length), dtype=torch.long)
+        attention_mask = torch.zeros((1,max_length), dtype=torch.long)
+        attention_segment = torch.zeros((1,max_length), dtype=torch.long)
+
+        words = self.tokenize(text)
+        words = [self.SPECIAL_TOKEN["CLS_TOKEN"]] + words
+        total_length_with_CLS = max_length - 1
+        if len(words) > total_length_with_CLS:
+            words = words[:total_length_with_CLS]
+        words = words + [self.SPECIAL_TOKEN["SEP_TOKEN"]]
+
+        words = self.convert_tokens_to_ids(words)
+        input_mask = [1] * len(words)
+        segment_ids = [0] * len(words)
+        while len(words) < max_length:
+            words.append(0)
+            input_mask.append(0)
+            segment_ids.append(0)
+        assert len(words) == max_length
+        assert len(input_mask) == max_length
+        assert len(segment_ids) == max_length
+
+        input_ids[0] = torch.tensor(words)
+        attention_mask[0] = torch.tensor(input_mask)
+        attention_segment[0] = torch.tensor(segment_ids)
+
+        return {'input_ids':input_ids,'attention_mask':attention_mask,'attention_segment':attention_segment}

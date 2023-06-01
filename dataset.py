@@ -38,13 +38,17 @@ class Pheme_Dataset(Dataset):
         image = self.transform(image)
         
         sentence = self.imgid2sen[image_id]
+        
         res = self.tokenizer.encode_plus(text=sentence, truncation=True, padding='max_length', max_length=self.max_text_len, return_tensors='pt', return_attention_mask=True)
+        
         input_ids = res['input_ids']
         attention_mask = res['attention_mask']
         
         label = torch.zeros((1))
         label[0] = self.imgid2label[image_id]
         return image, input_ids.squeeze(0), attention_mask.squeeze(0), label.long()
+
+
 
 def _convert_image_to_rgb(image):
     return image.convert("RGB")

@@ -252,8 +252,15 @@ class Transformer(nn.Module):
         self.layers = layers
         self.resblocks = nn.Sequential(*[ResidualAttentionBlock(width, heads, attn_mask) for _ in range(layers)])
 
-    def forward(self, x: torch.Tensor, video_frame=-1):
-        return self.resblocks((x, video_frame))[0]
+    def forward(self, x: torch.Tensor, video_frame=-1, return_middle_layer=False):
+        middle_layer = [x]
+        for i in range(len(self.resblocks)):
+            x, video_frame = self.resblocks[i]((x,video_frame))
+            middle_layer.append(x)
+        if return_middle_layer:
+            return x, middle_layer
+        else:
+            return x
 
 
 class VisualTransformer(nn.Module):
@@ -282,7 +289,7 @@ class VisualTransformer(nn.Module):
             self.conv2 = nn.Conv3d(in_channels=3, out_channels=width, kernel_size=(3, patch_size, patch_size),
                                    stride=(1, patch_size, patch_size), padding=(1, 0, 0), bias=False)
 
-    def forward(self, x: torch.Tensor, video_frame=-1):
+    def forward(self, x: torch.Tensor, video_frame=-1, more_layer=False):
 
         if self.linear_patch == '3d':
             assert video_frame != -1
@@ -301,16 +308,20 @@ class VisualTransformer(nn.Module):
         x = self.ln_pre(x)
 
         x = x.permute(1, 0, 2)  # NLD -> LND
-        x = self.transformer(x, video_frame=video_frame)
-        x = x.permute(1, 0, 2)  # LND -> NLD
-
+        if more_layer:
+            x , middle_layer= self.transformer(x, video_frame=video_frame, return_middle_layer=True)
+            x = x.permute(1, 0, 2)  # LND -> NLD
+            for i in range(len(middle_layer)):
+                middle_layer[i] = middle_layer[i].permute(1, 0, 2).unsqueeze(1)[:,:,1:]
+            return x, middle_layer
+        else:
+            x = self.transformer(x, video_frame=video_frame)
+            x = x.permute(1, 0, 2)  # LND -> NLD
+            return x
         # Move the three lines below to `encode_image` for entire hidden sequence
         # x = self.ln_post(x[:, 0, :])
         # if self.proj is not None:
         #     x = x @ self.proj
-
-        return x
-
 
 class CLIP(nn.Module):
     def __init__(self,
@@ -435,16 +446,21 @@ class CLIP(nn.Module):
     def dtype(self):
         return self.visual.conv1.weight.dtype
 
-    def encode_image(self, image, return_hidden=False, video_frame=-1):
-        hidden = self.visual(image.type(self.dtype), video_frame=video_frame)
-        hidden = self.visual.ln_post(hidden) @ self.visual.proj
+    def encode_image(self, image, return_hidden=False, video_frame=-1, more_layer=False):
+        if more_layer:
+            hidden, middle_layer = self.visual(image.type(self.dtype), video_frame=video_frame, more_layer=True)
 
-        x = hidden[:, 0, :]
+            return middle_layer
+        else:
+            hidden = self.visual(image.type(self.dtype), video_frame=video_frame)
+            # hidden = self.visual.ln_post(hidden) @ self.visual.proj
 
-        if return_hidden:
-            return x, hidden
+            x = hidden[:, 0, :]
 
-        return x
+            if return_hidden:
+                return x, hidden
+
+            return x
     
     def encode_image_grid(self, image, return_hidden=False, video_frame=-1, return_gv=False):
         hidden = self.visual(image.type(self.dtype), video_frame=video_frame)
@@ -455,14 +471,20 @@ class CLIP(nn.Module):
 
         return x
 
-    def encode_text(self, text, return_hidden=False):
+    def encode_text(self, text, attention_mask, expand=False, more_layer=False):
         x = self.token_embedding(text).type(self.dtype)  # [batch_size, n_ctx, d_model]
 
         pos_emd = self.positional_embedding[:x.size(1), :].type(self.dtype)
         x = x + pos_emd
         x = x.permute(1, 0, 2)  # NLD -> LND
-        x = self.transformer(x)
-        x = x.permute(1, 0, 2)  # LND -> NLD
+        if more_layer:
+            x, middle_layer = self.transformer(x, return_middle_layer=True)
+            x = x.permute(1, 0, 2)  # LND -> NLD
+            for i in range(len(middle_layer)):
+                middle_layer[i] = middle_layer[i].permute(1, 0, 2).unsqueeze(0)
+        else:
+            x = self.transformer(x)
+            x = x.permute(1, 0, 2)  # LND -> NLD
 
         hidden = self.ln_final(x).type(self.dtype) @ self.text_projection
 
@@ -470,10 +492,12 @@ class CLIP(nn.Module):
         # take features from the eot embedding (eot_token is the highest number in each sequence)
         x = hidden[torch.arange(hidden.shape[0]), text.argmax(dim=-1)]
 
-        if return_hidden:
-            return x, hidden
-
-        return x
+        if not expand and not more_layer:
+            return x
+        elif expand and not more_layer:
+            return hidden
+        elif more_layer:
+            return middle_layer
 
     def forward(self, image, text):
         image_features = self.encode_image(image)

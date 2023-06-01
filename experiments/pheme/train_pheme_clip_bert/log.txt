@@ -1,0 +1,856 @@
+2023-06-01 10:44:07,878:INFO: Effective parameters:
+2023-06-01 10:44:07,878:INFO:   <<< CUDA_VISIBLE_DEVICES: 0
+2023-06-01 10:44:07,878:INFO:   <<< attention_model: none
+2023-06-01 10:44:07,879:INFO:   <<< batch_size: 64
+2023-06-01 10:44:07,879:INFO:   <<< batch_size_val: 128
+2023-06-01 10:44:07,879:INFO:   <<< dataset: pheme
+2023-06-01 10:44:07,879:INFO:   <<< debug: False
+2023-06-01 10:44:07,879:INFO:   <<< do_train: True
+2023-06-01 10:44:07,879:INFO:   <<< exchange: False
+2023-06-01 10:44:07,879:INFO:   <<< exchange_early: False
+2023-06-01 10:44:07,879:INFO:   <<< expand_image: False
+2023-06-01 10:44:07,879:INFO:   <<< expand_language: False
+2023-06-01 10:44:07,879:INFO:   <<< freeze_image: True
+2023-06-01 10:44:07,879:INFO:   <<< freeze_language: True
+2023-06-01 10:44:07,879:INFO:   <<< image_model_type: clip
+2023-06-01 10:44:07,879:INFO:   <<< image_size: 224
+2023-06-01 10:44:07,879:INFO:   <<< init_model: 
+2023-06-01 10:44:07,879:INFO:   <<< l1_lamda: 0.0002
+2023-06-01 10:44:07,879:INFO:   <<< language_model_type: bert
+2023-06-01 10:44:07,879:INFO:   <<< local_rank: 0
+2023-06-01 10:44:07,879:INFO:   <<< loss_weight: 1,2
+2023-06-01 10:44:07,879:INFO:   <<< lr: 0.00015
+2023-06-01 10:44:07,879:INFO:   <<< max_text_len: 50
+2023-06-01 10:44:07,879:INFO:   <<< more_layer: False
+2023-06-01 10:44:07,879:INFO:   <<< n_epochs: 30
+2023-06-01 10:44:07,879:INFO:   <<< num_workers: 8
+2023-06-01 10:44:07,879:INFO:   <<< output_dir: experiments/pheme/train_pheme_clip_bert
+2023-06-01 10:44:07,879:INFO:   <<< pin_memory: False
+2023-06-01 10:44:07,879:INFO:   <<< pretrained_image: True
+2023-06-01 10:44:07,879:INFO:   <<< pretrained_language: True
+2023-06-01 10:44:07,879:INFO:   <<< rank: 0
+2023-06-01 10:44:07,880:INFO:   <<< seed: 42
+2023-06-01 10:44:07,880:INFO:   <<< weight_decay: 2e-05
+2023-06-01 10:44:07,880:INFO:   <<< world_size: 1
+2023-06-01 10:44:07,880:INFO: device: cuda:0 n_gpu: 1
+2023-06-01 10:44:15,964:INFO: ***** Running training *****
+2023-06-01 10:44:15,964:INFO:   Num examples = 1412
+2023-06-01 10:44:15,964:INFO:   Batch size = 64
+2023-06-01 10:44:15,964:INFO: ***** Running validation  *****
+2023-06-01 10:44:15,964:INFO:   Num examples = 221
+2023-06-01 10:44:15,964:INFO:   Batch size = 128
+2023-06-01 10:44:17,502:INFO: Epoch: 1/30, Step: 1/22, Lr: 0.000150000, Loss: 0.734004, Step Loss: 0.734004, Time: 1.536340
+2023-06-01 10:44:17,551:INFO: Epoch: 1/30, Step: 2/22, Lr: 0.000150000, Loss: 0.808097, Step Loss: 0.808097, Time: 0.048509
+2023-06-01 10:44:17,595:INFO: Epoch: 1/30, Step: 3/22, Lr: 0.000150000, Loss: 0.659431, Step Loss: 0.659431, Time: 0.043539
+2023-06-01 10:44:17,639:INFO: Epoch: 1/30, Step: 4/22, Lr: 0.000150000, Loss: 0.692778, Step Loss: 0.692778, Time: 0.043420
+2023-06-01 10:44:17,683:INFO: Epoch: 1/30, Step: 5/22, Lr: 0.000150000, Loss: 0.675830, Step Loss: 0.675830, Time: 0.043629
+2023-06-01 10:44:17,729:INFO: Epoch: 1/30, Step: 6/22, Lr: 0.000150000, Loss: 0.651586, Step Loss: 0.651586, Time: 0.046599
+2023-06-01 10:44:17,778:INFO: Epoch: 1/30, Step: 7/22, Lr: 0.000150000, Loss: 0.661023, Step Loss: 0.661023, Time: 0.048284
+2023-06-01 10:44:17,826:INFO: Epoch: 1/30, Step: 8/22, Lr: 0.000150000, Loss: 0.656158, Step Loss: 0.656158, Time: 0.048049
+2023-06-01 10:44:18,160:INFO: Epoch: 1/30, Step: 9/22, Lr: 0.000150000, Loss: 0.699031, Step Loss: 0.699031, Time: 0.333853
+2023-06-01 10:44:18,209:INFO: Epoch: 1/30, Step: 10/22, Lr: 0.000150000, Loss: 0.622204, Step Loss: 0.622204, Time: 0.048332
+2023-06-01 10:44:18,252:INFO: Epoch: 1/30, Step: 11/22, Lr: 0.000150000, Loss: 0.544324, Step Loss: 0.544324, Time: 0.042339
+2023-06-01 10:44:18,295:INFO: Epoch: 1/30, Step: 12/22, Lr: 0.000150000, Loss: 0.618068, Step Loss: 0.618068, Time: 0.043254
+2023-06-01 10:44:18,343:INFO: Epoch: 1/30, Step: 13/22, Lr: 0.000150000, Loss: 0.578587, Step Loss: 0.578587, Time: 0.047148
+2023-06-01 10:44:18,389:INFO: Epoch: 1/30, Step: 14/22, Lr: 0.000150000, Loss: 0.617533, Step Loss: 0.617533, Time: 0.045389
+2023-06-01 10:44:18,441:INFO: Epoch: 1/30, Step: 15/22, Lr: 0.000150000, Loss: 0.566672, Step Loss: 0.566672, Time: 0.051456
+2023-06-01 10:44:18,490:INFO: Epoch: 1/30, Step: 16/22, Lr: 0.000150000, Loss: 0.570453, Step Loss: 0.570453, Time: 0.049657
+2023-06-01 10:44:18,845:INFO: Epoch: 1/30, Step: 17/22, Lr: 0.000150000, Loss: 0.625592, Step Loss: 0.625592, Time: 0.354311
+2023-06-01 10:44:18,893:INFO: Epoch: 1/30, Step: 18/22, Lr: 0.000150000, Loss: 0.542241, Step Loss: 0.542241, Time: 0.048285
+2023-06-01 10:44:18,938:INFO: Epoch: 1/30, Step: 19/22, Lr: 0.000150000, Loss: 0.547427, Step Loss: 0.547427, Time: 0.044318
+2023-06-01 10:44:18,981:INFO: Epoch: 1/30, Step: 20/22, Lr: 0.000150000, Loss: 0.548909, Step Loss: 0.548909, Time: 0.042302
+2023-06-01 10:44:19,024:INFO: Epoch: 1/30, Step: 21/22, Lr: 0.000150000, Loss: 0.545555, Step Loss: 0.545555, Time: 0.043037
+2023-06-01 10:44:19,071:INFO: Epoch: 1/30, Step: 22/22, Lr: 0.000150000, Loss: 0.678383, Step Loss: 0.678383, Time: 0.046201
+2023-06-01 10:44:19,280:INFO: Epoch 1/30 Finished, Train Loss: 0.629268
+2023-06-01 10:44:20,689:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.0
+2023-06-01 10:44:23,439:INFO: Classfication Metrics:
+2023-06-01 10:44:23,440:INFO: f1 score: 0.6431 - precision score: 0.5051 - recall score: 0.8850 - accuracy score: 0.711688
+2023-06-01 10:44:23,440:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.0, the F1 is: 0.6431
+2023-06-01 10:44:24,981:INFO: Epoch: 2/30, Step: 1/22, Lr: 0.000420000, Loss: 0.472364, Step Loss: 0.472364, Time: 1.537129
+2023-06-01 10:44:25,026:INFO: Epoch: 2/30, Step: 2/22, Lr: 0.000420000, Loss: 0.483807, Step Loss: 0.483807, Time: 0.045620
+2023-06-01 10:44:25,072:INFO: Epoch: 2/30, Step: 3/22, Lr: 0.000420000, Loss: 0.423864, Step Loss: 0.423864, Time: 0.044828
+2023-06-01 10:44:25,114:INFO: Epoch: 2/30, Step: 4/22, Lr: 0.000420000, Loss: 0.498231, Step Loss: 0.498231, Time: 0.042058
+2023-06-01 10:44:25,157:INFO: Epoch: 2/30, Step: 5/22, Lr: 0.000420000, Loss: 0.512619, Step Loss: 0.512619, Time: 0.042983
+2023-06-01 10:44:25,200:INFO: Epoch: 2/30, Step: 6/22, Lr: 0.000420000, Loss: 0.423312, Step Loss: 0.423312, Time: 0.042816
+2023-06-01 10:44:25,244:INFO: Epoch: 2/30, Step: 7/22, Lr: 0.000420000, Loss: 0.459276, Step Loss: 0.459276, Time: 0.043036
+2023-06-01 10:44:25,287:INFO: Epoch: 2/30, Step: 8/22, Lr: 0.000420000, Loss: 0.566668, Step Loss: 0.566668, Time: 0.042619
+2023-06-01 10:44:25,604:INFO: Epoch: 2/30, Step: 9/22, Lr: 0.000420000, Loss: 0.464131, Step Loss: 0.464131, Time: 0.317487
+2023-06-01 10:44:25,649:INFO: Epoch: 2/30, Step: 10/22, Lr: 0.000420000, Loss: 0.535213, Step Loss: 0.535213, Time: 0.044697
+2023-06-01 10:44:25,696:INFO: Epoch: 2/30, Step: 11/22, Lr: 0.000420000, Loss: 0.614698, Step Loss: 0.614698, Time: 0.046143
+2023-06-01 10:44:25,744:INFO: Epoch: 2/30, Step: 12/22, Lr: 0.000420000, Loss: 0.523604, Step Loss: 0.523604, Time: 0.047800
+2023-06-01 10:44:25,793:INFO: Epoch: 2/30, Step: 13/22, Lr: 0.000420000, Loss: 0.363568, Step Loss: 0.363568, Time: 0.048711
+2023-06-01 10:44:25,839:INFO: Epoch: 2/30, Step: 14/22, Lr: 0.000420000, Loss: 0.553566, Step Loss: 0.553566, Time: 0.045518
+2023-06-01 10:44:25,886:INFO: Epoch: 2/30, Step: 15/22, Lr: 0.000420000, Loss: 0.284885, Step Loss: 0.284885, Time: 0.046813
+2023-06-01 10:44:25,932:INFO: Epoch: 2/30, Step: 16/22, Lr: 0.000420000, Loss: 0.489925, Step Loss: 0.489925, Time: 0.046140
+2023-06-01 10:44:26,226:INFO: Epoch: 2/30, Step: 17/22, Lr: 0.000420000, Loss: 0.544171, Step Loss: 0.544171, Time: 0.293365
+2023-06-01 10:44:26,306:INFO: Epoch: 2/30, Step: 18/22, Lr: 0.000420000, Loss: 0.557408, Step Loss: 0.557408, Time: 0.080098
+2023-06-01 10:44:26,351:INFO: Epoch: 2/30, Step: 19/22, Lr: 0.000420000, Loss: 0.908919, Step Loss: 0.908919, Time: 0.044438
+2023-06-01 10:44:26,396:INFO: Epoch: 2/30, Step: 20/22, Lr: 0.000420000, Loss: 0.479455, Step Loss: 0.479455, Time: 0.045198
+2023-06-01 10:44:26,446:INFO: Epoch: 2/30, Step: 21/22, Lr: 0.000420000, Loss: 0.520945, Step Loss: 0.520945, Time: 0.049230
+2023-06-01 10:44:26,492:INFO: Epoch: 2/30, Step: 22/22, Lr: 0.000420000, Loss: 0.673215, Step Loss: 0.673215, Time: 0.045626
+2023-06-01 10:44:26,675:INFO: Epoch 2/30 Finished, Train Loss: 0.516084
+2023-06-01 10:44:28,112:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.1
+2023-06-01 10:44:30,859:INFO: Classfication Metrics:
+2023-06-01 10:44:30,860:INFO: f1 score: 0.6667 - precision score: 0.5118 - recall score: 0.9558 - accuracy score: 0.719481
+2023-06-01 10:44:30,860:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.1, the F1 is: 0.6667
+2023-06-01 10:44:32,359:INFO: Epoch: 3/30, Step: 1/22, Lr: 0.000690000, Loss: 0.594655, Step Loss: 0.594655, Time: 1.493867
+2023-06-01 10:44:32,411:INFO: Epoch: 3/30, Step: 2/22, Lr: 0.000690000, Loss: 0.449752, Step Loss: 0.449752, Time: 0.051824
+2023-06-01 10:44:32,471:INFO: Epoch: 3/30, Step: 3/22, Lr: 0.000690000, Loss: 0.565926, Step Loss: 0.565926, Time: 0.060003
+2023-06-01 10:44:32,517:INFO: Epoch: 3/30, Step: 4/22, Lr: 0.000690000, Loss: 0.548058, Step Loss: 0.548058, Time: 0.045156
+2023-06-01 10:44:32,560:INFO: Epoch: 3/30, Step: 5/22, Lr: 0.000690000, Loss: 0.446934, Step Loss: 0.446934, Time: 0.042773
+2023-06-01 10:44:32,605:INFO: Epoch: 3/30, Step: 6/22, Lr: 0.000690000, Loss: 0.653918, Step Loss: 0.653918, Time: 0.045317
+2023-06-01 10:44:32,650:INFO: Epoch: 3/30, Step: 7/22, Lr: 0.000690000, Loss: 0.520093, Step Loss: 0.520093, Time: 0.044331
+2023-06-01 10:44:32,692:INFO: Epoch: 3/30, Step: 8/22, Lr: 0.000690000, Loss: 0.418614, Step Loss: 0.418614, Time: 0.042350
+2023-06-01 10:44:33,027:INFO: Epoch: 3/30, Step: 9/22, Lr: 0.000690000, Loss: 0.632381, Step Loss: 0.632381, Time: 0.334390
+2023-06-01 10:44:33,099:INFO: Epoch: 3/30, Step: 10/22, Lr: 0.000690000, Loss: 0.476741, Step Loss: 0.476741, Time: 0.057826
+2023-06-01 10:44:33,150:INFO: Epoch: 3/30, Step: 11/22, Lr: 0.000690000, Loss: 0.555494, Step Loss: 0.555494, Time: 0.050089
+2023-06-01 10:44:33,196:INFO: Epoch: 3/30, Step: 12/22, Lr: 0.000690000, Loss: 0.466445, Step Loss: 0.466445, Time: 0.046413
+2023-06-01 10:44:33,242:INFO: Epoch: 3/30, Step: 13/22, Lr: 0.000690000, Loss: 0.349585, Step Loss: 0.349585, Time: 0.045101
+2023-06-01 10:44:33,288:INFO: Epoch: 3/30, Step: 14/22, Lr: 0.000690000, Loss: 0.403078, Step Loss: 0.403078, Time: 0.045805
+2023-06-01 10:44:33,338:INFO: Epoch: 3/30, Step: 15/22, Lr: 0.000690000, Loss: 0.734625, Step Loss: 0.734625, Time: 0.049875
+2023-06-01 10:44:33,380:INFO: Epoch: 3/30, Step: 16/22, Lr: 0.000690000, Loss: 0.455852, Step Loss: 0.455852, Time: 0.041779
+2023-06-01 10:44:33,651:INFO: Epoch: 3/30, Step: 17/22, Lr: 0.000690000, Loss: 0.452034, Step Loss: 0.452034, Time: 0.270815
+2023-06-01 10:44:33,719:INFO: Epoch: 3/30, Step: 18/22, Lr: 0.000690000, Loss: 0.637863, Step Loss: 0.637863, Time: 0.068056
+2023-06-01 10:44:33,773:INFO: Epoch: 3/30, Step: 19/22, Lr: 0.000690000, Loss: 0.392154, Step Loss: 0.392154, Time: 0.053183
+2023-06-01 10:44:33,818:INFO: Epoch: 3/30, Step: 20/22, Lr: 0.000690000, Loss: 0.523665, Step Loss: 0.523665, Time: 0.044728
+2023-06-01 10:44:33,867:INFO: Epoch: 3/30, Step: 21/22, Lr: 0.000690000, Loss: 0.365994, Step Loss: 0.365994, Time: 0.048161
+2023-06-01 10:44:33,917:INFO: Epoch: 3/30, Step: 22/22, Lr: 0.000690000, Loss: 0.381336, Step Loss: 0.381336, Time: 0.049650
+2023-06-01 10:44:34,103:INFO: Epoch 3/30 Finished, Train Loss: 0.501145
+2023-06-01 10:44:35,514:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.2
+2023-06-01 10:44:38,292:INFO: Classfication Metrics:
+2023-06-01 10:44:38,292:INFO: f1 score: 0.5275 - precision score: 0.6957 - recall score: 0.4248 - accuracy score: 0.776623
+2023-06-01 10:44:38,292:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.1, the F1 is: 0.6667
+2023-06-01 10:44:39,753:INFO: Epoch: 4/30, Step: 1/22, Lr: 0.001230000, Loss: 0.318234, Step Loss: 0.318234, Time: 1.455770
+2023-06-01 10:44:39,796:INFO: Epoch: 4/30, Step: 2/22, Lr: 0.001230000, Loss: 0.501061, Step Loss: 0.501061, Time: 0.043079
+2023-06-01 10:44:39,853:INFO: Epoch: 4/30, Step: 3/22, Lr: 0.001230000, Loss: 0.337297, Step Loss: 0.337297, Time: 0.056573
+2023-06-01 10:44:39,899:INFO: Epoch: 4/30, Step: 4/22, Lr: 0.001230000, Loss: 0.447911, Step Loss: 0.447911, Time: 0.045961
+2023-06-01 10:44:39,948:INFO: Epoch: 4/30, Step: 5/22, Lr: 0.001230000, Loss: 0.429343, Step Loss: 0.429343, Time: 0.048876
+2023-06-01 10:44:39,999:INFO: Epoch: 4/30, Step: 6/22, Lr: 0.001230000, Loss: 0.352524, Step Loss: 0.352524, Time: 0.050698
+2023-06-01 10:44:40,048:INFO: Epoch: 4/30, Step: 7/22, Lr: 0.001230000, Loss: 0.521065, Step Loss: 0.521065, Time: 0.048891
+2023-06-01 10:44:40,096:INFO: Epoch: 4/30, Step: 8/22, Lr: 0.001230000, Loss: 0.377975, Step Loss: 0.377975, Time: 0.047186
+2023-06-01 10:44:40,382:INFO: Epoch: 4/30, Step: 9/22, Lr: 0.001230000, Loss: 0.377619, Step Loss: 0.377619, Time: 0.286378
+2023-06-01 10:44:40,425:INFO: Epoch: 4/30, Step: 10/22, Lr: 0.001230000, Loss: 0.537667, Step Loss: 0.537667, Time: 0.042489
+2023-06-01 10:44:40,473:INFO: Epoch: 4/30, Step: 11/22, Lr: 0.001230000, Loss: 0.539519, Step Loss: 0.539519, Time: 0.047297
+2023-06-01 10:44:40,549:INFO: Epoch: 4/30, Step: 12/22, Lr: 0.001230000, Loss: 0.316562, Step Loss: 0.316562, Time: 0.076437
+2023-06-01 10:44:40,664:INFO: Epoch: 4/30, Step: 13/22, Lr: 0.001230000, Loss: 0.711948, Step Loss: 0.711948, Time: 0.113777
+2023-06-01 10:44:40,711:INFO: Epoch: 4/30, Step: 14/22, Lr: 0.001230000, Loss: 0.277988, Step Loss: 0.277988, Time: 0.047493
+2023-06-01 10:44:40,760:INFO: Epoch: 4/30, Step: 15/22, Lr: 0.001230000, Loss: 0.758163, Step Loss: 0.758163, Time: 0.047991
+2023-06-01 10:44:40,805:INFO: Epoch: 4/30, Step: 16/22, Lr: 0.001230000, Loss: 0.372262, Step Loss: 0.372262, Time: 0.045164
+2023-06-01 10:44:41,013:INFO: Epoch: 4/30, Step: 17/22, Lr: 0.001230000, Loss: 0.427893, Step Loss: 0.427893, Time: 0.207429
+2023-06-01 10:44:41,057:INFO: Epoch: 4/30, Step: 18/22, Lr: 0.001230000, Loss: 0.403242, Step Loss: 0.403242, Time: 0.043477
+2023-06-01 10:44:41,113:INFO: Epoch: 4/30, Step: 19/22, Lr: 0.001230000, Loss: 0.629074, Step Loss: 0.629074, Time: 0.056445
+2023-06-01 10:44:41,168:INFO: Epoch: 4/30, Step: 20/22, Lr: 0.001230000, Loss: 0.299306, Step Loss: 0.299306, Time: 0.054391
+2023-06-01 10:44:41,341:INFO: Epoch: 4/30, Step: 21/22, Lr: 0.001230000, Loss: 0.947152, Step Loss: 0.947152, Time: 0.173012
+2023-06-01 10:44:41,388:INFO: Epoch: 4/30, Step: 22/22, Lr: 0.001230000, Loss: 0.375854, Step Loss: 0.375854, Time: 0.046539
+2023-06-01 10:44:41,596:INFO: Epoch 4/30 Finished, Train Loss: 0.466348
+2023-06-01 10:44:42,989:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.3
+2023-06-01 10:44:45,841:INFO: Classfication Metrics:
+2023-06-01 10:44:45,842:INFO: f1 score: 0.7059 - precision score: 0.6038 - recall score: 0.8496 - accuracy score: 0.792208
+2023-06-01 10:44:45,842:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.3, the F1 is: 0.7059
+2023-06-01 10:44:47,324:INFO: Epoch: 5/30, Step: 1/22, Lr: 0.001500000, Loss: 0.421804, Step Loss: 0.421804, Time: 1.472276
+2023-06-01 10:44:47,366:INFO: Epoch: 5/30, Step: 2/22, Lr: 0.001500000, Loss: 0.520381, Step Loss: 0.520381, Time: 0.041905
+2023-06-01 10:44:47,409:INFO: Epoch: 5/30, Step: 3/22, Lr: 0.001500000, Loss: 0.514649, Step Loss: 0.514649, Time: 0.042126
+2023-06-01 10:44:47,452:INFO: Epoch: 5/30, Step: 4/22, Lr: 0.001500000, Loss: 0.314869, Step Loss: 0.314869, Time: 0.042820
+2023-06-01 10:44:47,495:INFO: Epoch: 5/30, Step: 5/22, Lr: 0.001500000, Loss: 0.628521, Step Loss: 0.628521, Time: 0.042325
+2023-06-01 10:44:47,540:INFO: Epoch: 5/30, Step: 6/22, Lr: 0.001500000, Loss: 0.475506, Step Loss: 0.475506, Time: 0.045346
+2023-06-01 10:44:47,583:INFO: Epoch: 5/30, Step: 7/22, Lr: 0.001500000, Loss: 0.411332, Step Loss: 0.411332, Time: 0.042483
+2023-06-01 10:44:47,627:INFO: Epoch: 5/30, Step: 8/22, Lr: 0.001500000, Loss: 0.456567, Step Loss: 0.456567, Time: 0.044200
+2023-06-01 10:44:48,043:INFO: Epoch: 5/30, Step: 9/22, Lr: 0.001500000, Loss: 0.449877, Step Loss: 0.449877, Time: 0.415464
+2023-06-01 10:44:48,085:INFO: Epoch: 5/30, Step: 10/22, Lr: 0.001500000, Loss: 0.398675, Step Loss: 0.398675, Time: 0.041969
+2023-06-01 10:44:48,144:INFO: Epoch: 5/30, Step: 11/22, Lr: 0.001500000, Loss: 0.737113, Step Loss: 0.737113, Time: 0.058055
+2023-06-01 10:44:48,189:INFO: Epoch: 5/30, Step: 12/22, Lr: 0.001500000, Loss: 0.590416, Step Loss: 0.590416, Time: 0.045570
+2023-06-01 10:44:48,234:INFO: Epoch: 5/30, Step: 13/22, Lr: 0.001500000, Loss: 0.430505, Step Loss: 0.430505, Time: 0.043642
+2023-06-01 10:44:48,398:INFO: Epoch: 5/30, Step: 14/22, Lr: 0.001500000, Loss: 0.649110, Step Loss: 0.649110, Time: 0.048055
+2023-06-01 10:44:48,439:INFO: Epoch: 5/30, Step: 15/22, Lr: 0.001500000, Loss: 0.518152, Step Loss: 0.518152, Time: 0.041682
+2023-06-01 10:44:48,481:INFO: Epoch: 5/30, Step: 16/22, Lr: 0.001500000, Loss: 0.558081, Step Loss: 0.558081, Time: 0.041466
+2023-06-01 10:44:48,620:INFO: Epoch: 5/30, Step: 17/22, Lr: 0.001500000, Loss: 0.473703, Step Loss: 0.473703, Time: 0.138940
+2023-06-01 10:44:48,662:INFO: Epoch: 5/30, Step: 18/22, Lr: 0.001500000, Loss: 0.383924, Step Loss: 0.383924, Time: 0.041531
+2023-06-01 10:44:48,775:INFO: Epoch: 5/30, Step: 19/22, Lr: 0.001500000, Loss: 0.441682, Step Loss: 0.441682, Time: 0.113063
+2023-06-01 10:44:48,818:INFO: Epoch: 5/30, Step: 20/22, Lr: 0.001500000, Loss: 0.419519, Step Loss: 0.419519, Time: 0.042348
+2023-06-01 10:44:48,860:INFO: Epoch: 5/30, Step: 21/22, Lr: 0.001500000, Loss: 0.371494, Step Loss: 0.371494, Time: 0.041303
+2023-06-01 10:44:48,902:INFO: Epoch: 5/30, Step: 22/22, Lr: 0.001500000, Loss: 0.217077, Step Loss: 0.217077, Time: 0.042381
+2023-06-01 10:44:49,081:INFO: Epoch 5/30 Finished, Train Loss: 0.471953
+2023-06-01 10:44:50,442:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.4
+2023-06-01 10:44:53,215:INFO: Classfication Metrics:
+2023-06-01 10:44:53,215:INFO: f1 score: 0.5579 - precision score: 0.6883 - recall score: 0.4690 - accuracy score: 0.781818
+2023-06-01 10:44:53,215:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.3, the F1 is: 0.7059
+2023-06-01 10:44:54,853:INFO: Epoch: 6/30, Step: 1/22, Lr: 0.001500000, Loss: 0.384261, Step Loss: 0.384261, Time: 1.602721
+2023-06-01 10:44:54,899:INFO: Epoch: 6/30, Step: 2/22, Lr: 0.001500000, Loss: 0.369011, Step Loss: 0.369011, Time: 0.046082
+2023-06-01 10:44:54,960:INFO: Epoch: 6/30, Step: 3/22, Lr: 0.001500000, Loss: 0.338767, Step Loss: 0.338767, Time: 0.060196
+2023-06-01 10:44:55,009:INFO: Epoch: 6/30, Step: 4/22, Lr: 0.001500000, Loss: 0.494205, Step Loss: 0.494205, Time: 0.049194
+2023-06-01 10:44:55,056:INFO: Epoch: 6/30, Step: 5/22, Lr: 0.001500000, Loss: 0.444531, Step Loss: 0.444531, Time: 0.046355
+2023-06-01 10:44:55,104:INFO: Epoch: 6/30, Step: 6/22, Lr: 0.001500000, Loss: 0.428762, Step Loss: 0.428762, Time: 0.048145
+2023-06-01 10:44:55,149:INFO: Epoch: 6/30, Step: 7/22, Lr: 0.001500000, Loss: 0.415341, Step Loss: 0.415341, Time: 0.044354
+2023-06-01 10:44:55,198:INFO: Epoch: 6/30, Step: 8/22, Lr: 0.001500000, Loss: 0.364073, Step Loss: 0.364073, Time: 0.048449
+2023-06-01 10:44:55,474:INFO: Epoch: 6/30, Step: 9/22, Lr: 0.001500000, Loss: 0.265092, Step Loss: 0.265092, Time: 0.275801
+2023-06-01 10:44:55,559:INFO: Epoch: 6/30, Step: 10/22, Lr: 0.001500000, Loss: 0.333684, Step Loss: 0.333684, Time: 0.084528
+2023-06-01 10:44:55,609:INFO: Epoch: 6/30, Step: 11/22, Lr: 0.001500000, Loss: 0.307785, Step Loss: 0.307785, Time: 0.050239
+2023-06-01 10:44:55,658:INFO: Epoch: 6/30, Step: 12/22, Lr: 0.001500000, Loss: 0.416933, Step Loss: 0.416933, Time: 0.048295
+2023-06-01 10:44:55,706:INFO: Epoch: 6/30, Step: 13/22, Lr: 0.001500000, Loss: 0.368124, Step Loss: 0.368124, Time: 0.048011
+2023-06-01 10:44:55,752:INFO: Epoch: 6/30, Step: 14/22, Lr: 0.001500000, Loss: 0.264217, Step Loss: 0.264217, Time: 0.045940
+2023-06-01 10:44:55,796:INFO: Epoch: 6/30, Step: 15/22, Lr: 0.001500000, Loss: 0.240597, Step Loss: 0.240597, Time: 0.043600
+2023-06-01 10:44:55,843:INFO: Epoch: 6/30, Step: 16/22, Lr: 0.001500000, Loss: 0.324462, Step Loss: 0.324462, Time: 0.046194
+2023-06-01 10:44:56,071:INFO: Epoch: 6/30, Step: 17/22, Lr: 0.001500000, Loss: 0.458812, Step Loss: 0.458812, Time: 0.228247
+2023-06-01 10:44:56,185:INFO: Epoch: 6/30, Step: 18/22, Lr: 0.001500000, Loss: 0.359797, Step Loss: 0.359797, Time: 0.113799
+2023-06-01 10:44:56,290:INFO: Epoch: 6/30, Step: 19/22, Lr: 0.001500000, Loss: 0.414820, Step Loss: 0.414820, Time: 0.104744
+2023-06-01 10:44:56,333:INFO: Epoch: 6/30, Step: 20/22, Lr: 0.001500000, Loss: 0.315076, Step Loss: 0.315076, Time: 0.043016
+2023-06-01 10:44:56,378:INFO: Epoch: 6/30, Step: 21/22, Lr: 0.001500000, Loss: 0.456087, Step Loss: 0.456087, Time: 0.043762
+2023-06-01 10:44:56,422:INFO: Epoch: 6/30, Step: 22/22, Lr: 0.001500000, Loss: 0.493212, Step Loss: 0.493212, Time: 0.044557
+2023-06-01 10:44:56,629:INFO: Epoch 6/30 Finished, Train Loss: 0.375348
+2023-06-01 10:44:58,067:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.5
+2023-06-01 10:45:00,764:INFO: Classfication Metrics:
+2023-06-01 10:45:00,764:INFO: f1 score: 0.7266 - precision score: 0.6121 - recall score: 0.8938 - accuracy score: 0.802597
+2023-06-01 10:45:00,765:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.5, the F1 is: 0.7266
+2023-06-01 10:45:02,128:INFO: Epoch: 7/30, Step: 1/22, Lr: 0.001494086, Loss: 0.375479, Step Loss: 0.375479, Time: 1.355414
+2023-06-01 10:45:02,187:INFO: Epoch: 7/30, Step: 2/22, Lr: 0.001494086, Loss: 0.464817, Step Loss: 0.464817, Time: 0.057809
+2023-06-01 10:45:02,236:INFO: Epoch: 7/30, Step: 3/22, Lr: 0.001494086, Loss: 0.361623, Step Loss: 0.361623, Time: 0.049419
+2023-06-01 10:45:02,283:INFO: Epoch: 7/30, Step: 4/22, Lr: 0.001494086, Loss: 0.329746, Step Loss: 0.329746, Time: 0.046200
+2023-06-01 10:45:02,328:INFO: Epoch: 7/30, Step: 5/22, Lr: 0.001494086, Loss: 0.200030, Step Loss: 0.200030, Time: 0.045396
+2023-06-01 10:45:02,372:INFO: Epoch: 7/30, Step: 6/22, Lr: 0.001494086, Loss: 0.325665, Step Loss: 0.325665, Time: 0.043405
+2023-06-01 10:45:02,417:INFO: Epoch: 7/30, Step: 7/22, Lr: 0.001494086, Loss: 0.283648, Step Loss: 0.283648, Time: 0.045165
+2023-06-01 10:45:02,463:INFO: Epoch: 7/30, Step: 8/22, Lr: 0.001494086, Loss: 0.294410, Step Loss: 0.294410, Time: 0.045608
+2023-06-01 10:45:02,759:INFO: Epoch: 7/30, Step: 9/22, Lr: 0.001494086, Loss: 0.337189, Step Loss: 0.337189, Time: 0.295077
+2023-06-01 10:45:02,831:INFO: Epoch: 7/30, Step: 10/22, Lr: 0.001494086, Loss: 0.387002, Step Loss: 0.387002, Time: 0.072377
+2023-06-01 10:45:02,931:INFO: Epoch: 7/30, Step: 11/22, Lr: 0.001494086, Loss: 0.328444, Step Loss: 0.328444, Time: 0.099237
+2023-06-01 10:45:02,976:INFO: Epoch: 7/30, Step: 12/22, Lr: 0.001494086, Loss: 0.306588, Step Loss: 0.306588, Time: 0.044992
+2023-06-01 10:45:03,024:INFO: Epoch: 7/30, Step: 13/22, Lr: 0.001494086, Loss: 0.302147, Step Loss: 0.302147, Time: 0.047495
+2023-06-01 10:45:03,071:INFO: Epoch: 7/30, Step: 14/22, Lr: 0.001494086, Loss: 0.228534, Step Loss: 0.228534, Time: 0.047183
+2023-06-01 10:45:03,118:INFO: Epoch: 7/30, Step: 15/22, Lr: 0.001494086, Loss: 0.474863, Step Loss: 0.474863, Time: 0.046146
+2023-06-01 10:45:03,165:INFO: Epoch: 7/30, Step: 16/22, Lr: 0.001494086, Loss: 0.374870, Step Loss: 0.374870, Time: 0.046831
+2023-06-01 10:45:03,352:INFO: Epoch: 7/30, Step: 17/22, Lr: 0.001494086, Loss: 0.306825, Step Loss: 0.306825, Time: 0.187175
+2023-06-01 10:45:03,440:INFO: Epoch: 7/30, Step: 18/22, Lr: 0.001494086, Loss: 0.342531, Step Loss: 0.342531, Time: 0.087331
+2023-06-01 10:45:03,580:INFO: Epoch: 7/30, Step: 19/22, Lr: 0.001494086, Loss: 0.229200, Step Loss: 0.229200, Time: 0.139846
+2023-06-01 10:45:03,626:INFO: Epoch: 7/30, Step: 20/22, Lr: 0.001494086, Loss: 0.419067, Step Loss: 0.419067, Time: 0.045134
+2023-06-01 10:45:03,719:INFO: Epoch: 7/30, Step: 21/22, Lr: 0.001494086, Loss: 0.277601, Step Loss: 0.277601, Time: 0.050779
+2023-06-01 10:45:03,766:INFO: Epoch: 7/30, Step: 22/22, Lr: 0.001494086, Loss: 0.305190, Step Loss: 0.305190, Time: 0.046644
+2023-06-01 10:45:03,963:INFO: Epoch 7/30 Finished, Train Loss: 0.329794
+2023-06-01 10:45:05,468:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.6
+2023-06-01 10:45:08,046:INFO: Classfication Metrics:
+2023-06-01 10:45:08,047:INFO: f1 score: 0.2576 - precision score: 0.8947 - recall score: 0.1504 - accuracy score: 0.745455
+2023-06-01 10:45:08,047:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.5, the F1 is: 0.7266
+2023-06-01 10:45:09,450:INFO: Epoch: 8/30, Step: 1/22, Lr: 0.001476437, Loss: 0.472537, Step Loss: 0.472537, Time: 1.398842
+2023-06-01 10:45:09,492:INFO: Epoch: 8/30, Step: 2/22, Lr: 0.001476437, Loss: 0.502030, Step Loss: 0.502030, Time: 0.041968
+2023-06-01 10:45:09,534:INFO: Epoch: 8/30, Step: 3/22, Lr: 0.001476437, Loss: 0.379742, Step Loss: 0.379742, Time: 0.041515
+2023-06-01 10:45:09,575:INFO: Epoch: 8/30, Step: 4/22, Lr: 0.001476437, Loss: 0.833305, Step Loss: 0.833305, Time: 0.040869
+2023-06-01 10:45:09,617:INFO: Epoch: 8/30, Step: 5/22, Lr: 0.001476437, Loss: 0.392569, Step Loss: 0.392569, Time: 0.041466
+2023-06-01 10:45:09,662:INFO: Epoch: 8/30, Step: 6/22, Lr: 0.001476437, Loss: 0.561917, Step Loss: 0.561917, Time: 0.044678
+2023-06-01 10:45:09,703:INFO: Epoch: 8/30, Step: 7/22, Lr: 0.001476437, Loss: 0.415462, Step Loss: 0.415462, Time: 0.041452
+2023-06-01 10:45:09,746:INFO: Epoch: 8/30, Step: 8/22, Lr: 0.001476437, Loss: 0.394653, Step Loss: 0.394653, Time: 0.042832
+2023-06-01 10:45:10,102:INFO: Epoch: 8/30, Step: 9/22, Lr: 0.001476437, Loss: 0.372252, Step Loss: 0.372252, Time: 0.355332
+2023-06-01 10:45:10,148:INFO: Epoch: 8/30, Step: 10/22, Lr: 0.001476437, Loss: 0.474372, Step Loss: 0.474372, Time: 0.045999
+2023-06-01 10:45:10,192:INFO: Epoch: 8/30, Step: 11/22, Lr: 0.001476437, Loss: 0.277688, Step Loss: 0.277688, Time: 0.043662
+2023-06-01 10:45:10,239:INFO: Epoch: 8/30, Step: 12/22, Lr: 0.001476437, Loss: 0.574862, Step Loss: 0.574862, Time: 0.046770
+2023-06-01 10:45:10,284:INFO: Epoch: 8/30, Step: 13/22, Lr: 0.001476437, Loss: 0.321556, Step Loss: 0.321556, Time: 0.044140
+2023-06-01 10:45:10,330:INFO: Epoch: 8/30, Step: 14/22, Lr: 0.001476437, Loss: 0.414448, Step Loss: 0.414448, Time: 0.046458
+2023-06-01 10:45:10,377:INFO: Epoch: 8/30, Step: 15/22, Lr: 0.001476437, Loss: 0.316595, Step Loss: 0.316595, Time: 0.046170
+2023-06-01 10:45:10,422:INFO: Epoch: 8/30, Step: 16/22, Lr: 0.001476437, Loss: 0.304479, Step Loss: 0.304479, Time: 0.045076
+2023-06-01 10:45:10,697:INFO: Epoch: 8/30, Step: 17/22, Lr: 0.001476437, Loss: 0.219891, Step Loss: 0.219891, Time: 0.274163
+2023-06-01 10:45:10,739:INFO: Epoch: 8/30, Step: 18/22, Lr: 0.001476437, Loss: 0.471985, Step Loss: 0.471985, Time: 0.042012
+2023-06-01 10:45:10,835:INFO: Epoch: 8/30, Step: 19/22, Lr: 0.001476437, Loss: 0.344194, Step Loss: 0.344194, Time: 0.095650
+2023-06-01 10:45:10,879:INFO: Epoch: 8/30, Step: 20/22, Lr: 0.001476437, Loss: 0.378638, Step Loss: 0.378638, Time: 0.043755
+2023-06-01 10:45:10,929:INFO: Epoch: 8/30, Step: 21/22, Lr: 0.001476437, Loss: 0.341089, Step Loss: 0.341089, Time: 0.049643
+2023-06-01 10:45:10,971:INFO: Epoch: 8/30, Step: 22/22, Lr: 0.001476437, Loss: 0.378632, Step Loss: 0.378632, Time: 0.042155
+2023-06-01 10:45:11,132:INFO: Epoch 8/30 Finished, Train Loss: 0.415586
+2023-06-01 10:45:12,644:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.7
+2023-06-01 10:45:15,216:INFO: Classfication Metrics:
+2023-06-01 10:45:15,216:INFO: f1 score: 0.7224 - precision score: 0.6333 - recall score: 0.8407 - accuracy score: 0.810390
+2023-06-01 10:45:15,216:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.5, the F1 is: 0.7266
+2023-06-01 10:45:16,693:INFO: Epoch: 9/30, Step: 1/22, Lr: 0.001447332, Loss: 0.375926, Step Loss: 0.375926, Time: 1.472638
+2023-06-01 10:45:16,741:INFO: Epoch: 9/30, Step: 2/22, Lr: 0.001447332, Loss: 0.364912, Step Loss: 0.364912, Time: 0.047796
+2023-06-01 10:45:16,798:INFO: Epoch: 9/30, Step: 3/22, Lr: 0.001447332, Loss: 0.269111, Step Loss: 0.269111, Time: 0.055347
+2023-06-01 10:45:16,847:INFO: Epoch: 9/30, Step: 4/22, Lr: 0.001447332, Loss: 0.301192, Step Loss: 0.301192, Time: 0.048844
+2023-06-01 10:45:16,900:INFO: Epoch: 9/30, Step: 5/22, Lr: 0.001447332, Loss: 0.226039, Step Loss: 0.226039, Time: 0.053172
+2023-06-01 10:45:16,957:INFO: Epoch: 9/30, Step: 6/22, Lr: 0.001447332, Loss: 0.249928, Step Loss: 0.249928, Time: 0.055025
+2023-06-01 10:45:17,005:INFO: Epoch: 9/30, Step: 7/22, Lr: 0.001447332, Loss: 0.334334, Step Loss: 0.334334, Time: 0.048153
+2023-06-01 10:45:17,049:INFO: Epoch: 9/30, Step: 8/22, Lr: 0.001447332, Loss: 0.223722, Step Loss: 0.223722, Time: 0.044171
+2023-06-01 10:45:17,414:INFO: Epoch: 9/30, Step: 9/22, Lr: 0.001447332, Loss: 0.413113, Step Loss: 0.413113, Time: 0.363962
+2023-06-01 10:45:17,460:INFO: Epoch: 9/30, Step: 10/22, Lr: 0.001447332, Loss: 0.350024, Step Loss: 0.350024, Time: 0.045950
+2023-06-01 10:45:17,507:INFO: Epoch: 9/30, Step: 11/22, Lr: 0.001447332, Loss: 0.289301, Step Loss: 0.289301, Time: 0.046432
+2023-06-01 10:45:17,554:INFO: Epoch: 9/30, Step: 12/22, Lr: 0.001447332, Loss: 0.308187, Step Loss: 0.308187, Time: 0.046736
+2023-06-01 10:45:17,601:INFO: Epoch: 9/30, Step: 13/22, Lr: 0.001447332, Loss: 0.239225, Step Loss: 0.239225, Time: 0.046641
+2023-06-01 10:45:17,654:INFO: Epoch: 9/30, Step: 14/22, Lr: 0.001447332, Loss: 0.280760, Step Loss: 0.280760, Time: 0.053044
+2023-06-01 10:45:17,702:INFO: Epoch: 9/30, Step: 15/22, Lr: 0.001447332, Loss: 0.242051, Step Loss: 0.242051, Time: 0.046953
+2023-06-01 10:45:17,745:INFO: Epoch: 9/30, Step: 16/22, Lr: 0.001447332, Loss: 0.301445, Step Loss: 0.301445, Time: 0.043184
+2023-06-01 10:45:18,042:INFO: Epoch: 9/30, Step: 17/22, Lr: 0.001447332, Loss: 0.355571, Step Loss: 0.355571, Time: 0.297096
+2023-06-01 10:45:18,090:INFO: Epoch: 9/30, Step: 18/22, Lr: 0.001447332, Loss: 0.430314, Step Loss: 0.430314, Time: 0.046983
+2023-06-01 10:45:18,143:INFO: Epoch: 9/30, Step: 19/22, Lr: 0.001447332, Loss: 0.292033, Step Loss: 0.292033, Time: 0.053507
+2023-06-01 10:45:18,191:INFO: Epoch: 9/30, Step: 20/22, Lr: 0.001447332, Loss: 0.381024, Step Loss: 0.381024, Time: 0.047356
+2023-06-01 10:45:18,239:INFO: Epoch: 9/30, Step: 21/22, Lr: 0.001447332, Loss: 0.248837, Step Loss: 0.248837, Time: 0.047375
+2023-06-01 10:45:18,285:INFO: Epoch: 9/30, Step: 22/22, Lr: 0.001447332, Loss: 0.399889, Step Loss: 0.399889, Time: 0.046079
+2023-06-01 10:45:18,478:INFO: Epoch 9/30 Finished, Train Loss: 0.312588
+2023-06-01 10:45:20,059:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.8
+2023-06-01 10:45:22,716:INFO: Classfication Metrics:
+2023-06-01 10:45:22,717:INFO: f1 score: 0.7127 - precision score: 0.6049 - recall score: 0.8673 - accuracy score: 0.794805
+2023-06-01 10:45:22,717:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.5, the F1 is: 0.7266
+2023-06-01 10:45:24,212:INFO: Epoch: 10/30, Step: 1/22, Lr: 0.001407230, Loss: 0.306169, Step Loss: 0.306169, Time: 1.489546
+2023-06-01 10:45:24,265:INFO: Epoch: 10/30, Step: 2/22, Lr: 0.001407230, Loss: 0.219007, Step Loss: 0.219007, Time: 0.052660
+2023-06-01 10:45:24,308:INFO: Epoch: 10/30, Step: 3/22, Lr: 0.001407230, Loss: 0.301915, Step Loss: 0.301915, Time: 0.042604
+2023-06-01 10:45:24,354:INFO: Epoch: 10/30, Step: 4/22, Lr: 0.001407230, Loss: 0.189074, Step Loss: 0.189074, Time: 0.045523
+2023-06-01 10:45:24,397:INFO: Epoch: 10/30, Step: 5/22, Lr: 0.001407230, Loss: 0.295209, Step Loss: 0.295209, Time: 0.042712
+2023-06-01 10:45:24,447:INFO: Epoch: 10/30, Step: 6/22, Lr: 0.001407230, Loss: 0.472433, Step Loss: 0.472433, Time: 0.049898
+2023-06-01 10:45:24,493:INFO: Epoch: 10/30, Step: 7/22, Lr: 0.001407230, Loss: 0.208546, Step Loss: 0.208546, Time: 0.046129
+2023-06-01 10:45:24,540:INFO: Epoch: 10/30, Step: 8/22, Lr: 0.001407230, Loss: 0.380438, Step Loss: 0.380438, Time: 0.046789
+2023-06-01 10:45:24,836:INFO: Epoch: 10/30, Step: 9/22, Lr: 0.001407230, Loss: 0.481090, Step Loss: 0.481090, Time: 0.295474
+2023-06-01 10:45:24,883:INFO: Epoch: 10/30, Step: 10/22, Lr: 0.001407230, Loss: 0.200669, Step Loss: 0.200669, Time: 0.047022
+2023-06-01 10:45:24,925:INFO: Epoch: 10/30, Step: 11/22, Lr: 0.001407230, Loss: 0.357002, Step Loss: 0.357002, Time: 0.041579
+2023-06-01 10:45:24,967:INFO: Epoch: 10/30, Step: 12/22, Lr: 0.001407230, Loss: 0.449042, Step Loss: 0.449042, Time: 0.041502
+2023-06-01 10:45:25,009:INFO: Epoch: 10/30, Step: 13/22, Lr: 0.001407230, Loss: 0.451287, Step Loss: 0.451287, Time: 0.041874
+2023-06-01 10:45:25,059:INFO: Epoch: 10/30, Step: 14/22, Lr: 0.001407230, Loss: 0.329232, Step Loss: 0.329232, Time: 0.050222
+2023-06-01 10:45:25,104:INFO: Epoch: 10/30, Step: 15/22, Lr: 0.001407230, Loss: 0.308868, Step Loss: 0.308868, Time: 0.044044
+2023-06-01 10:45:25,146:INFO: Epoch: 10/30, Step: 16/22, Lr: 0.001407230, Loss: 0.259982, Step Loss: 0.259982, Time: 0.041753
+2023-06-01 10:45:25,494:INFO: Epoch: 10/30, Step: 17/22, Lr: 0.001407230, Loss: 0.417832, Step Loss: 0.417832, Time: 0.348465
+2023-06-01 10:45:25,538:INFO: Epoch: 10/30, Step: 18/22, Lr: 0.001407230, Loss: 0.362712, Step Loss: 0.362712, Time: 0.043710
+2023-06-01 10:45:25,581:INFO: Epoch: 10/30, Step: 19/22, Lr: 0.001407230, Loss: 0.298615, Step Loss: 0.298615, Time: 0.042236
+2023-06-01 10:45:25,624:INFO: Epoch: 10/30, Step: 20/22, Lr: 0.001407230, Loss: 0.323316, Step Loss: 0.323316, Time: 0.042563
+2023-06-01 10:45:25,665:INFO: Epoch: 10/30, Step: 21/22, Lr: 0.001407230, Loss: 0.211972, Step Loss: 0.211972, Time: 0.041683
+2023-06-01 10:45:25,712:INFO: Epoch: 10/30, Step: 22/22, Lr: 0.001407230, Loss: 0.311489, Step Loss: 0.311489, Time: 0.046077
+2023-06-01 10:45:25,890:INFO: Epoch 10/30 Finished, Train Loss: 0.324359
+2023-06-01 10:45:27,401:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.9
+2023-06-01 10:45:30,116:INFO: Classfication Metrics:
+2023-06-01 10:45:30,116:INFO: f1 score: 0.6810 - precision score: 0.6639 - recall score: 0.6991 - accuracy score: 0.807792
+2023-06-01 10:45:30,116:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.5, the F1 is: 0.7266
+2023-06-01 10:45:31,641:INFO: Epoch: 11/30, Step: 1/22, Lr: 0.001356763, Loss: 0.275476, Step Loss: 0.275476, Time: 1.518512
+2023-06-01 10:45:31,689:INFO: Epoch: 11/30, Step: 2/22, Lr: 0.001356763, Loss: 0.371555, Step Loss: 0.371555, Time: 0.047377
+2023-06-01 10:45:31,735:INFO: Epoch: 11/30, Step: 3/22, Lr: 0.001356763, Loss: 0.266422, Step Loss: 0.266422, Time: 0.045731
+2023-06-01 10:45:31,779:INFO: Epoch: 11/30, Step: 4/22, Lr: 0.001356763, Loss: 0.240630, Step Loss: 0.240630, Time: 0.044053
+2023-06-01 10:45:31,823:INFO: Epoch: 11/30, Step: 5/22, Lr: 0.001356763, Loss: 0.336715, Step Loss: 0.336715, Time: 0.043388
+2023-06-01 10:45:31,871:INFO: Epoch: 11/30, Step: 6/22, Lr: 0.001356763, Loss: 0.234475, Step Loss: 0.234475, Time: 0.047922
+2023-06-01 10:45:31,927:INFO: Epoch: 11/30, Step: 7/22, Lr: 0.001356763, Loss: 0.193986, Step Loss: 0.193986, Time: 0.055717
+2023-06-01 10:45:31,970:INFO: Epoch: 11/30, Step: 8/22, Lr: 0.001356763, Loss: 0.219143, Step Loss: 0.219143, Time: 0.043351
+2023-06-01 10:45:32,289:INFO: Epoch: 11/30, Step: 9/22, Lr: 0.001356763, Loss: 0.273615, Step Loss: 0.273615, Time: 0.318159
+2023-06-01 10:45:32,334:INFO: Epoch: 11/30, Step: 10/22, Lr: 0.001356763, Loss: 0.434476, Step Loss: 0.434476, Time: 0.044743
+2023-06-01 10:45:32,380:INFO: Epoch: 11/30, Step: 11/22, Lr: 0.001356763, Loss: 0.431895, Step Loss: 0.431895, Time: 0.045331
+2023-06-01 10:45:32,426:INFO: Epoch: 11/30, Step: 12/22, Lr: 0.001356763, Loss: 0.216844, Step Loss: 0.216844, Time: 0.045868
+2023-06-01 10:45:32,483:INFO: Epoch: 11/30, Step: 13/22, Lr: 0.001356763, Loss: 0.254997, Step Loss: 0.254997, Time: 0.056807
+2023-06-01 10:45:32,532:INFO: Epoch: 11/30, Step: 14/22, Lr: 0.001356763, Loss: 0.204019, Step Loss: 0.204019, Time: 0.049127
+2023-06-01 10:45:32,580:INFO: Epoch: 11/30, Step: 15/22, Lr: 0.001356763, Loss: 0.297460, Step Loss: 0.297460, Time: 0.047403
+2023-06-01 10:45:32,627:INFO: Epoch: 11/30, Step: 16/22, Lr: 0.001356763, Loss: 0.270009, Step Loss: 0.270009, Time: 0.046341
+2023-06-01 10:45:32,947:INFO: Epoch: 11/30, Step: 17/22, Lr: 0.001356763, Loss: 0.259624, Step Loss: 0.259624, Time: 0.320011
+2023-06-01 10:45:32,990:INFO: Epoch: 11/30, Step: 18/22, Lr: 0.001356763, Loss: 0.334228, Step Loss: 0.334228, Time: 0.043061
+2023-06-01 10:45:33,035:INFO: Epoch: 11/30, Step: 19/22, Lr: 0.001356763, Loss: 0.333899, Step Loss: 0.333899, Time: 0.044199
+2023-06-01 10:45:33,079:INFO: Epoch: 11/30, Step: 20/22, Lr: 0.001356763, Loss: 0.385704, Step Loss: 0.385704, Time: 0.043598
+2023-06-01 10:45:33,129:INFO: Epoch: 11/30, Step: 21/22, Lr: 0.001356763, Loss: 0.300228, Step Loss: 0.300228, Time: 0.050036
+2023-06-01 10:45:33,172:INFO: Epoch: 11/30, Step: 22/22, Lr: 0.001356763, Loss: 0.343009, Step Loss: 0.343009, Time: 0.043027
+2023-06-01 10:45:33,347:INFO: Epoch 11/30 Finished, Train Loss: 0.294473
+2023-06-01 10:45:34,863:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.10
+2023-06-01 10:45:37,566:INFO: Classfication Metrics:
+2023-06-01 10:45:37,566:INFO: f1 score: 0.6787 - precision score: 0.6944 - recall score: 0.6637 - accuracy score: 0.815584
+2023-06-01 10:45:37,566:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.5, the F1 is: 0.7266
+2023-06-01 10:45:38,925:INFO: Epoch: 12/30, Step: 1/22, Lr: 0.001296726, Loss: 0.171666, Step Loss: 0.171666, Time: 1.354070
+2023-06-01 10:45:38,976:INFO: Epoch: 12/30, Step: 2/22, Lr: 0.001296726, Loss: 0.347119, Step Loss: 0.347119, Time: 0.051168
+2023-06-01 10:45:39,027:INFO: Epoch: 12/30, Step: 3/22, Lr: 0.001296726, Loss: 0.329559, Step Loss: 0.329559, Time: 0.050522
+2023-06-01 10:45:39,071:INFO: Epoch: 12/30, Step: 4/22, Lr: 0.001296726, Loss: 0.146960, Step Loss: 0.146960, Time: 0.043363
+2023-06-01 10:45:39,113:INFO: Epoch: 12/30, Step: 5/22, Lr: 0.001296726, Loss: 0.306295, Step Loss: 0.306295, Time: 0.041663
+2023-06-01 10:45:39,155:INFO: Epoch: 12/30, Step: 6/22, Lr: 0.001296726, Loss: 0.218329, Step Loss: 0.218329, Time: 0.041767
+2023-06-01 10:45:39,197:INFO: Epoch: 12/30, Step: 7/22, Lr: 0.001296726, Loss: 0.197371, Step Loss: 0.197371, Time: 0.042054
+2023-06-01 10:45:39,240:INFO: Epoch: 12/30, Step: 8/22, Lr: 0.001296726, Loss: 0.288988, Step Loss: 0.288988, Time: 0.042858
+2023-06-01 10:45:39,537:INFO: Epoch: 12/30, Step: 9/22, Lr: 0.001296726, Loss: 0.219813, Step Loss: 0.219813, Time: 0.297252
+2023-06-01 10:45:39,586:INFO: Epoch: 12/30, Step: 10/22, Lr: 0.001296726, Loss: 0.222673, Step Loss: 0.222673, Time: 0.047877
+2023-06-01 10:45:39,638:INFO: Epoch: 12/30, Step: 11/22, Lr: 0.001296726, Loss: 0.159145, Step Loss: 0.159145, Time: 0.052214
+2023-06-01 10:45:39,694:INFO: Epoch: 12/30, Step: 12/22, Lr: 0.001296726, Loss: 0.279915, Step Loss: 0.279915, Time: 0.054959
+2023-06-01 10:45:39,739:INFO: Epoch: 12/30, Step: 13/22, Lr: 0.001296726, Loss: 0.265755, Step Loss: 0.265755, Time: 0.044784
+2023-06-01 10:45:39,788:INFO: Epoch: 12/30, Step: 14/22, Lr: 0.001296726, Loss: 0.223014, Step Loss: 0.223014, Time: 0.048933
+2023-06-01 10:45:39,835:INFO: Epoch: 12/30, Step: 15/22, Lr: 0.001296726, Loss: 0.295697, Step Loss: 0.295697, Time: 0.046830
+2023-06-01 10:45:39,887:INFO: Epoch: 12/30, Step: 16/22, Lr: 0.001296726, Loss: 0.281048, Step Loss: 0.281048, Time: 0.051416
+2023-06-01 10:45:40,209:INFO: Epoch: 12/30, Step: 17/22, Lr: 0.001296726, Loss: 0.397624, Step Loss: 0.397624, Time: 0.321580
+2023-06-01 10:45:40,251:INFO: Epoch: 12/30, Step: 18/22, Lr: 0.001296726, Loss: 0.167296, Step Loss: 0.167296, Time: 0.041994
+2023-06-01 10:45:40,294:INFO: Epoch: 12/30, Step: 19/22, Lr: 0.001296726, Loss: 0.112604, Step Loss: 0.112604, Time: 0.042524
+2023-06-01 10:45:40,339:INFO: Epoch: 12/30, Step: 20/22, Lr: 0.001296726, Loss: 0.492480, Step Loss: 0.492480, Time: 0.044832
+2023-06-01 10:45:40,385:INFO: Epoch: 12/30, Step: 21/22, Lr: 0.001296726, Loss: 0.220690, Step Loss: 0.220690, Time: 0.045557
+2023-06-01 10:45:40,427:INFO: Epoch: 12/30, Step: 22/22, Lr: 0.001296726, Loss: 0.314531, Step Loss: 0.314531, Time: 0.041893
+2023-06-01 10:45:40,593:INFO: Epoch 12/30 Finished, Train Loss: 0.257208
+2023-06-01 10:45:42,038:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.11
+2023-06-01 10:45:44,686:INFO: Classfication Metrics:
+2023-06-01 10:45:44,687:INFO: f1 score: 0.6857 - precision score: 0.5749 - recall score: 0.8496 - accuracy score: 0.771429
+2023-06-01 10:45:44,687:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.5, the F1 is: 0.7266
+2023-06-01 10:45:46,353:INFO: Epoch: 13/30, Step: 1/22, Lr: 0.001228068, Loss: 0.355543, Step Loss: 0.355543, Time: 1.660655
+2023-06-01 10:45:46,398:INFO: Epoch: 13/30, Step: 2/22, Lr: 0.001228068, Loss: 0.354372, Step Loss: 0.354372, Time: 0.044834
+2023-06-01 10:45:46,440:INFO: Epoch: 13/30, Step: 3/22, Lr: 0.001228068, Loss: 0.267409, Step Loss: 0.267409, Time: 0.042117
+2023-06-01 10:45:46,489:INFO: Epoch: 13/30, Step: 4/22, Lr: 0.001228068, Loss: 0.170849, Step Loss: 0.170849, Time: 0.048279
+2023-06-01 10:45:46,531:INFO: Epoch: 13/30, Step: 5/22, Lr: 0.001228068, Loss: 0.205801, Step Loss: 0.205801, Time: 0.042284
+2023-06-01 10:45:46,573:INFO: Epoch: 13/30, Step: 6/22, Lr: 0.001228068, Loss: 0.195497, Step Loss: 0.195497, Time: 0.041893
+2023-06-01 10:45:46,618:INFO: Epoch: 13/30, Step: 7/22, Lr: 0.001228068, Loss: 0.233437, Step Loss: 0.233437, Time: 0.044252
+2023-06-01 10:45:46,663:INFO: Epoch: 13/30, Step: 8/22, Lr: 0.001228068, Loss: 0.209441, Step Loss: 0.209441, Time: 0.044428
+2023-06-01 10:45:47,004:INFO: Epoch: 13/30, Step: 9/22, Lr: 0.001228068, Loss: 0.141174, Step Loss: 0.141174, Time: 0.341450
+2023-06-01 10:45:47,047:INFO: Epoch: 13/30, Step: 10/22, Lr: 0.001228068, Loss: 0.226169, Step Loss: 0.226169, Time: 0.042306
+2023-06-01 10:45:47,090:INFO: Epoch: 13/30, Step: 11/22, Lr: 0.001228068, Loss: 0.181592, Step Loss: 0.181592, Time: 0.042920
+2023-06-01 10:45:47,136:INFO: Epoch: 13/30, Step: 12/22, Lr: 0.001228068, Loss: 0.298654, Step Loss: 0.298654, Time: 0.045171
+2023-06-01 10:45:47,177:INFO: Epoch: 13/30, Step: 13/22, Lr: 0.001228068, Loss: 0.330358, Step Loss: 0.330358, Time: 0.041390
+2023-06-01 10:45:47,219:INFO: Epoch: 13/30, Step: 14/22, Lr: 0.001228068, Loss: 0.278163, Step Loss: 0.278163, Time: 0.041471
+2023-06-01 10:45:47,264:INFO: Epoch: 13/30, Step: 15/22, Lr: 0.001228068, Loss: 0.205972, Step Loss: 0.205972, Time: 0.045298
+2023-06-01 10:45:47,310:INFO: Epoch: 13/30, Step: 16/22, Lr: 0.001228068, Loss: 0.270750, Step Loss: 0.270750, Time: 0.044852
+2023-06-01 10:45:47,641:INFO: Epoch: 13/30, Step: 17/22, Lr: 0.001228068, Loss: 0.226619, Step Loss: 0.226619, Time: 0.331190
+2023-06-01 10:45:47,686:INFO: Epoch: 13/30, Step: 18/22, Lr: 0.001228068, Loss: 0.179208, Step Loss: 0.179208, Time: 0.044559
+2023-06-01 10:45:47,729:INFO: Epoch: 13/30, Step: 19/22, Lr: 0.001228068, Loss: 0.632281, Step Loss: 0.632281, Time: 0.042770
+2023-06-01 10:45:47,773:INFO: Epoch: 13/30, Step: 20/22, Lr: 0.001228068, Loss: 0.202901, Step Loss: 0.202901, Time: 0.043533
+2023-06-01 10:45:47,815:INFO: Epoch: 13/30, Step: 21/22, Lr: 0.001228068, Loss: 0.260110, Step Loss: 0.260110, Time: 0.042011
+2023-06-01 10:45:47,862:INFO: Epoch: 13/30, Step: 22/22, Lr: 0.001228068, Loss: 0.589144, Step Loss: 0.589144, Time: 0.046424
+2023-06-01 10:45:48,055:INFO: Epoch 13/30 Finished, Train Loss: 0.273429
+2023-06-01 10:45:49,620:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.12
+2023-06-01 10:45:52,268:INFO: Classfication Metrics:
+2023-06-01 10:45:52,268:INFO: f1 score: 0.6891 - precision score: 0.6560 - recall score: 0.7257 - accuracy score: 0.807792
+2023-06-01 10:45:52,268:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.5, the F1 is: 0.7266
+2023-06-01 10:45:53,704:INFO: Epoch: 14/30, Step: 1/22, Lr: 0.001151870, Loss: 0.205199, Step Loss: 0.205199, Time: 1.428583
+2023-06-01 10:45:53,748:INFO: Epoch: 14/30, Step: 2/22, Lr: 0.001151870, Loss: 0.621307, Step Loss: 0.621307, Time: 0.043634
+2023-06-01 10:45:53,801:INFO: Epoch: 14/30, Step: 3/22, Lr: 0.001151870, Loss: 0.179338, Step Loss: 0.179338, Time: 0.053528
+2023-06-01 10:45:53,851:INFO: Epoch: 14/30, Step: 4/22, Lr: 0.001151870, Loss: 0.251019, Step Loss: 0.251019, Time: 0.049850
+2023-06-01 10:45:53,898:INFO: Epoch: 14/30, Step: 5/22, Lr: 0.001151870, Loss: 0.641598, Step Loss: 0.641598, Time: 0.045855
+2023-06-01 10:45:53,948:INFO: Epoch: 14/30, Step: 6/22, Lr: 0.001151870, Loss: 0.186115, Step Loss: 0.186115, Time: 0.049645
+2023-06-01 10:45:53,993:INFO: Epoch: 14/30, Step: 7/22, Lr: 0.001151870, Loss: 0.380677, Step Loss: 0.380677, Time: 0.045512
+2023-06-01 10:45:54,044:INFO: Epoch: 14/30, Step: 8/22, Lr: 0.001151870, Loss: 0.194133, Step Loss: 0.194133, Time: 0.049908
+2023-06-01 10:45:54,459:INFO: Epoch: 14/30, Step: 9/22, Lr: 0.001151870, Loss: 0.637777, Step Loss: 0.637777, Time: 0.415233
+2023-06-01 10:45:54,503:INFO: Epoch: 14/30, Step: 10/22, Lr: 0.001151870, Loss: 0.134720, Step Loss: 0.134720, Time: 0.043216
+2023-06-01 10:45:54,546:INFO: Epoch: 14/30, Step: 11/22, Lr: 0.001151870, Loss: 0.264242, Step Loss: 0.264242, Time: 0.043517
+2023-06-01 10:45:54,593:INFO: Epoch: 14/30, Step: 12/22, Lr: 0.001151870, Loss: 0.331301, Step Loss: 0.331301, Time: 0.046527
+2023-06-01 10:45:54,813:INFO: Epoch: 14/30, Step: 13/22, Lr: 0.001151870, Loss: 0.285505, Step Loss: 0.285505, Time: 0.048286
+2023-06-01 10:45:54,857:INFO: Epoch: 14/30, Step: 14/22, Lr: 0.001151870, Loss: 0.483033, Step Loss: 0.483033, Time: 0.044194
+2023-06-01 10:45:54,900:INFO: Epoch: 14/30, Step: 15/22, Lr: 0.001151870, Loss: 0.493617, Step Loss: 0.493617, Time: 0.042804
+2023-06-01 10:45:54,946:INFO: Epoch: 14/30, Step: 16/22, Lr: 0.001151870, Loss: 0.225160, Step Loss: 0.225160, Time: 0.045048
+2023-06-01 10:45:55,112:INFO: Epoch: 14/30, Step: 17/22, Lr: 0.001151870, Loss: 0.424279, Step Loss: 0.424279, Time: 0.166646
+2023-06-01 10:45:55,160:INFO: Epoch: 14/30, Step: 18/22, Lr: 0.001151870, Loss: 0.415143, Step Loss: 0.415143, Time: 0.047525
+2023-06-01 10:45:55,212:INFO: Epoch: 14/30, Step: 19/22, Lr: 0.001151870, Loss: 0.176318, Step Loss: 0.176318, Time: 0.051235
+2023-06-01 10:45:55,257:INFO: Epoch: 14/30, Step: 20/22, Lr: 0.001151870, Loss: 0.230984, Step Loss: 0.230984, Time: 0.045257
+2023-06-01 10:45:55,305:INFO: Epoch: 14/30, Step: 21/22, Lr: 0.001151870, Loss: 0.341726, Step Loss: 0.341726, Time: 0.047006
+2023-06-01 10:45:55,349:INFO: Epoch: 14/30, Step: 22/22, Lr: 0.001151870, Loss: 0.178858, Step Loss: 0.178858, Time: 0.044111
+2023-06-01 10:45:55,555:INFO: Epoch 14/30 Finished, Train Loss: 0.331002
+2023-06-01 10:45:57,005:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13
+2023-06-01 10:45:59,578:INFO: Classfication Metrics:
+2023-06-01 10:45:59,578:INFO: f1 score: 0.7323 - precision score: 0.6596 - recall score: 0.8230 - accuracy score: 0.823377
+2023-06-01 10:45:59,578:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:46:01,029:INFO: Epoch: 15/30, Step: 1/22, Lr: 0.001069334, Loss: 0.184546, Step Loss: 0.184546, Time: 1.444453
+2023-06-01 10:46:01,079:INFO: Epoch: 15/30, Step: 2/22, Lr: 0.001069334, Loss: 0.350613, Step Loss: 0.350613, Time: 0.050410
+2023-06-01 10:46:01,126:INFO: Epoch: 15/30, Step: 3/22, Lr: 0.001069334, Loss: 0.205293, Step Loss: 0.205293, Time: 0.046270
+2023-06-01 10:46:01,170:INFO: Epoch: 15/30, Step: 4/22, Lr: 0.001069334, Loss: 0.175574, Step Loss: 0.175574, Time: 0.044097
+2023-06-01 10:46:01,222:INFO: Epoch: 15/30, Step: 5/22, Lr: 0.001069334, Loss: 0.183044, Step Loss: 0.183044, Time: 0.051543
+2023-06-01 10:46:01,266:INFO: Epoch: 15/30, Step: 6/22, Lr: 0.001069334, Loss: 0.346685, Step Loss: 0.346685, Time: 0.043284
+2023-06-01 10:46:01,311:INFO: Epoch: 15/30, Step: 7/22, Lr: 0.001069334, Loss: 0.161314, Step Loss: 0.161314, Time: 0.044480
+2023-06-01 10:46:01,355:INFO: Epoch: 15/30, Step: 8/22, Lr: 0.001069334, Loss: 0.360199, Step Loss: 0.360199, Time: 0.044102
+2023-06-01 10:46:01,764:INFO: Epoch: 15/30, Step: 9/22, Lr: 0.001069334, Loss: 0.341427, Step Loss: 0.341427, Time: 0.408374
+2023-06-01 10:46:01,807:INFO: Epoch: 15/30, Step: 10/22, Lr: 0.001069334, Loss: 0.309391, Step Loss: 0.309391, Time: 0.042372
+2023-06-01 10:46:01,849:INFO: Epoch: 15/30, Step: 11/22, Lr: 0.001069334, Loss: 0.249938, Step Loss: 0.249938, Time: 0.042073
+2023-06-01 10:46:01,892:INFO: Epoch: 15/30, Step: 12/22, Lr: 0.001069334, Loss: 0.289198, Step Loss: 0.289198, Time: 0.042614
+2023-06-01 10:46:01,939:INFO: Epoch: 15/30, Step: 13/22, Lr: 0.001069334, Loss: 0.198548, Step Loss: 0.198548, Time: 0.047295
+2023-06-01 10:46:01,982:INFO: Epoch: 15/30, Step: 14/22, Lr: 0.001069334, Loss: 0.207455, Step Loss: 0.207455, Time: 0.042016
+2023-06-01 10:46:02,024:INFO: Epoch: 15/30, Step: 15/22, Lr: 0.001069334, Loss: 0.220466, Step Loss: 0.220466, Time: 0.041854
+2023-06-01 10:46:02,066:INFO: Epoch: 15/30, Step: 16/22, Lr: 0.001069334, Loss: 0.369275, Step Loss: 0.369275, Time: 0.042126
+2023-06-01 10:46:02,438:INFO: Epoch: 15/30, Step: 17/22, Lr: 0.001069334, Loss: 0.181360, Step Loss: 0.181360, Time: 0.371324
+2023-06-01 10:46:02,481:INFO: Epoch: 15/30, Step: 18/22, Lr: 0.001069334, Loss: 0.296304, Step Loss: 0.296304, Time: 0.042906
+2023-06-01 10:46:02,522:INFO: Epoch: 15/30, Step: 19/22, Lr: 0.001069334, Loss: 0.296981, Step Loss: 0.296981, Time: 0.041007
+2023-06-01 10:46:02,563:INFO: Epoch: 15/30, Step: 20/22, Lr: 0.001069334, Loss: 0.232478, Step Loss: 0.232478, Time: 0.040969
+2023-06-01 10:46:02,607:INFO: Epoch: 15/30, Step: 21/22, Lr: 0.001069334, Loss: 0.173930, Step Loss: 0.173930, Time: 0.043638
+2023-06-01 10:46:02,649:INFO: Epoch: 15/30, Step: 22/22, Lr: 0.001069334, Loss: 0.359386, Step Loss: 0.359386, Time: 0.041671
+2023-06-01 10:46:02,802:INFO: Epoch 15/30 Finished, Train Loss: 0.258791
+2023-06-01 10:46:04,214:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.14
+2023-06-01 10:46:06,864:INFO: Classfication Metrics:
+2023-06-01 10:46:06,865:INFO: f1 score: 0.6900 - precision score: 0.6810 - recall score: 0.6991 - accuracy score: 0.815584
+2023-06-01 10:46:06,865:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:46:08,337:INFO: Epoch: 16/30, Step: 1/22, Lr: 0.000981763, Loss: 0.216815, Step Loss: 0.216815, Time: 1.464328
+2023-06-01 10:46:08,380:INFO: Epoch: 16/30, Step: 2/22, Lr: 0.000981763, Loss: 0.189279, Step Loss: 0.189279, Time: 0.042500
+2023-06-01 10:46:08,423:INFO: Epoch: 16/30, Step: 3/22, Lr: 0.000981763, Loss: 0.299850, Step Loss: 0.299850, Time: 0.042173
+2023-06-01 10:46:08,465:INFO: Epoch: 16/30, Step: 4/22, Lr: 0.000981763, Loss: 0.219035, Step Loss: 0.219035, Time: 0.042342
+2023-06-01 10:46:08,526:INFO: Epoch: 16/30, Step: 5/22, Lr: 0.000981763, Loss: 0.188633, Step Loss: 0.188633, Time: 0.060415
+2023-06-01 10:46:08,573:INFO: Epoch: 16/30, Step: 6/22, Lr: 0.000981763, Loss: 0.173356, Step Loss: 0.173356, Time: 0.046669
+2023-06-01 10:46:08,615:INFO: Epoch: 16/30, Step: 7/22, Lr: 0.000981763, Loss: 0.178745, Step Loss: 0.178745, Time: 0.042031
+2023-06-01 10:46:08,662:INFO: Epoch: 16/30, Step: 8/22, Lr: 0.000981763, Loss: 0.277518, Step Loss: 0.277518, Time: 0.046450
+2023-06-01 10:46:09,047:INFO: Epoch: 16/30, Step: 9/22, Lr: 0.000981763, Loss: 0.317596, Step Loss: 0.317596, Time: 0.384559
+2023-06-01 10:46:09,092:INFO: Epoch: 16/30, Step: 10/22, Lr: 0.000981763, Loss: 0.161493, Step Loss: 0.161493, Time: 0.045354
+2023-06-01 10:46:09,139:INFO: Epoch: 16/30, Step: 11/22, Lr: 0.000981763, Loss: 0.231150, Step Loss: 0.231150, Time: 0.045880
+2023-06-01 10:46:09,182:INFO: Epoch: 16/30, Step: 12/22, Lr: 0.000981763, Loss: 0.369467, Step Loss: 0.369467, Time: 0.043506
+2023-06-01 10:46:09,238:INFO: Epoch: 16/30, Step: 13/22, Lr: 0.000981763, Loss: 0.323645, Step Loss: 0.323645, Time: 0.055890
+2023-06-01 10:46:09,283:INFO: Epoch: 16/30, Step: 14/22, Lr: 0.000981763, Loss: 0.208136, Step Loss: 0.208136, Time: 0.043889
+2023-06-01 10:46:09,327:INFO: Epoch: 16/30, Step: 15/22, Lr: 0.000981763, Loss: 0.252808, Step Loss: 0.252808, Time: 0.044471
+2023-06-01 10:46:09,370:INFO: Epoch: 16/30, Step: 16/22, Lr: 0.000981763, Loss: 0.321731, Step Loss: 0.321731, Time: 0.042774
+2023-06-01 10:46:09,687:INFO: Epoch: 16/30, Step: 17/22, Lr: 0.000981763, Loss: 0.399571, Step Loss: 0.399571, Time: 0.316141
+2023-06-01 10:46:09,732:INFO: Epoch: 16/30, Step: 18/22, Lr: 0.000981763, Loss: 0.316302, Step Loss: 0.316302, Time: 0.044141
+2023-06-01 10:46:09,773:INFO: Epoch: 16/30, Step: 19/22, Lr: 0.000981763, Loss: 0.223418, Step Loss: 0.223418, Time: 0.041686
+2023-06-01 10:46:09,815:INFO: Epoch: 16/30, Step: 20/22, Lr: 0.000981763, Loss: 0.217974, Step Loss: 0.217974, Time: 0.041740
+2023-06-01 10:46:09,864:INFO: Epoch: 16/30, Step: 21/22, Lr: 0.000981763, Loss: 0.331051, Step Loss: 0.331051, Time: 0.048554
+2023-06-01 10:46:09,908:INFO: Epoch: 16/30, Step: 22/22, Lr: 0.000981763, Loss: 0.235266, Step Loss: 0.235266, Time: 0.043918
+2023-06-01 10:46:10,088:INFO: Epoch 16/30 Finished, Train Loss: 0.256947
+2023-06-01 10:46:11,662:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.15
+2023-06-01 10:46:14,324:INFO: Classfication Metrics:
+2023-06-01 10:46:14,325:INFO: f1 score: 0.6857 - precision score: 0.7423 - recall score: 0.6372 - accuracy score: 0.828571
+2023-06-01 10:46:14,325:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:46:15,679:INFO: Epoch: 17/30, Step: 1/22, Lr: 0.000890536, Loss: 0.184778, Step Loss: 0.184778, Time: 1.345665
+2023-06-01 10:46:15,724:INFO: Epoch: 17/30, Step: 2/22, Lr: 0.000890536, Loss: 0.175580, Step Loss: 0.175580, Time: 0.044195
+2023-06-01 10:46:15,771:INFO: Epoch: 17/30, Step: 3/22, Lr: 0.000890536, Loss: 0.274980, Step Loss: 0.274980, Time: 0.047244
+2023-06-01 10:46:15,814:INFO: Epoch: 17/30, Step: 4/22, Lr: 0.000890536, Loss: 0.120231, Step Loss: 0.120231, Time: 0.042477
+2023-06-01 10:46:15,856:INFO: Epoch: 17/30, Step: 5/22, Lr: 0.000890536, Loss: 0.208287, Step Loss: 0.208287, Time: 0.042234
+2023-06-01 10:46:15,899:INFO: Epoch: 17/30, Step: 6/22, Lr: 0.000890536, Loss: 0.202582, Step Loss: 0.202582, Time: 0.042759
+2023-06-01 10:46:15,942:INFO: Epoch: 17/30, Step: 7/22, Lr: 0.000890536, Loss: 0.223317, Step Loss: 0.223317, Time: 0.041841
+2023-06-01 10:46:15,985:INFO: Epoch: 17/30, Step: 8/22, Lr: 0.000890536, Loss: 0.141937, Step Loss: 0.141937, Time: 0.043318
+2023-06-01 10:46:16,307:INFO: Epoch: 17/30, Step: 9/22, Lr: 0.000890536, Loss: 0.216012, Step Loss: 0.216012, Time: 0.321275
+2023-06-01 10:46:16,355:INFO: Epoch: 17/30, Step: 10/22, Lr: 0.000890536, Loss: 0.293952, Step Loss: 0.293952, Time: 0.047887
+2023-06-01 10:46:16,407:INFO: Epoch: 17/30, Step: 11/22, Lr: 0.000890536, Loss: 0.223190, Step Loss: 0.223190, Time: 0.051841
+2023-06-01 10:46:16,452:INFO: Epoch: 17/30, Step: 12/22, Lr: 0.000890536, Loss: 0.256498, Step Loss: 0.256498, Time: 0.044646
+2023-06-01 10:46:16,499:INFO: Epoch: 17/30, Step: 13/22, Lr: 0.000890536, Loss: 0.300330, Step Loss: 0.300330, Time: 0.047139
+2023-06-01 10:46:16,545:INFO: Epoch: 17/30, Step: 14/22, Lr: 0.000890536, Loss: 0.255815, Step Loss: 0.255815, Time: 0.045392
+2023-06-01 10:46:16,590:INFO: Epoch: 17/30, Step: 15/22, Lr: 0.000890536, Loss: 0.214885, Step Loss: 0.214885, Time: 0.044516
+2023-06-01 10:46:16,639:INFO: Epoch: 17/30, Step: 16/22, Lr: 0.000890536, Loss: 0.217793, Step Loss: 0.217793, Time: 0.048933
+2023-06-01 10:46:17,072:INFO: Epoch: 17/30, Step: 17/22, Lr: 0.000890536, Loss: 0.298587, Step Loss: 0.298587, Time: 0.432601
+2023-06-01 10:46:17,114:INFO: Epoch: 17/30, Step: 18/22, Lr: 0.000890536, Loss: 0.393896, Step Loss: 0.393896, Time: 0.042676
+2023-06-01 10:46:17,158:INFO: Epoch: 17/30, Step: 19/22, Lr: 0.000890536, Loss: 0.473272, Step Loss: 0.473272, Time: 0.043385
+2023-06-01 10:46:17,201:INFO: Epoch: 17/30, Step: 20/22, Lr: 0.000890536, Loss: 0.208138, Step Loss: 0.208138, Time: 0.042516
+2023-06-01 10:46:17,244:INFO: Epoch: 17/30, Step: 21/22, Lr: 0.000890536, Loss: 0.296464, Step Loss: 0.296464, Time: 0.043428
+2023-06-01 10:46:17,288:INFO: Epoch: 17/30, Step: 22/22, Lr: 0.000890536, Loss: 0.290023, Step Loss: 0.290023, Time: 0.043152
+2023-06-01 10:46:17,471:INFO: Epoch 17/30 Finished, Train Loss: 0.248661
+2023-06-01 10:46:18,945:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.16
+2023-06-01 10:46:21,492:INFO: Classfication Metrics:
+2023-06-01 10:46:21,492:INFO: f1 score: 0.6604 - precision score: 0.7071 - recall score: 0.6195 - accuracy score: 0.812987
+2023-06-01 10:46:21,492:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:46:22,870:INFO: Epoch: 18/30, Step: 1/22, Lr: 0.000797093, Loss: 0.129842, Step Loss: 0.129842, Time: 1.366952
+2023-06-01 10:46:22,985:INFO: Epoch: 18/30, Step: 2/22, Lr: 0.000797093, Loss: 0.200156, Step Loss: 0.200156, Time: 0.115037
+2023-06-01 10:46:23,028:INFO: Epoch: 18/30, Step: 3/22, Lr: 0.000797093, Loss: 0.184517, Step Loss: 0.184517, Time: 0.042712
+2023-06-01 10:46:23,073:INFO: Epoch: 18/30, Step: 4/22, Lr: 0.000797093, Loss: 0.209980, Step Loss: 0.209980, Time: 0.044040
+2023-06-01 10:46:23,116:INFO: Epoch: 18/30, Step: 5/22, Lr: 0.000797093, Loss: 0.248680, Step Loss: 0.248680, Time: 0.043411
+2023-06-01 10:46:23,161:INFO: Epoch: 18/30, Step: 6/22, Lr: 0.000797093, Loss: 0.168015, Step Loss: 0.168015, Time: 0.044615
+2023-06-01 10:46:23,208:INFO: Epoch: 18/30, Step: 7/22, Lr: 0.000797093, Loss: 0.172304, Step Loss: 0.172304, Time: 0.046203
+2023-06-01 10:46:23,253:INFO: Epoch: 18/30, Step: 8/22, Lr: 0.000797093, Loss: 0.182451, Step Loss: 0.182451, Time: 0.045481
+2023-06-01 10:46:23,478:INFO: Epoch: 18/30, Step: 9/22, Lr: 0.000797093, Loss: 0.246217, Step Loss: 0.246217, Time: 0.224259
+2023-06-01 10:46:23,576:INFO: Epoch: 18/30, Step: 10/22, Lr: 0.000797093, Loss: 0.150047, Step Loss: 0.150047, Time: 0.097628
+2023-06-01 10:46:23,617:INFO: Epoch: 18/30, Step: 11/22, Lr: 0.000797093, Loss: 0.218579, Step Loss: 0.218579, Time: 0.040724
+2023-06-01 10:46:23,663:INFO: Epoch: 18/30, Step: 12/22, Lr: 0.000797093, Loss: 0.142967, Step Loss: 0.142967, Time: 0.044976
+2023-06-01 10:46:23,706:INFO: Epoch: 18/30, Step: 13/22, Lr: 0.000797093, Loss: 0.388751, Step Loss: 0.388751, Time: 0.042499
+2023-06-01 10:46:23,751:INFO: Epoch: 18/30, Step: 14/22, Lr: 0.000797093, Loss: 0.276350, Step Loss: 0.276350, Time: 0.045520
+2023-06-01 10:46:23,794:INFO: Epoch: 18/30, Step: 15/22, Lr: 0.000797093, Loss: 0.281562, Step Loss: 0.281562, Time: 0.042604
+2023-06-01 10:46:23,840:INFO: Epoch: 18/30, Step: 16/22, Lr: 0.000797093, Loss: 0.169137, Step Loss: 0.169137, Time: 0.045047
+2023-06-01 10:46:24,165:INFO: Epoch: 18/30, Step: 17/22, Lr: 0.000797093, Loss: 0.304708, Step Loss: 0.304708, Time: 0.324923
+2023-06-01 10:46:24,213:INFO: Epoch: 18/30, Step: 18/22, Lr: 0.000797093, Loss: 0.173801, Step Loss: 0.173801, Time: 0.048224
+2023-06-01 10:46:24,266:INFO: Epoch: 18/30, Step: 19/22, Lr: 0.000797093, Loss: 0.195017, Step Loss: 0.195017, Time: 0.052883
+2023-06-01 10:46:24,311:INFO: Epoch: 18/30, Step: 20/22, Lr: 0.000797093, Loss: 0.253324, Step Loss: 0.253324, Time: 0.044753
+2023-06-01 10:46:24,356:INFO: Epoch: 18/30, Step: 21/22, Lr: 0.000797093, Loss: 0.311943, Step Loss: 0.311943, Time: 0.043948
+2023-06-01 10:46:24,402:INFO: Epoch: 18/30, Step: 22/22, Lr: 0.000797093, Loss: 0.300427, Step Loss: 0.300427, Time: 0.045844
+2023-06-01 10:46:24,597:INFO: Epoch 18/30 Finished, Train Loss: 0.223126
+2023-06-01 10:46:26,100:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.17
+2023-06-01 10:46:28,784:INFO: Classfication Metrics:
+2023-06-01 10:46:28,785:INFO: f1 score: 0.6920 - precision score: 0.6613 - recall score: 0.7257 - accuracy score: 0.810390
+2023-06-01 10:46:28,785:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:46:30,315:INFO: Epoch: 19/30, Step: 1/22, Lr: 0.000702907, Loss: 0.171656, Step Loss: 0.171656, Time: 1.499639
+2023-06-01 10:46:30,381:INFO: Epoch: 19/30, Step: 2/22, Lr: 0.000702907, Loss: 0.174569, Step Loss: 0.174569, Time: 0.065517
+2023-06-01 10:46:30,432:INFO: Epoch: 19/30, Step: 3/22, Lr: 0.000702907, Loss: 0.297084, Step Loss: 0.297084, Time: 0.050721
+2023-06-01 10:46:30,480:INFO: Epoch: 19/30, Step: 4/22, Lr: 0.000702907, Loss: 0.146342, Step Loss: 0.146342, Time: 0.047836
+2023-06-01 10:46:30,525:INFO: Epoch: 19/30, Step: 5/22, Lr: 0.000702907, Loss: 0.156148, Step Loss: 0.156148, Time: 0.043888
+2023-06-01 10:46:30,569:INFO: Epoch: 19/30, Step: 6/22, Lr: 0.000702907, Loss: 0.197910, Step Loss: 0.197910, Time: 0.043202
+2023-06-01 10:46:30,610:INFO: Epoch: 19/30, Step: 7/22, Lr: 0.000702907, Loss: 0.292997, Step Loss: 0.292997, Time: 0.041697
+2023-06-01 10:46:30,654:INFO: Epoch: 19/30, Step: 8/22, Lr: 0.000702907, Loss: 0.169219, Step Loss: 0.169219, Time: 0.042724
+2023-06-01 10:46:30,889:INFO: Epoch: 19/30, Step: 9/22, Lr: 0.000702907, Loss: 0.193997, Step Loss: 0.193997, Time: 0.234432
+2023-06-01 10:46:31,000:INFO: Epoch: 19/30, Step: 10/22, Lr: 0.000702907, Loss: 0.193418, Step Loss: 0.193418, Time: 0.111015
+2023-06-01 10:46:31,046:INFO: Epoch: 19/30, Step: 11/22, Lr: 0.000702907, Loss: 0.166140, Step Loss: 0.166140, Time: 0.045585
+2023-06-01 10:46:31,097:INFO: Epoch: 19/30, Step: 12/22, Lr: 0.000702907, Loss: 0.166734, Step Loss: 0.166734, Time: 0.051003
+2023-06-01 10:46:31,139:INFO: Epoch: 19/30, Step: 13/22, Lr: 0.000702907, Loss: 0.147014, Step Loss: 0.147014, Time: 0.041339
+2023-06-01 10:46:31,180:INFO: Epoch: 19/30, Step: 14/22, Lr: 0.000702907, Loss: 0.128260, Step Loss: 0.128260, Time: 0.040976
+2023-06-01 10:46:31,221:INFO: Epoch: 19/30, Step: 15/22, Lr: 0.000702907, Loss: 0.165923, Step Loss: 0.165923, Time: 0.041355
+2023-06-01 10:46:31,263:INFO: Epoch: 19/30, Step: 16/22, Lr: 0.000702907, Loss: 0.190010, Step Loss: 0.190010, Time: 0.041509
+2023-06-01 10:46:31,581:INFO: Epoch: 19/30, Step: 17/22, Lr: 0.000702907, Loss: 0.188204, Step Loss: 0.188204, Time: 0.318023
+2023-06-01 10:46:31,625:INFO: Epoch: 19/30, Step: 18/22, Lr: 0.000702907, Loss: 0.312517, Step Loss: 0.312517, Time: 0.043676
+2023-06-01 10:46:31,673:INFO: Epoch: 19/30, Step: 19/22, Lr: 0.000702907, Loss: 0.214348, Step Loss: 0.214348, Time: 0.047506
+2023-06-01 10:46:31,744:INFO: Epoch: 19/30, Step: 20/22, Lr: 0.000702907, Loss: 0.299967, Step Loss: 0.299967, Time: 0.071086
+2023-06-01 10:46:31,788:INFO: Epoch: 19/30, Step: 21/22, Lr: 0.000702907, Loss: 0.160512, Step Loss: 0.160512, Time: 0.043004
+2023-06-01 10:46:31,830:INFO: Epoch: 19/30, Step: 22/22, Lr: 0.000702907, Loss: 0.227843, Step Loss: 0.227843, Time: 0.041820
+2023-06-01 10:46:31,972:INFO: Epoch 19/30 Finished, Train Loss: 0.198219
+2023-06-01 10:46:34,340:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.18
+2023-06-01 10:46:36,883:INFO: Classfication Metrics:
+2023-06-01 10:46:36,884:INFO: f1 score: 0.7111 - precision score: 0.7143 - recall score: 0.7080 - accuracy score: 0.831169
+2023-06-01 10:46:36,884:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:46:38,330:INFO: Epoch: 20/30, Step: 1/22, Lr: 0.000609464, Loss: 0.191155, Step Loss: 0.191155, Time: 1.442103
+2023-06-01 10:46:38,374:INFO: Epoch: 20/30, Step: 2/22, Lr: 0.000609464, Loss: 0.262491, Step Loss: 0.262491, Time: 0.042728
+2023-06-01 10:46:38,416:INFO: Epoch: 20/30, Step: 3/22, Lr: 0.000609464, Loss: 0.144495, Step Loss: 0.144495, Time: 0.042555
+2023-06-01 10:46:38,467:INFO: Epoch: 20/30, Step: 4/22, Lr: 0.000609464, Loss: 0.217264, Step Loss: 0.217264, Time: 0.049488
+2023-06-01 10:46:38,511:INFO: Epoch: 20/30, Step: 5/22, Lr: 0.000609464, Loss: 0.153184, Step Loss: 0.153184, Time: 0.044119
+2023-06-01 10:46:38,557:INFO: Epoch: 20/30, Step: 6/22, Lr: 0.000609464, Loss: 0.094975, Step Loss: 0.094975, Time: 0.045300
+2023-06-01 10:46:38,600:INFO: Epoch: 20/30, Step: 7/22, Lr: 0.000609464, Loss: 0.232373, Step Loss: 0.232373, Time: 0.043034
+2023-06-01 10:46:38,643:INFO: Epoch: 20/30, Step: 8/22, Lr: 0.000609464, Loss: 0.241544, Step Loss: 0.241544, Time: 0.042537
+2023-06-01 10:46:38,996:INFO: Epoch: 20/30, Step: 9/22, Lr: 0.000609464, Loss: 0.148571, Step Loss: 0.148571, Time: 0.353099
+2023-06-01 10:46:39,038:INFO: Epoch: 20/30, Step: 10/22, Lr: 0.000609464, Loss: 0.101124, Step Loss: 0.101124, Time: 0.042089
+2023-06-01 10:46:39,079:INFO: Epoch: 20/30, Step: 11/22, Lr: 0.000609464, Loss: 0.189592, Step Loss: 0.189592, Time: 0.040880
+2023-06-01 10:46:39,121:INFO: Epoch: 20/30, Step: 12/22, Lr: 0.000609464, Loss: 0.129696, Step Loss: 0.129696, Time: 0.041303
+2023-06-01 10:46:39,166:INFO: Epoch: 20/30, Step: 13/22, Lr: 0.000609464, Loss: 0.172773, Step Loss: 0.172773, Time: 0.045268
+2023-06-01 10:46:39,209:INFO: Epoch: 20/30, Step: 14/22, Lr: 0.000609464, Loss: 0.175128, Step Loss: 0.175128, Time: 0.042669
+2023-06-01 10:46:39,252:INFO: Epoch: 20/30, Step: 15/22, Lr: 0.000609464, Loss: 0.178317, Step Loss: 0.178317, Time: 0.042017
+2023-06-01 10:46:39,294:INFO: Epoch: 20/30, Step: 16/22, Lr: 0.000609464, Loss: 0.265237, Step Loss: 0.265237, Time: 0.041815
+2023-06-01 10:46:39,586:INFO: Epoch: 20/30, Step: 17/22, Lr: 0.000609464, Loss: 0.202902, Step Loss: 0.202902, Time: 0.292232
+2023-06-01 10:46:39,628:INFO: Epoch: 20/30, Step: 18/22, Lr: 0.000609464, Loss: 0.169622, Step Loss: 0.169622, Time: 0.041698
+2023-06-01 10:46:39,670:INFO: Epoch: 20/30, Step: 19/22, Lr: 0.000609464, Loss: 0.286155, Step Loss: 0.286155, Time: 0.041318
+2023-06-01 10:46:39,713:INFO: Epoch: 20/30, Step: 20/22, Lr: 0.000609464, Loss: 0.102912, Step Loss: 0.102912, Time: 0.043441
+2023-06-01 10:46:39,757:INFO: Epoch: 20/30, Step: 21/22, Lr: 0.000609464, Loss: 0.157196, Step Loss: 0.157196, Time: 0.043685
+2023-06-01 10:46:39,802:INFO: Epoch: 20/30, Step: 22/22, Lr: 0.000609464, Loss: 0.171682, Step Loss: 0.171682, Time: 0.044540
+2023-06-01 10:46:39,961:INFO: Epoch 20/30 Finished, Train Loss: 0.181290
+2023-06-01 10:46:54,315:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.19
+2023-06-01 10:46:56,969:INFO: Classfication Metrics:
+2023-06-01 10:46:56,969:INFO: f1 score: 0.7074 - precision score: 0.6983 - recall score: 0.7168 - accuracy score: 0.825974
+2023-06-01 10:46:56,970:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:46:58,405:INFO: Epoch: 21/30, Step: 1/22, Lr: 0.000518237, Loss: 0.122555, Step Loss: 0.122555, Time: 1.430292
+2023-06-01 10:46:58,449:INFO: Epoch: 21/30, Step: 2/22, Lr: 0.000518237, Loss: 0.134922, Step Loss: 0.134922, Time: 0.044131
+2023-06-01 10:46:58,491:INFO: Epoch: 21/30, Step: 3/22, Lr: 0.000518237, Loss: 0.165364, Step Loss: 0.165364, Time: 0.041561
+2023-06-01 10:46:58,534:INFO: Epoch: 21/30, Step: 4/22, Lr: 0.000518237, Loss: 0.130436, Step Loss: 0.130436, Time: 0.042405
+2023-06-01 10:46:58,576:INFO: Epoch: 21/30, Step: 5/22, Lr: 0.000518237, Loss: 0.257599, Step Loss: 0.257599, Time: 0.041895
+2023-06-01 10:46:58,620:INFO: Epoch: 21/30, Step: 6/22, Lr: 0.000518237, Loss: 0.160833, Step Loss: 0.160833, Time: 0.044364
+2023-06-01 10:46:58,661:INFO: Epoch: 21/30, Step: 7/22, Lr: 0.000518237, Loss: 0.139881, Step Loss: 0.139881, Time: 0.040875
+2023-06-01 10:46:58,703:INFO: Epoch: 21/30, Step: 8/22, Lr: 0.000518237, Loss: 0.285634, Step Loss: 0.285634, Time: 0.040977
+2023-06-01 10:46:58,987:INFO: Epoch: 21/30, Step: 9/22, Lr: 0.000518237, Loss: 0.171495, Step Loss: 0.171495, Time: 0.284509
+2023-06-01 10:46:59,029:INFO: Epoch: 21/30, Step: 10/22, Lr: 0.000518237, Loss: 0.273686, Step Loss: 0.273686, Time: 0.041220
+2023-06-01 10:46:59,075:INFO: Epoch: 21/30, Step: 11/22, Lr: 0.000518237, Loss: 0.213678, Step Loss: 0.213678, Time: 0.045785
+2023-06-01 10:46:59,120:INFO: Epoch: 21/30, Step: 12/22, Lr: 0.000518237, Loss: 0.232000, Step Loss: 0.232000, Time: 0.044742
+2023-06-01 10:46:59,161:INFO: Epoch: 21/30, Step: 13/22, Lr: 0.000518237, Loss: 0.157329, Step Loss: 0.157329, Time: 0.041305
+2023-06-01 10:46:59,203:INFO: Epoch: 21/30, Step: 14/22, Lr: 0.000518237, Loss: 0.346683, Step Loss: 0.346683, Time: 0.041338
+2023-06-01 10:46:59,245:INFO: Epoch: 21/30, Step: 15/22, Lr: 0.000518237, Loss: 0.184359, Step Loss: 0.184359, Time: 0.041407
+2023-06-01 10:46:59,287:INFO: Epoch: 21/30, Step: 16/22, Lr: 0.000518237, Loss: 0.274552, Step Loss: 0.274552, Time: 0.041947
+2023-06-01 10:46:59,591:INFO: Epoch: 21/30, Step: 17/22, Lr: 0.000518237, Loss: 0.192911, Step Loss: 0.192911, Time: 0.304095
+2023-06-01 10:46:59,634:INFO: Epoch: 21/30, Step: 18/22, Lr: 0.000518237, Loss: 0.136891, Step Loss: 0.136891, Time: 0.042378
+2023-06-01 10:46:59,678:INFO: Epoch: 21/30, Step: 19/22, Lr: 0.000518237, Loss: 0.172607, Step Loss: 0.172607, Time: 0.044027
+2023-06-01 10:46:59,723:INFO: Epoch: 21/30, Step: 20/22, Lr: 0.000518237, Loss: 0.185821, Step Loss: 0.185821, Time: 0.044752
+2023-06-01 10:46:59,767:INFO: Epoch: 21/30, Step: 21/22, Lr: 0.000518237, Loss: 0.192968, Step Loss: 0.192968, Time: 0.042943
+2023-06-01 10:46:59,811:INFO: Epoch: 21/30, Step: 22/22, Lr: 0.000518237, Loss: 0.143251, Step Loss: 0.143251, Time: 0.044158
+2023-06-01 10:46:59,984:INFO: Epoch 21/30 Finished, Train Loss: 0.194339
+2023-06-01 10:47:27,263:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.20
+2023-06-01 10:47:29,768:INFO: Classfication Metrics:
+2023-06-01 10:47:29,768:INFO: f1 score: 0.7045 - precision score: 0.6159 - recall score: 0.8230 - accuracy score: 0.797403
+2023-06-01 10:47:29,768:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:47:31,131:INFO: Epoch: 22/30, Step: 1/22, Lr: 0.000430666, Loss: 0.202450, Step Loss: 0.202450, Time: 1.357194
+2023-06-01 10:47:31,182:INFO: Epoch: 22/30, Step: 2/22, Lr: 0.000430666, Loss: 0.080931, Step Loss: 0.080931, Time: 0.050797
+2023-06-01 10:47:31,223:INFO: Epoch: 22/30, Step: 3/22, Lr: 0.000430666, Loss: 0.209465, Step Loss: 0.209465, Time: 0.041044
+2023-06-01 10:47:31,269:INFO: Epoch: 22/30, Step: 4/22, Lr: 0.000430666, Loss: 0.157010, Step Loss: 0.157010, Time: 0.044870
+2023-06-01 10:47:31,320:INFO: Epoch: 22/30, Step: 5/22, Lr: 0.000430666, Loss: 0.223797, Step Loss: 0.223797, Time: 0.051209
+2023-06-01 10:47:31,362:INFO: Epoch: 22/30, Step: 6/22, Lr: 0.000430666, Loss: 0.176607, Step Loss: 0.176607, Time: 0.042067
+2023-06-01 10:47:31,405:INFO: Epoch: 22/30, Step: 7/22, Lr: 0.000430666, Loss: 0.136779, Step Loss: 0.136779, Time: 0.042308
+2023-06-01 10:47:31,448:INFO: Epoch: 22/30, Step: 8/22, Lr: 0.000430666, Loss: 0.144983, Step Loss: 0.144983, Time: 0.042863
+2023-06-01 10:47:31,796:INFO: Epoch: 22/30, Step: 9/22, Lr: 0.000430666, Loss: 0.191401, Step Loss: 0.191401, Time: 0.347238
+2023-06-01 10:47:31,839:INFO: Epoch: 22/30, Step: 10/22, Lr: 0.000430666, Loss: 0.102307, Step Loss: 0.102307, Time: 0.043313
+2023-06-01 10:47:31,883:INFO: Epoch: 22/30, Step: 11/22, Lr: 0.000430666, Loss: 0.209651, Step Loss: 0.209651, Time: 0.043749
+2023-06-01 10:47:31,929:INFO: Epoch: 22/30, Step: 12/22, Lr: 0.000430666, Loss: 0.076876, Step Loss: 0.076876, Time: 0.045178
+2023-06-01 10:47:31,971:INFO: Epoch: 22/30, Step: 13/22, Lr: 0.000430666, Loss: 0.150768, Step Loss: 0.150768, Time: 0.041771
+2023-06-01 10:47:32,013:INFO: Epoch: 22/30, Step: 14/22, Lr: 0.000430666, Loss: 0.260233, Step Loss: 0.260233, Time: 0.042163
+2023-06-01 10:47:32,055:INFO: Epoch: 22/30, Step: 15/22, Lr: 0.000430666, Loss: 0.293865, Step Loss: 0.293865, Time: 0.041873
+2023-06-01 10:47:32,101:INFO: Epoch: 22/30, Step: 16/22, Lr: 0.000430666, Loss: 0.171226, Step Loss: 0.171226, Time: 0.045865
+2023-06-01 10:47:32,425:INFO: Epoch: 22/30, Step: 17/22, Lr: 0.000430666, Loss: 0.248229, Step Loss: 0.248229, Time: 0.323412
+2023-06-01 10:47:32,468:INFO: Epoch: 22/30, Step: 18/22, Lr: 0.000430666, Loss: 0.191557, Step Loss: 0.191557, Time: 0.042920
+2023-06-01 10:47:33,075:INFO: Epoch: 22/30, Step: 19/22, Lr: 0.000430666, Loss: 0.260548, Step Loss: 0.260548, Time: 0.050901
+2023-06-01 10:47:33,118:INFO: Epoch: 22/30, Step: 20/22, Lr: 0.000430666, Loss: 0.142594, Step Loss: 0.142594, Time: 0.042956
+2023-06-01 10:47:33,160:INFO: Epoch: 22/30, Step: 21/22, Lr: 0.000430666, Loss: 0.269855, Step Loss: 0.269855, Time: 0.041715
+2023-06-01 10:47:33,203:INFO: Epoch: 22/30, Step: 22/22, Lr: 0.000430666, Loss: 0.234212, Step Loss: 0.234212, Time: 0.042599
+2023-06-01 10:47:33,392:INFO: Epoch 22/30 Finished, Train Loss: 0.187970
+2023-06-01 10:47:56,957:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.21
+2023-06-01 10:47:59,577:INFO: Classfication Metrics:
+2023-06-01 10:47:59,577:INFO: f1 score: 0.5698 - precision score: 0.7727 - recall score: 0.4513 - accuracy score: 0.800000
+2023-06-01 10:47:59,577:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:48:01,081:INFO: Epoch: 23/30, Step: 1/22, Lr: 0.000348130, Loss: 0.248131, Step Loss: 0.248131, Time: 1.499163
+2023-06-01 10:48:01,122:INFO: Epoch: 23/30, Step: 2/22, Lr: 0.000348130, Loss: 0.228823, Step Loss: 0.228823, Time: 0.041310
+2023-06-01 10:48:01,164:INFO: Epoch: 23/30, Step: 3/22, Lr: 0.000348130, Loss: 0.097429, Step Loss: 0.097429, Time: 0.041477
+2023-06-01 10:48:01,205:INFO: Epoch: 23/30, Step: 4/22, Lr: 0.000348130, Loss: 0.253296, Step Loss: 0.253296, Time: 0.040934
+2023-06-01 10:48:01,247:INFO: Epoch: 23/30, Step: 5/22, Lr: 0.000348130, Loss: 0.250809, Step Loss: 0.250809, Time: 0.041536
+2023-06-01 10:48:01,289:INFO: Epoch: 23/30, Step: 6/22, Lr: 0.000348130, Loss: 0.263183, Step Loss: 0.263183, Time: 0.041240
+2023-06-01 10:48:01,330:INFO: Epoch: 23/30, Step: 7/22, Lr: 0.000348130, Loss: 0.160064, Step Loss: 0.160064, Time: 0.041476
+2023-06-01 10:48:01,371:INFO: Epoch: 23/30, Step: 8/22, Lr: 0.000348130, Loss: 0.128820, Step Loss: 0.128820, Time: 0.040593
+2023-06-01 10:48:01,707:INFO: Epoch: 23/30, Step: 9/22, Lr: 0.000348130, Loss: 0.232239, Step Loss: 0.232239, Time: 0.335804
+2023-06-01 10:48:01,748:INFO: Epoch: 23/30, Step: 10/22, Lr: 0.000348130, Loss: 0.155253, Step Loss: 0.155253, Time: 0.040784
+2023-06-01 10:48:01,790:INFO: Epoch: 23/30, Step: 11/22, Lr: 0.000348130, Loss: 0.246339, Step Loss: 0.246339, Time: 0.041213
+2023-06-01 10:48:01,831:INFO: Epoch: 23/30, Step: 12/22, Lr: 0.000348130, Loss: 0.126855, Step Loss: 0.126855, Time: 0.041186
+2023-06-01 10:48:01,873:INFO: Epoch: 23/30, Step: 13/22, Lr: 0.000348130, Loss: 0.218221, Step Loss: 0.218221, Time: 0.041570
+2023-06-01 10:48:01,915:INFO: Epoch: 23/30, Step: 14/22, Lr: 0.000348130, Loss: 0.168157, Step Loss: 0.168157, Time: 0.041744
+2023-06-01 10:48:01,957:INFO: Epoch: 23/30, Step: 15/22, Lr: 0.000348130, Loss: 0.164518, Step Loss: 0.164518, Time: 0.042199
+2023-06-01 10:48:01,999:INFO: Epoch: 23/30, Step: 16/22, Lr: 0.000348130, Loss: 0.115106, Step Loss: 0.115106, Time: 0.041714
+2023-06-01 10:48:02,319:INFO: Epoch: 23/30, Step: 17/22, Lr: 0.000348130, Loss: 0.251470, Step Loss: 0.251470, Time: 0.319311
+2023-06-01 10:48:02,361:INFO: Epoch: 23/30, Step: 18/22, Lr: 0.000348130, Loss: 0.117324, Step Loss: 0.117324, Time: 0.041996
+2023-06-01 10:48:02,403:INFO: Epoch: 23/30, Step: 19/22, Lr: 0.000348130, Loss: 0.255358, Step Loss: 0.255358, Time: 0.041992
+2023-06-01 10:48:02,446:INFO: Epoch: 23/30, Step: 20/22, Lr: 0.000348130, Loss: 0.189252, Step Loss: 0.189252, Time: 0.042086
+2023-06-01 10:48:02,488:INFO: Epoch: 23/30, Step: 21/22, Lr: 0.000348130, Loss: 0.236708, Step Loss: 0.236708, Time: 0.042396
+2023-06-01 10:48:02,531:INFO: Epoch: 23/30, Step: 22/22, Lr: 0.000348130, Loss: 0.196055, Step Loss: 0.196055, Time: 0.042320
+2023-06-01 10:48:02,707:INFO: Epoch 23/30 Finished, Train Loss: 0.195610
+2023-06-01 10:48:21,052:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.22
+2023-06-01 10:48:23,533:INFO: Classfication Metrics:
+2023-06-01 10:48:23,533:INFO: f1 score: 0.7000 - precision score: 0.6190 - recall score: 0.8053 - accuracy score: 0.797403
+2023-06-01 10:48:23,533:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:48:24,987:INFO: Epoch: 24/30, Step: 1/22, Lr: 0.000271932, Loss: 0.198629, Step Loss: 0.198629, Time: 1.450235
+2023-06-01 10:48:25,030:INFO: Epoch: 24/30, Step: 2/22, Lr: 0.000271932, Loss: 0.158035, Step Loss: 0.158035, Time: 0.042506
+2023-06-01 10:48:25,072:INFO: Epoch: 24/30, Step: 3/22, Lr: 0.000271932, Loss: 0.102129, Step Loss: 0.102129, Time: 0.041666
+2023-06-01 10:48:25,113:INFO: Epoch: 24/30, Step: 4/22, Lr: 0.000271932, Loss: 0.144026, Step Loss: 0.144026, Time: 0.041200
+2023-06-01 10:48:25,155:INFO: Epoch: 24/30, Step: 5/22, Lr: 0.000271932, Loss: 0.222964, Step Loss: 0.222964, Time: 0.041535
+2023-06-01 10:48:25,200:INFO: Epoch: 24/30, Step: 6/22, Lr: 0.000271932, Loss: 0.110767, Step Loss: 0.110767, Time: 0.044218
+2023-06-01 10:48:25,249:INFO: Epoch: 24/30, Step: 7/22, Lr: 0.000271932, Loss: 0.217728, Step Loss: 0.217728, Time: 0.049609
+2023-06-01 10:48:25,294:INFO: Epoch: 24/30, Step: 8/22, Lr: 0.000271932, Loss: 0.300321, Step Loss: 0.300321, Time: 0.043822
+2023-06-01 10:48:25,555:INFO: Epoch: 24/30, Step: 9/22, Lr: 0.000271932, Loss: 0.118884, Step Loss: 0.118884, Time: 0.260751
+2023-06-01 10:48:25,639:INFO: Epoch: 24/30, Step: 10/22, Lr: 0.000271932, Loss: 0.178436, Step Loss: 0.178436, Time: 0.084156
+2023-06-01 10:48:25,683:INFO: Epoch: 24/30, Step: 11/22, Lr: 0.000271932, Loss: 0.169925, Step Loss: 0.169925, Time: 0.043375
+2023-06-01 10:48:25,728:INFO: Epoch: 24/30, Step: 12/22, Lr: 0.000271932, Loss: 0.153547, Step Loss: 0.153547, Time: 0.044727
+2023-06-01 10:48:25,773:INFO: Epoch: 24/30, Step: 13/22, Lr: 0.000271932, Loss: 0.320662, Step Loss: 0.320662, Time: 0.044685
+2023-06-01 10:48:25,817:INFO: Epoch: 24/30, Step: 14/22, Lr: 0.000271932, Loss: 0.209402, Step Loss: 0.209402, Time: 0.043545
+2023-06-01 10:48:25,861:INFO: Epoch: 24/30, Step: 15/22, Lr: 0.000271932, Loss: 0.211548, Step Loss: 0.211548, Time: 0.044026
+2023-06-01 10:48:25,907:INFO: Epoch: 24/30, Step: 16/22, Lr: 0.000271932, Loss: 0.210681, Step Loss: 0.210681, Time: 0.045738
+2023-06-01 10:48:26,152:INFO: Epoch: 24/30, Step: 17/22, Lr: 0.000271932, Loss: 0.234673, Step Loss: 0.234673, Time: 0.244787
+2023-06-01 10:48:26,248:INFO: Epoch: 24/30, Step: 18/22, Lr: 0.000271932, Loss: 0.104341, Step Loss: 0.104341, Time: 0.095942
+2023-06-01 10:48:26,293:INFO: Epoch: 24/30, Step: 19/22, Lr: 0.000271932, Loss: 0.310325, Step Loss: 0.310325, Time: 0.043980
+2023-06-01 10:48:26,337:INFO: Epoch: 24/30, Step: 20/22, Lr: 0.000271932, Loss: 0.216800, Step Loss: 0.216800, Time: 0.044458
+2023-06-01 10:48:26,383:INFO: Epoch: 24/30, Step: 21/22, Lr: 0.000271932, Loss: 0.249481, Step Loss: 0.249481, Time: 0.044924
+2023-06-01 10:48:26,431:INFO: Epoch: 24/30, Step: 22/22, Lr: 0.000271932, Loss: 0.187997, Step Loss: 0.187997, Time: 0.048615
+2023-06-01 10:48:26,592:INFO: Epoch 24/30 Finished, Train Loss: 0.196877
+2023-06-01 10:48:44,688:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.23
+2023-06-01 10:48:47,232:INFO: Classfication Metrics:
+2023-06-01 10:48:47,232:INFO: f1 score: 0.5604 - precision score: 0.7391 - recall score: 0.4513 - accuracy score: 0.792208
+2023-06-01 10:48:47,232:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:48:48,558:INFO: Epoch: 25/30, Step: 1/22, Lr: 0.000203274, Loss: 0.183207, Step Loss: 0.183207, Time: 1.321006
+2023-06-01 10:48:48,605:INFO: Epoch: 25/30, Step: 2/22, Lr: 0.000203274, Loss: 0.263504, Step Loss: 0.263504, Time: 0.047126
+2023-06-01 10:48:48,652:INFO: Epoch: 25/30, Step: 3/22, Lr: 0.000203274, Loss: 0.179047, Step Loss: 0.179047, Time: 0.046081
+2023-06-01 10:48:48,696:INFO: Epoch: 25/30, Step: 4/22, Lr: 0.000203274, Loss: 0.146459, Step Loss: 0.146459, Time: 0.043708
+2023-06-01 10:48:48,739:INFO: Epoch: 25/30, Step: 5/22, Lr: 0.000203274, Loss: 0.124818, Step Loss: 0.124818, Time: 0.042964
+2023-06-01 10:48:48,783:INFO: Epoch: 25/30, Step: 6/22, Lr: 0.000203274, Loss: 0.210352, Step Loss: 0.210352, Time: 0.043990
+2023-06-01 10:48:48,828:INFO: Epoch: 25/30, Step: 7/22, Lr: 0.000203274, Loss: 0.199857, Step Loss: 0.199857, Time: 0.044706
+2023-06-01 10:48:48,876:INFO: Epoch: 25/30, Step: 8/22, Lr: 0.000203274, Loss: 0.166913, Step Loss: 0.166913, Time: 0.047401
+2023-06-01 10:48:49,208:INFO: Epoch: 25/30, Step: 9/22, Lr: 0.000203274, Loss: 0.100518, Step Loss: 0.100518, Time: 0.331915
+2023-06-01 10:48:49,267:INFO: Epoch: 25/30, Step: 10/22, Lr: 0.000203274, Loss: 0.135851, Step Loss: 0.135851, Time: 0.059299
+2023-06-01 10:48:49,316:INFO: Epoch: 25/30, Step: 11/22, Lr: 0.000203274, Loss: 0.176086, Step Loss: 0.176086, Time: 0.048750
+2023-06-01 10:48:49,363:INFO: Epoch: 25/30, Step: 12/22, Lr: 0.000203274, Loss: 0.244663, Step Loss: 0.244663, Time: 0.046241
+2023-06-01 10:48:49,408:INFO: Epoch: 25/30, Step: 13/22, Lr: 0.000203274, Loss: 0.185772, Step Loss: 0.185772, Time: 0.045362
+2023-06-01 10:48:49,453:INFO: Epoch: 25/30, Step: 14/22, Lr: 0.000203274, Loss: 0.180635, Step Loss: 0.180635, Time: 0.044375
+2023-06-01 10:48:49,498:INFO: Epoch: 25/30, Step: 15/22, Lr: 0.000203274, Loss: 0.196072, Step Loss: 0.196072, Time: 0.044140
+2023-06-01 10:48:49,548:INFO: Epoch: 25/30, Step: 16/22, Lr: 0.000203274, Loss: 0.100823, Step Loss: 0.100823, Time: 0.050137
+2023-06-01 10:48:49,837:INFO: Epoch: 25/30, Step: 17/22, Lr: 0.000203274, Loss: 0.127686, Step Loss: 0.127686, Time: 0.288760
+2023-06-01 10:48:49,918:INFO: Epoch: 25/30, Step: 18/22, Lr: 0.000203274, Loss: 0.160971, Step Loss: 0.160971, Time: 0.080143
+2023-06-01 10:48:49,968:INFO: Epoch: 25/30, Step: 19/22, Lr: 0.000203274, Loss: 0.264948, Step Loss: 0.264948, Time: 0.049932
+2023-06-01 10:48:50,154:INFO: Epoch: 25/30, Step: 20/22, Lr: 0.000203274, Loss: 0.147116, Step Loss: 0.147116, Time: 0.049236
+2023-06-01 10:48:50,200:INFO: Epoch: 25/30, Step: 21/22, Lr: 0.000203274, Loss: 0.177799, Step Loss: 0.177799, Time: 0.045552
+2023-06-01 10:48:50,244:INFO: Epoch: 25/30, Step: 22/22, Lr: 0.000203274, Loss: 0.152160, Step Loss: 0.152160, Time: 0.043677
+2023-06-01 10:48:50,396:INFO: Epoch 25/30 Finished, Train Loss: 0.173875
+2023-06-01 10:48:59,644:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.24
+2023-06-01 10:49:02,163:INFO: Classfication Metrics:
+2023-06-01 10:49:02,163:INFO: f1 score: 0.7100 - precision score: 0.6949 - recall score: 0.7257 - accuracy score: 0.825974
+2023-06-01 10:49:02,163:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:49:03,546:INFO: Epoch: 26/30, Step: 1/22, Lr: 0.000143237, Loss: 0.158479, Step Loss: 0.158479, Time: 1.374981
+2023-06-01 10:49:03,594:INFO: Epoch: 26/30, Step: 2/22, Lr: 0.000143237, Loss: 0.195105, Step Loss: 0.195105, Time: 0.047763
+2023-06-01 10:49:03,636:INFO: Epoch: 26/30, Step: 3/22, Lr: 0.000143237, Loss: 0.149642, Step Loss: 0.149642, Time: 0.042155
+2023-06-01 10:49:03,679:INFO: Epoch: 26/30, Step: 4/22, Lr: 0.000143237, Loss: 0.137273, Step Loss: 0.137273, Time: 0.042393
+2023-06-01 10:49:03,721:INFO: Epoch: 26/30, Step: 5/22, Lr: 0.000143237, Loss: 0.110543, Step Loss: 0.110543, Time: 0.042441
+2023-06-01 10:49:03,764:INFO: Epoch: 26/30, Step: 6/22, Lr: 0.000143237, Loss: 0.206029, Step Loss: 0.206029, Time: 0.042467
+2023-06-01 10:49:03,807:INFO: Epoch: 26/30, Step: 7/22, Lr: 0.000143237, Loss: 0.106414, Step Loss: 0.106414, Time: 0.042540
+2023-06-01 10:49:03,849:INFO: Epoch: 26/30, Step: 8/22, Lr: 0.000143237, Loss: 0.187731, Step Loss: 0.187731, Time: 0.042243
+2023-06-01 10:49:04,188:INFO: Epoch: 26/30, Step: 9/22, Lr: 0.000143237, Loss: 0.168645, Step Loss: 0.168645, Time: 0.338578
+2023-06-01 10:49:04,249:INFO: Epoch: 26/30, Step: 10/22, Lr: 0.000143237, Loss: 0.153125, Step Loss: 0.153125, Time: 0.060447
+2023-06-01 10:49:04,291:INFO: Epoch: 26/30, Step: 11/22, Lr: 0.000143237, Loss: 0.157191, Step Loss: 0.157191, Time: 0.041718
+2023-06-01 10:49:04,333:INFO: Epoch: 26/30, Step: 12/22, Lr: 0.000143237, Loss: 0.210677, Step Loss: 0.210677, Time: 0.042312
+2023-06-01 10:49:04,375:INFO: Epoch: 26/30, Step: 13/22, Lr: 0.000143237, Loss: 0.193041, Step Loss: 0.193041, Time: 0.041566
+2023-06-01 10:49:04,417:INFO: Epoch: 26/30, Step: 14/22, Lr: 0.000143237, Loss: 0.117617, Step Loss: 0.117617, Time: 0.041963
+2023-06-01 10:49:04,461:INFO: Epoch: 26/30, Step: 15/22, Lr: 0.000143237, Loss: 0.165186, Step Loss: 0.165186, Time: 0.043109
+2023-06-01 10:49:04,504:INFO: Epoch: 26/30, Step: 16/22, Lr: 0.000143237, Loss: 0.185888, Step Loss: 0.185888, Time: 0.043182
+2023-06-01 10:49:04,754:INFO: Epoch: 26/30, Step: 17/22, Lr: 0.000143237, Loss: 0.164290, Step Loss: 0.164290, Time: 0.249244
+2023-06-01 10:49:04,812:INFO: Epoch: 26/30, Step: 18/22, Lr: 0.000143237, Loss: 0.109696, Step Loss: 0.109696, Time: 0.057650
+2023-06-01 10:49:04,855:INFO: Epoch: 26/30, Step: 19/22, Lr: 0.000143237, Loss: 0.170494, Step Loss: 0.170494, Time: 0.043052
+2023-06-01 10:49:04,898:INFO: Epoch: 26/30, Step: 20/22, Lr: 0.000143237, Loss: 0.169363, Step Loss: 0.169363, Time: 0.042542
+2023-06-01 10:49:04,943:INFO: Epoch: 26/30, Step: 21/22, Lr: 0.000143237, Loss: 0.175449, Step Loss: 0.175449, Time: 0.044707
+2023-06-01 10:49:04,986:INFO: Epoch: 26/30, Step: 22/22, Lr: 0.000143237, Loss: 0.171649, Step Loss: 0.171649, Time: 0.043087
+2023-06-01 10:49:05,210:INFO: Epoch 26/30 Finished, Train Loss: 0.161978
+2023-06-01 10:49:15,551:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.25
+2023-06-01 10:49:18,101:INFO: Classfication Metrics:
+2023-06-01 10:49:18,102:INFO: f1 score: 0.7120 - precision score: 0.6496 - recall score: 0.7876 - accuracy score: 0.812987
+2023-06-01 10:49:18,102:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:49:19,512:INFO: Epoch: 27/30, Step: 1/22, Lr: 0.000092770, Loss: 0.165398, Step Loss: 0.165398, Time: 1.404361
+2023-06-01 10:49:19,559:INFO: Epoch: 27/30, Step: 2/22, Lr: 0.000092770, Loss: 0.112203, Step Loss: 0.112203, Time: 0.045961
+2023-06-01 10:49:19,603:INFO: Epoch: 27/30, Step: 3/22, Lr: 0.000092770, Loss: 0.184941, Step Loss: 0.184941, Time: 0.044448
+2023-06-01 10:49:19,650:INFO: Epoch: 27/30, Step: 4/22, Lr: 0.000092770, Loss: 0.187298, Step Loss: 0.187298, Time: 0.046062
+2023-06-01 10:49:19,695:INFO: Epoch: 27/30, Step: 5/22, Lr: 0.000092770, Loss: 0.118892, Step Loss: 0.118892, Time: 0.045015
+2023-06-01 10:49:19,740:INFO: Epoch: 27/30, Step: 6/22, Lr: 0.000092770, Loss: 0.153735, Step Loss: 0.153735, Time: 0.045428
+2023-06-01 10:49:19,796:INFO: Epoch: 27/30, Step: 7/22, Lr: 0.000092770, Loss: 0.159425, Step Loss: 0.159425, Time: 0.055412
+2023-06-01 10:49:19,843:INFO: Epoch: 27/30, Step: 8/22, Lr: 0.000092770, Loss: 0.157293, Step Loss: 0.157293, Time: 0.046592
+2023-06-01 10:49:20,133:INFO: Epoch: 27/30, Step: 9/22, Lr: 0.000092770, Loss: 0.190563, Step Loss: 0.190563, Time: 0.289935
+2023-06-01 10:49:20,180:INFO: Epoch: 27/30, Step: 10/22, Lr: 0.000092770, Loss: 0.191192, Step Loss: 0.191192, Time: 0.047025
+2023-06-01 10:49:20,228:INFO: Epoch: 27/30, Step: 11/22, Lr: 0.000092770, Loss: 0.173395, Step Loss: 0.173395, Time: 0.047150
+2023-06-01 10:49:20,273:INFO: Epoch: 27/30, Step: 12/22, Lr: 0.000092770, Loss: 0.137480, Step Loss: 0.137480, Time: 0.044673
+2023-06-01 10:49:20,318:INFO: Epoch: 27/30, Step: 13/22, Lr: 0.000092770, Loss: 0.208525, Step Loss: 0.208525, Time: 0.044569
+2023-06-01 10:49:20,363:INFO: Epoch: 27/30, Step: 14/22, Lr: 0.000092770, Loss: 0.203126, Step Loss: 0.203126, Time: 0.045160
+2023-06-01 10:49:20,410:INFO: Epoch: 27/30, Step: 15/22, Lr: 0.000092770, Loss: 0.228580, Step Loss: 0.228580, Time: 0.046539
+2023-06-01 10:49:20,457:INFO: Epoch: 27/30, Step: 16/22, Lr: 0.000092770, Loss: 0.202633, Step Loss: 0.202633, Time: 0.046976
+2023-06-01 10:49:20,732:INFO: Epoch: 27/30, Step: 17/22, Lr: 0.000092770, Loss: 0.109634, Step Loss: 0.109634, Time: 0.274755
+2023-06-01 10:49:21,126:INFO: Epoch: 27/30, Step: 18/22, Lr: 0.000092770, Loss: 0.169670, Step Loss: 0.169670, Time: 0.051555
+2023-06-01 10:49:21,171:INFO: Epoch: 27/30, Step: 19/22, Lr: 0.000092770, Loss: 0.127996, Step Loss: 0.127996, Time: 0.044852
+2023-06-01 10:49:21,216:INFO: Epoch: 27/30, Step: 20/22, Lr: 0.000092770, Loss: 0.054061, Step Loss: 0.054061, Time: 0.045269
+2023-06-01 10:49:21,262:INFO: Epoch: 27/30, Step: 21/22, Lr: 0.000092770, Loss: 0.130294, Step Loss: 0.130294, Time: 0.045431
+2023-06-01 10:49:21,307:INFO: Epoch: 27/30, Step: 22/22, Lr: 0.000092770, Loss: 0.162294, Step Loss: 0.162294, Time: 0.045067
+2023-06-01 10:49:21,459:INFO: Epoch 27/30 Finished, Train Loss: 0.160392
+2023-06-01 10:49:28,432:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.26
+2023-06-01 10:49:30,998:INFO: Classfication Metrics:
+2023-06-01 10:49:30,998:INFO: f1 score: 0.7265 - precision score: 0.7364 - recall score: 0.7168 - accuracy score: 0.841558
+2023-06-01 10:49:30,998:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:49:32,420:INFO: Epoch: 28/30, Step: 1/22, Lr: 0.000052668, Loss: 0.154418, Step Loss: 0.154418, Time: 1.418772
+2023-06-01 10:49:32,465:INFO: Epoch: 28/30, Step: 2/22, Lr: 0.000052668, Loss: 0.205307, Step Loss: 0.205307, Time: 0.044635
+2023-06-01 10:49:32,510:INFO: Epoch: 28/30, Step: 3/22, Lr: 0.000052668, Loss: 0.171079, Step Loss: 0.171079, Time: 0.044737
+2023-06-01 10:49:32,555:INFO: Epoch: 28/30, Step: 4/22, Lr: 0.000052668, Loss: 0.188679, Step Loss: 0.188679, Time: 0.044585
+2023-06-01 10:49:32,602:INFO: Epoch: 28/30, Step: 5/22, Lr: 0.000052668, Loss: 0.163945, Step Loss: 0.163945, Time: 0.047117
+2023-06-01 10:49:32,647:INFO: Epoch: 28/30, Step: 6/22, Lr: 0.000052668, Loss: 0.173757, Step Loss: 0.173757, Time: 0.044199
+2023-06-01 10:49:32,691:INFO: Epoch: 28/30, Step: 7/22, Lr: 0.000052668, Loss: 0.184935, Step Loss: 0.184935, Time: 0.044330
+2023-06-01 10:49:32,738:INFO: Epoch: 28/30, Step: 8/22, Lr: 0.000052668, Loss: 0.118018, Step Loss: 0.118018, Time: 0.046209
+2023-06-01 10:49:33,034:INFO: Epoch: 28/30, Step: 9/22, Lr: 0.000052668, Loss: 0.117801, Step Loss: 0.117801, Time: 0.295803
+2023-06-01 10:49:33,078:INFO: Epoch: 28/30, Step: 10/22, Lr: 0.000052668, Loss: 0.129775, Step Loss: 0.129775, Time: 0.044139
+2023-06-01 10:49:33,123:INFO: Epoch: 28/30, Step: 11/22, Lr: 0.000052668, Loss: 0.157368, Step Loss: 0.157368, Time: 0.044879
+2023-06-01 10:49:33,168:INFO: Epoch: 28/30, Step: 12/22, Lr: 0.000052668, Loss: 0.198479, Step Loss: 0.198479, Time: 0.044273
+2023-06-01 10:49:33,215:INFO: Epoch: 28/30, Step: 13/22, Lr: 0.000052668, Loss: 0.175004, Step Loss: 0.175004, Time: 0.046301
+2023-06-01 10:49:33,259:INFO: Epoch: 28/30, Step: 14/22, Lr: 0.000052668, Loss: 0.174052, Step Loss: 0.174052, Time: 0.044479
+2023-06-01 10:49:33,306:INFO: Epoch: 28/30, Step: 15/22, Lr: 0.000052668, Loss: 0.079793, Step Loss: 0.079793, Time: 0.046415
+2023-06-01 10:49:33,350:INFO: Epoch: 28/30, Step: 16/22, Lr: 0.000052668, Loss: 0.177694, Step Loss: 0.177694, Time: 0.044286
+2023-06-01 10:49:33,649:INFO: Epoch: 28/30, Step: 17/22, Lr: 0.000052668, Loss: 0.172270, Step Loss: 0.172270, Time: 0.298244
+2023-06-01 10:49:33,694:INFO: Epoch: 28/30, Step: 18/22, Lr: 0.000052668, Loss: 0.082070, Step Loss: 0.082070, Time: 0.044374
+2023-06-01 10:49:33,740:INFO: Epoch: 28/30, Step: 19/22, Lr: 0.000052668, Loss: 0.178416, Step Loss: 0.178416, Time: 0.046657
+2023-06-01 10:49:33,785:INFO: Epoch: 28/30, Step: 20/22, Lr: 0.000052668, Loss: 0.130013, Step Loss: 0.130013, Time: 0.044794
+2023-06-01 10:49:33,831:INFO: Epoch: 28/30, Step: 21/22, Lr: 0.000052668, Loss: 0.111491, Step Loss: 0.111491, Time: 0.044986
+2023-06-01 10:49:33,876:INFO: Epoch: 28/30, Step: 22/22, Lr: 0.000052668, Loss: 0.120857, Step Loss: 0.120857, Time: 0.044621
+2023-06-01 10:49:34,050:INFO: Epoch 28/30 Finished, Train Loss: 0.152965
+2023-06-01 10:49:42,987:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.27
+2023-06-01 10:49:45,536:INFO: Classfication Metrics:
+2023-06-01 10:49:45,537:INFO: f1 score: 0.7168 - precision score: 0.7168 - recall score: 0.7168 - accuracy score: 0.833766
+2023-06-01 10:49:45,537:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:49:46,868:INFO: Epoch: 29/30, Step: 1/22, Lr: 0.000023563, Loss: 0.150271, Step Loss: 0.150271, Time: 1.325952
+2023-06-01 10:49:46,933:INFO: Epoch: 29/30, Step: 2/22, Lr: 0.000023563, Loss: 0.097897, Step Loss: 0.097897, Time: 0.065088
+2023-06-01 10:49:46,978:INFO: Epoch: 29/30, Step: 3/22, Lr: 0.000023563, Loss: 0.302145, Step Loss: 0.302145, Time: 0.044068
+2023-06-01 10:49:47,025:INFO: Epoch: 29/30, Step: 4/22, Lr: 0.000023563, Loss: 0.085014, Step Loss: 0.085014, Time: 0.047572
+2023-06-01 10:49:47,070:INFO: Epoch: 29/30, Step: 5/22, Lr: 0.000023563, Loss: 0.118040, Step Loss: 0.118040, Time: 0.044433
+2023-06-01 10:49:47,117:INFO: Epoch: 29/30, Step: 6/22, Lr: 0.000023563, Loss: 0.155552, Step Loss: 0.155552, Time: 0.046728
+2023-06-01 10:49:47,163:INFO: Epoch: 29/30, Step: 7/22, Lr: 0.000023563, Loss: 0.190226, Step Loss: 0.190226, Time: 0.046051
+2023-06-01 10:49:47,280:INFO: Epoch: 29/30, Step: 8/22, Lr: 0.000023563, Loss: 0.188395, Step Loss: 0.188395, Time: 0.046453
+2023-06-01 10:49:47,487:INFO: Epoch: 29/30, Step: 9/22, Lr: 0.000023563, Loss: 0.175490, Step Loss: 0.175490, Time: 0.206668
+2023-06-01 10:49:47,535:INFO: Epoch: 29/30, Step: 10/22, Lr: 0.000023563, Loss: 0.181447, Step Loss: 0.181447, Time: 0.047952
+2023-06-01 10:49:47,581:INFO: Epoch: 29/30, Step: 11/22, Lr: 0.000023563, Loss: 0.105792, Step Loss: 0.105792, Time: 0.045252
+2023-06-01 10:49:47,624:INFO: Epoch: 29/30, Step: 12/22, Lr: 0.000023563, Loss: 0.182779, Step Loss: 0.182779, Time: 0.043347
+2023-06-01 10:49:47,669:INFO: Epoch: 29/30, Step: 13/22, Lr: 0.000023563, Loss: 0.102958, Step Loss: 0.102958, Time: 0.044295
+2023-06-01 10:49:47,713:INFO: Epoch: 29/30, Step: 14/22, Lr: 0.000023563, Loss: 0.221061, Step Loss: 0.221061, Time: 0.043873
+2023-06-01 10:49:47,760:INFO: Epoch: 29/30, Step: 15/22, Lr: 0.000023563, Loss: 0.124427, Step Loss: 0.124427, Time: 0.047008
+2023-06-01 10:49:47,805:INFO: Epoch: 29/30, Step: 16/22, Lr: 0.000023563, Loss: 0.138262, Step Loss: 0.138262, Time: 0.044193
+2023-06-01 10:49:48,117:INFO: Epoch: 29/30, Step: 17/22, Lr: 0.000023563, Loss: 0.140423, Step Loss: 0.140423, Time: 0.311609
+2023-06-01 10:49:48,164:INFO: Epoch: 29/30, Step: 18/22, Lr: 0.000023563, Loss: 0.172900, Step Loss: 0.172900, Time: 0.046747
+2023-06-01 10:49:48,211:INFO: Epoch: 29/30, Step: 19/22, Lr: 0.000023563, Loss: 0.176496, Step Loss: 0.176496, Time: 0.047020
+2023-06-01 10:49:48,257:INFO: Epoch: 29/30, Step: 20/22, Lr: 0.000023563, Loss: 0.097298, Step Loss: 0.097298, Time: 0.045751
+2023-06-01 10:49:48,302:INFO: Epoch: 29/30, Step: 21/22, Lr: 0.000023563, Loss: 0.147181, Step Loss: 0.147181, Time: 0.044594
+2023-06-01 10:49:48,347:INFO: Epoch: 29/30, Step: 22/22, Lr: 0.000023563, Loss: 0.145866, Step Loss: 0.145866, Time: 0.045084
+2023-06-01 10:49:48,517:INFO: Epoch 29/30 Finished, Train Loss: 0.154542
+2023-06-01 10:49:58,716:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.28
+2023-06-01 10:50:01,226:INFO: Classfication Metrics:
+2023-06-01 10:50:01,227:INFO: f1 score: 0.7124 - precision score: 0.6917 - recall score: 0.7345 - accuracy score: 0.825974
+2023-06-01 10:50:01,227:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:50:02,595:INFO: Epoch: 30/30, Step: 1/22, Lr: 0.000005914, Loss: 0.091379, Step Loss: 0.091379, Time: 1.364180
+2023-06-01 10:50:02,644:INFO: Epoch: 30/30, Step: 2/22, Lr: 0.000005914, Loss: 0.201929, Step Loss: 0.201929, Time: 0.047743
+2023-06-01 10:50:02,687:INFO: Epoch: 30/30, Step: 3/22, Lr: 0.000005914, Loss: 0.146367, Step Loss: 0.146367, Time: 0.042838
+2023-06-01 10:50:02,734:INFO: Epoch: 30/30, Step: 4/22, Lr: 0.000005914, Loss: 0.171790, Step Loss: 0.171790, Time: 0.046988
+2023-06-01 10:50:02,777:INFO: Epoch: 30/30, Step: 5/22, Lr: 0.000005914, Loss: 0.195763, Step Loss: 0.195763, Time: 0.042531
+2023-06-01 10:50:02,819:INFO: Epoch: 30/30, Step: 6/22, Lr: 0.000005914, Loss: 0.140362, Step Loss: 0.140362, Time: 0.042001
+2023-06-01 10:50:02,861:INFO: Epoch: 30/30, Step: 7/22, Lr: 0.000005914, Loss: 0.198192, Step Loss: 0.198192, Time: 0.042230
+2023-06-01 10:50:02,906:INFO: Epoch: 30/30, Step: 8/22, Lr: 0.000005914, Loss: 0.093112, Step Loss: 0.093112, Time: 0.044392
+2023-06-01 10:50:03,240:INFO: Epoch: 30/30, Step: 9/22, Lr: 0.000005914, Loss: 0.136809, Step Loss: 0.136809, Time: 0.334294
+2023-06-01 10:50:03,283:INFO: Epoch: 30/30, Step: 10/22, Lr: 0.000005914, Loss: 0.125167, Step Loss: 0.125167, Time: 0.042128
+2023-06-01 10:50:03,325:INFO: Epoch: 30/30, Step: 11/22, Lr: 0.000005914, Loss: 0.163375, Step Loss: 0.163375, Time: 0.041811
+2023-06-01 10:50:03,368:INFO: Epoch: 30/30, Step: 12/22, Lr: 0.000005914, Loss: 0.126963, Step Loss: 0.126963, Time: 0.042479
+2023-06-01 10:50:03,410:INFO: Epoch: 30/30, Step: 13/22, Lr: 0.000005914, Loss: 0.172230, Step Loss: 0.172230, Time: 0.041648
+2023-06-01 10:50:03,455:INFO: Epoch: 30/30, Step: 14/22, Lr: 0.000005914, Loss: 0.171725, Step Loss: 0.171725, Time: 0.044787
+2023-06-01 10:50:03,497:INFO: Epoch: 30/30, Step: 15/22, Lr: 0.000005914, Loss: 0.150174, Step Loss: 0.150174, Time: 0.042519
+2023-06-01 10:50:03,542:INFO: Epoch: 30/30, Step: 16/22, Lr: 0.000005914, Loss: 0.222538, Step Loss: 0.222538, Time: 0.044898
+2023-06-01 10:50:03,871:INFO: Epoch: 30/30, Step: 17/22, Lr: 0.000005914, Loss: 0.193761, Step Loss: 0.193761, Time: 0.328715
+2023-06-01 10:50:03,914:INFO: Epoch: 30/30, Step: 18/22, Lr: 0.000005914, Loss: 0.165161, Step Loss: 0.165161, Time: 0.042329
+2023-06-01 10:50:03,957:INFO: Epoch: 30/30, Step: 19/22, Lr: 0.000005914, Loss: 0.121495, Step Loss: 0.121495, Time: 0.042400
+2023-06-01 10:50:04,000:INFO: Epoch: 30/30, Step: 20/22, Lr: 0.000005914, Loss: 0.145556, Step Loss: 0.145556, Time: 0.042979
+2023-06-01 10:50:04,042:INFO: Epoch: 30/30, Step: 21/22, Lr: 0.000005914, Loss: 0.192064, Step Loss: 0.192064, Time: 0.042494
+2023-06-01 10:50:04,087:INFO: Epoch: 30/30, Step: 22/22, Lr: 0.000005914, Loss: 0.054632, Step Loss: 0.054632, Time: 0.044658
+2023-06-01 10:50:04,247:INFO: Epoch 30/30 Finished, Train Loss: 0.153661
+2023-06-01 10:50:18,967:INFO: Model saved to experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.29
+2023-06-01 10:50:21,487:INFO: Classfication Metrics:
+2023-06-01 10:50:21,488:INFO: f1 score: 0.7193 - precision score: 0.7130 - recall score: 0.7257 - accuracy score: 0.833766
+2023-06-01 10:50:21,488:INFO: The best model is: experiments/pheme/train_pheme_clip_bert/pytorch_model.bin.13, the F1 is: 0.7323
+2023-06-01 10:50:21,488:INFO: ***** Running testing *****
+2023-06-01 10:50:21,488:INFO:   Num examples = 385
+2023-06-01 10:50:21,488:INFO:   Batch size = 128
+2023-06-01 10:50:24,559:INFO: Classfication Metrics:
+2023-06-01 10:50:24,559:INFO: f1 score: 0.7323 - precision score: 0.6596 - recall score: 0.8230 - accuracy score: 0.823377

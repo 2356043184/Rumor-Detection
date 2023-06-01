@@ -1,6 +1,10 @@
 /output/debug
 /output/*/pytorch*
 /output/*/*/pytorch*
+/experiments/*/pytorch*
+/experiments/*/*/pytorch*
+/scripts
+/output
 multi_modal.zip
 MFAN
 # dataset log weight visualization output shubs

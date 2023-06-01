@@ -13,6 +13,7 @@ from dataset import Pheme_Dataset
 from modules.models import RD_Base
 from transformers import BertTokenizer
 import logging
+from modules.clip.tokenization_clip import SimpleTokenizer as ClipTokenizer
 
 global logger
 
@@ -127,8 +128,8 @@ def prep_optimizer(args, model, local_rank):
     ]
 
     optimizer = optim.Adam(optimizer_grouped_parameters, lr=args.lr)
-    scheduler_cosine = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, args.n_epochs - 1)
-    scheduler_warmup = GradualWarmupSchedulerV2(optimizer, multiplier=10, total_epoch=1,
+    scheduler_cosine = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, args.n_epochs - 5)
+    scheduler_warmup = GradualWarmupSchedulerV2(optimizer, multiplier=10, total_epoch=5,
                                                 after_scheduler=scheduler_cosine)
     model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[local_rank],
                                                       output_device=local_rank, find_unused_parameters=True)
@@ -138,7 +139,7 @@ def prep_optimizer(args, model, local_rank):
 def get_args():
     parser = argparse.ArgumentParser()
     # 训练参数
-    parser.add_argument('--output_dir', type=str, default='./output') # 模型和日志输出路径
+    parser.add_argument('--output_dir', type=str, default='./experiments/debug') # 模型和日志输出路径
     parser.add_argument('--CUDA_VISIBLE_DEVICES', type=str, default='0') # 设置运行的GPU序号，支持多卡
     parser.add_argument('--n_epochs', type=int, default=80) # 训练迭代次数
     parser.add_argument('--do_train', action='store_true', default=False) # 是否训练
@@ -152,7 +153,7 @@ def get_args():
     parser.add_argument("--rank", default=0, type=int, help="distribted training") # 分布式训练需要的参数，不用管
     # 模型参数
     parser.add_argument('--image_model_type', type=str, default='resnet50', choices=['resnet18','resnet34','resnet50','resnet101','clip']) # 图像模型种类，默认resnet50，可自行指定其他模型
-    parser.add_argument('--language_model_type', type=str, default='bert', choices=['transformer','bert']) # 语言模型种类，默认transformer
+    parser.add_argument('--language_model_type', type=str, default='bert', choices=['transformer','bert','clip']) # 语言模型种类，默认transformer
     parser.add_argument('--pretrained_image', action='store_true', default=True) # 加载预训练图像模型，默认加载
     parser.add_argument('--pretrained_language', action='store_true', default=False) # 加载预训练语言模型，这个参数暂时没用，不加载预训练语言模型
     parser.add_argument('--freeze_image', action='store_true', default=False) # 冻结图像模型
@@ -160,7 +161,7 @@ def get_args():
     parser.add_argument('--expand_image', action='store_true', default=False) # 增加图像特征维度（去掉mean pooling层）
     parser.add_argument('--expand_language', action='store_true', default=False) # 增加文本特征维度（返回单词特征）
     parser.add_argument('--init_model', type=str, default='') # 不为空则加载已保存模型
-    parser.add_argument('--attention_model', action='store_true', default=False) # 使用注意力做融合
+    parser.add_argument('--attention_model', type=str, default='none', choices=['none','simple','bilinear']) # 使用注意力做融合
     parser.add_argument('--exchange', action='store_true', default=False) # 使用通道转换
     parser.add_argument('--exchange_early', action='store_true', default=False) # 通道转换在attention前
     parser.add_argument('--l1_lamda', type=float, default=2e-4) # 通道转换l1 loss的权重
@@ -338,11 +339,15 @@ def main():
     os.environ['CUDA_VISIBLE_DEVICES'] = args.CUDA_VISIBLE_DEVICES
     if args.debug:
         args.output_dir = os.path.join(args.output_dir,'debug')
+    
     torch.distributed.init_process_group(backend="nccl")
     args = set_seed_logger(args)
     device, n_gpu = init_device(args, args.local_rank)
     if args.dataset == 'pheme':
-        tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        if args.language_model_type == 'clip':
+            tokenizer = ClipTokenizer()
+        else:
+            tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     elif args.dataset == 'weibo':
         tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
     model, slim_params = init_model(args, device, tokenizer.vocab_size)

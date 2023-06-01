@@ -7,10 +7,11 @@ from modules.transformer import LayerNorm
 from transformers import BertModel
 from modules.clip.module_clip import CLIP, convert_weights
 import math
+from modules.attention import BilinearLayer
 
 class RD_Base(nn.Module):
     def __init__(self, image_model_type='resnet50', language_model_type='transformer', pretrained_image=True, pretrained_language=False, 
-                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model=False, exchange=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40, exchange_early=False, language='EN', more_layer=False):
+                 freeze_image=False, freeze_language=False, expand_image=False, expand_language=False, attention_model='none', exchange=False, middle_dim=1024, drop_p=0.3, word_vocab_size=30522, max_text_len=40, exchange_early=False, language='EN', more_layer=False):
         # image_model_type: 图像模型种类，默认resnet50，可自行指定其他模型，如resnet18, resnet34, resnet101等
         # language_model_type: 语言模型种类，默认Transformer
         # pretrained_image: 图像模型是否预训练初始化，默认预训练
@@ -30,6 +31,8 @@ class RD_Base(nn.Module):
         self.expand_language = expand_language
         self.attention_model = attention_model
         self.more_layer = more_layer
+        self.more_layer_clip = more_layer and self.image_model_type=='clip'
+        # self.more_layer_clip = False
         # 初始化图像模型
         if image_model_type == 'clip':
             state_dict = {}
@@ -73,7 +76,7 @@ class RD_Base(nn.Module):
         else:
             raise NotImplementedError()
         if image_model_type == 'clip':
-            image_in_ch = 512
+            image_in_ch = 768 if self.more_layer_clip else 768
         else:
             image_in_ch = self.image_model.fc.in_features # 图像模型输出的embedding维度
             self.image_model.fc = nn.Identity()
@@ -94,6 +97,9 @@ class RD_Base(nn.Module):
             else:
                 self.language_model = BertModel.from_pretrained('bert-base-chinese')
             language_in_ch = 768
+        elif language_model_type == 'clip':
+            self.language_model = None
+            language_in_ch = 512
         # elif language_model_type == 'lstm':
         #     self.word_embedding = nn.Embedding(num_embeddings=word_vocab_size, embedding_dim=1024, padding_idx=0)
         #     self.language_model = nn.LSTM(input_size=1024, hidden_size=1024,
@@ -103,12 +109,12 @@ class RD_Base(nn.Module):
             raise NotImplementedError()
         
         # 创建分类器
-        if self.attention_model:
+        if self.attention_model != 'none':
             assert self.expand_image and self.expand_language
             if self.exchange_early:
                 self.fc = EarlyExchangeClassfier()
             else:
-                self.fc = AttentionClassfier(exchange=exchange, more_layer=more_layer)
+                self.fc = AttentionClassfier(exchange=exchange, more_layer=more_layer, image_dim=image_in_ch,language_dim=language_in_ch,more_layer_clip=self.more_layer_clip, attention_model=self.attention_model)
         else:
             self.fc =  nn.Sequential(
                 nn.Linear(image_in_ch+language_in_ch, middle_dim),
@@ -188,15 +194,18 @@ class RD_Base(nn.Module):
         if self.freeze_image:
             for name, param in self.image_model.named_parameters():
                 param.requires_grad = False
-        if self.freeze_language:
+        if self.freeze_language and self.language_model is not None:
             for name, param in self.language_model.named_parameters():
                 param.requires_grad = False
     
     def forward(self, image, text, attention_mask):
         if self.image_model_type == 'clip':
-            image_embedding, image_embedding_expand = self.image_model.encode_image(image, return_hidden=True)
-            if self.expand_image:
-                image_embedding = image_embedding_expand[:,1:]
+            if self.more_layer_clip:
+                image_embedding = self.image_model.encode_image(image, return_hidden=True, more_layer=True)
+            else:
+                image_embedding, image_embedding_expand = self.image_model.encode_image(image, return_hidden=True)
+                if self.expand_image:
+                    image_embedding = image_embedding_expand[:,1:]
         else:
             image_embedding = self.image_model(image) # bs,3,224,224 -> bs,2048
             if self.expand_image:
@@ -214,15 +223,24 @@ class RD_Base(nn.Module):
             text_embedding = self.language_model(word_embedding, extended_mask).permute(1, 0, 2) # bs, 40, 512
             if not self.expand_language:
                 text_embedding = text_embedding[:,0,:]
+        elif self.language_model_type == 'clip':
+            if self.more_layer:
+                text_embedding = self.image_model.encode_text(text, attention_mask, expand=True, more_layer=True)
+            elif self.expand_language:
+                text_embedding = self.image_model.encode_text(text, attention_mask, expand=True)
+            else:
+                text_embedding = self.image_model.encode_text(text, attention_mask)
         else:
             if self.more_layer:
-                text_embedding = self.language_model(text, attention_mask, output_hidden_states=True)[2]
+                text_embedding = list(self.language_model(text, attention_mask, output_hidden_states=True)[2])
+                for i in range(len(text_embedding)):
+                    text_embedding[i] = text_embedding[i].unsqueeze(1)
             elif self.expand_language:
                 text_embedding = self.language_model(text, attention_mask)[0]
             else:
                 text_embedding = self.language_model(text, attention_mask)[1]
-        if self.attention_model:
-            logits = self.fc(image_embedding,text_embedding)
+        if self.attention_model is not 'none':
+            logits = self.fc(image_embedding, text_embedding, attention_mask)
         else:
             embedding = torch.cat([image_embedding,text_embedding],-1) # bs, 2560
             logits = self.fc(embedding)
@@ -291,21 +309,46 @@ class NewClassfier(nn.Module):
         return logits
     
 class AttentionClassfier(nn.Module):
-    def __init__(self, exchange = False, bn_threshold=2e-2, more_layer=False):
+    def __init__(self, exchange = False, bn_threshold=2e-2, more_layer=False, image_dim=2048, language_dim=768, more_layer_clip=False, attention_model='simple'):
         super(AttentionClassfier, self).__init__()
-        self.groups = 3 if more_layer else 1
+        self.groups = 4 if more_layer else 1
+        self.more_layer_clip = more_layer_clip
+        self.language_dim = language_dim
+        self.image_dim = image_dim
         self.exchange = exchange
         self.attention_layers1 = nn.ModuleList([])
         self.attention_layers2 = nn.ModuleList([])
-        for i in range(self.groups):
-            self.attention_layers1.append(CoAttention(2048,768))
-            self.attention_layers2.append(CoAttention(768,2048))
-        
+        self.attention_model = attention_model
+        if attention_model == 'simple':
+            attention_dim = 256        
+            for i in range(self.groups):
+                if self.more_layer_clip:
+                    self.attention_layers1.append(nn.ModuleList([CoAttention(image_dim,language_dim) for _ in range(self.groups)]))
+                    self.attention_layers2.append(nn.ModuleList([CoAttention(language_dim,image_dim) for _ in range(self.groups)]))
+                else:
+                    self.attention_layers1.append(CoAttention(image_dim,language_dim))
+                    self.attention_layers2.append(CoAttention(language_dim,image_dim))
+        elif attention_model == 'bilinear':
+            attention_dim = 768
+            for i in range(self.groups):
+                if self.more_layer_clip:
+                    # self.attention_layers1.append(nn.ModuleList([BilinearLayer(image_dim,language_dim) for _ in range(self.groups)]))
+                    # self.attention_layers2.append(nn.ModuleList([BilinearLayer(language_dim,image_dim) for _ in range(self.groups)]))
+                    self.attention_layers1.append(BilinearLayer(image_dim,language_dim))
+                    self.attention_layers2.append(BilinearLayer(language_dim,image_dim))
+                else:
+                    self.attention_layers1.append(BilinearLayer(image_dim,language_dim))
+                    self.attention_layers2.append(BilinearLayer(language_dim,image_dim))
         if self.exchange:
-            self.fc1 =  nn.Sequential(
-                nn.Linear(256*self.groups, 128)
-            )
-            self.bn_exchange = BatchNorm1dParallel(128, 2)
+            if self.more_layer_clip:
+                self.fc1 =  nn.Sequential(
+                    nn.Linear(attention_dim*self.groups, attention_dim//2)
+                )
+            else:
+                self.fc1 =  nn.Sequential(
+                    nn.Linear(attention_dim*self.groups, attention_dim//2)
+                )
+            self.bn_exchange = BatchNorm1dParallel(attention_dim//2, 2)
             self.bn_threshold = bn_threshold
             self.bn_list = []
             for module in self.bn_exchange.modules():
@@ -313,28 +356,59 @@ class AttentionClassfier(nn.Module):
                     self.bn_list.append(module)
             self.exchange = Exchange()
             self.fc2 = nn.Sequential(
-                nn.Linear(256, 2)
+                nn.Linear(attention_dim, 2)
             )
         else:
-            self.fc =  nn.Sequential(
-                nn.Linear(256*self.groups*2, 256),
-                nn.Dropout(p=0.5),
-                nn.Linear(256, 2)
-            )
-    def forward(self, image_embedding, text_embedding):
+            if self.more_layer_clip:
+                self.fc =  nn.Sequential(
+                    # nn.Linear(attention_dim*self.groups*self.groups*2, attention_dim),
+                    nn.Linear(attention_dim*self.groups*2, attention_dim),
+                    nn.Dropout(p=0.5),
+                    nn.Linear(attention_dim, 2)
+                )
+            else:
+                self.fc =  nn.Sequential(
+                    nn.Linear(attention_dim*self.groups*2, attention_dim),
+                    nn.Dropout(p=0.5),
+                    nn.Linear(attention_dim, 2)
+                )
+                
+    def forward(self, image_embedding, text_embedding, text_mask):
         if self.groups > 1:
             num_each_group = 12//self.groups
-            text_embedding = torch.cat(text_embedding[1:]).view(self.groups,num_each_group,image_embedding.size(0),-1,768)
-            text_embedding = text_embedding.sum(1)
+            text_embedding = torch.cat(text_embedding[1:],1).view(-1,self.groups,num_each_group,text_embedding[0].shape[-2],self.language_dim)
+            text_embedding = text_embedding.sum(2)
+            # text_embedding = text_embedding[:,:,-1]
+            if self.more_layer_clip:
+                image_embedding = torch.cat(image_embedding[1:],1).view(-1,self.groups,num_each_group,image_embedding[0].shape[-2],self.image_dim)
+                image_embedding = image_embedding.sum(2)
+                # image_embedding = image_embedding[:,:,-1]
         else:
-            text_embedding = text_embedding.unsqueeze(0)
+            text_embedding = text_embedding.unsqueeze(1)
         
         x1_result_list = []
         x2_result_list = []
-        
-        for i in range(self.groups):
-            x1_result_list.append(self.attention_layers1[i](image_embedding,text_embedding[i]).mean(1))
-            x2_result_list.append(self.attention_layers2[i](text_embedding[i],image_embedding).mean(1))
+        if self.attention_model == 'bilinear':
+            image_mask = torch.ones([text_mask.size(0),image_embedding.size(-2)]).to(text_mask)
+            for i in range(self.groups):
+                if self.more_layer_clip:
+                    x1_result_list.append(self.attention_layers1[i](image_embedding[:,i],text_embedding[:,i],image_mask,text_mask))
+                    x2_result_list.append(self.attention_layers2[i](text_embedding[:,i],image_embedding[:,i],text_mask,image_mask))
+                    # for j in range(self.groups):
+                    #     x1_result_list.append(self.attention_layers1[i][j](image_embedding[:,j],text_embedding[:,i],image_mask,text_mask))
+                    #     x2_result_list.append(self.attention_layers2[i][j](text_embedding[:,i],image_embedding[:,j],text_mask,image_mask))
+                else:
+                    x1_result_list.append(self.attention_layers1[i](image_embedding,text_embedding[:,i],image_mask,text_mask))
+                    x2_result_list.append(self.attention_layers2[i](text_embedding[:,i],image_embedding,text_mask,image_mask))
+        else:
+            for i in range(self.groups):
+                if self.more_layer_clip:
+                    for j in range(self.groups):
+                        x1_result_list.append(self.attention_layers1[i][j](image_embedding[:,j],text_embedding[:,i]).mean(1))
+                        x2_result_list.append(self.attention_layers2[i][j](text_embedding[:,i],image_embedding[:,j]).mean(1))
+                else:
+                    x1_result_list.append(self.attention_layers1[i](image_embedding,text_embedding[:,i]).mean(1))
+                    x2_result_list.append(self.attention_layers2[i](text_embedding[:,i],image_embedding).mean(1))
         x1 = torch.cat(x1_result_list,-1)
         x2 = torch.cat(x2_result_list,-1)
 
